@@ -1,0 +1,359 @@
+
+
+                  TELECOPY - MOVING FILES ON TYMNET
+                  --------   ------ ----- -- ------
+
+
+
+       ((INTRODUCTION))
+
+
+            TELECOPY is a file transfer program  used  to  copy  files
+       between  two  Tymshare  host computer systems.  It can copy any
+       type of files to or from similar systems (ie.  one TYMCOM-X  to
+       another  TYMCOM-X)  or  it can transfer any symbolic file to or
+       from different types of hosts (ie.  TYMCOM-X to TYMCOM-IX).
+
+            In all cases, the conventions and protocols of the systems
+       involved  must be followed.  For example, on the TYMCOM-IX, the
+       maximum allowable file size is the same for TELECOPY as  it  is
+       for the EXEC command 'COPY'.  Also, the file naming conventions
+       must meet the syntax requirements on both the sending  and  the
+       receiving systems.
+
+            To copy files between systems with  this  program,  it  is
+       necessary   that  the  same  username  be  valid  on  both  the
+       originating host and the  destination  host.   It  is  best  to
+       TELECOPY  files  from  one  username  on  a  system to the same
+       username on the other system.  Files can be copied either  from
+       or  to  the  system the user is currently logged on, but he/she
+       must be logged in to one of the two  systems  involved  in  the
+       TELECOPY.   For example, if the user is logged into C33, he/she
+       cannot telecopy from H8 to C38.
+
+
+
+       ((COMMAND SUMMARY))
+
+               COMMAND         EFFECT
+               -------         ------
+
+               RUN            BEGINS EXECUTION
+
+               VERSION        PRINTS VERSION NUMBER
+
+               ONLC           SET LOWER CASE MODE (TYMCOM X TO
+                               TYMCOM-IX ONLY)
+
+               OFFLC          TURN OFF LOWER CASE MODE (DEFAULT)
+
+               TRUNCATE NNN   TRUNCATE STARTING AT COLUMN NNN 
+                              THE MIN. IS 2; THE MAX. IS 255
+                              USED FOR TELECOPIES FROM THE TYMCOM 370
+
+               NO TRUNCATE    TURNS OFF TRUNCATE (DEFAULT)
+
+               SUPRESS        REMOVES TRAILING BLANKS ON TELECOPIES
+                              FROM THE TYMCOM 370
+
+               NO SUPRESS     STOPS THE REMOVAL OF TRAILING BLANKS 
+                              THIS IS THE DEFAULT.
+
+               HELP (OR ?)    REPRINTS THIS LIST
+
+               INSTRUCTIONS   HOW TO EXECUTE THIS PROGRAM
+
+               SYS940         ADDITIONAL INSTRUCTIONS RELATIVE TO
+                              FILE TRANSFERS TO OR FROM THE TYMCOM-IX.
+
+               PDP10          ADDITIONAL INSTRUCTIONS RELATIVE TO
+                              TRANSFERS TO OR FROM THE TYMCOM-X
+
+               SYS370         ADDITIONAL INSTRUCTIONS RELATIVE TO
+                              FILE TRANSFERS TO OR FROM THE 370.
+
+               QUIT           EXITS TO EXEC
+
+
+                                    NOTE
+
+           Any of these commands may be shortened to the shortest
+           unique command.
+
+
+       As Tymshare personnel there is one additional legal command:
+
+               TIME           SETS TIME SWITCH TO PROVIDE
+                              PERIODIC STATUS REPORTS ON
+                              CHARACTERS AND TRANSFER RATE.
+
+
+
+       ((COMMAND DESCRIPTION))
+
+            To start the program, enter  the  following  program  name
+       from the exec:
+
+               On TYMCOM-IX  hosts            'TELECOPY'
+               On TYMCOM-X   hosts            'R TELECO'
+               On TYMCOM-370 hosts            'TELECOPY'
+
+       The program responds with a colon (:) prompt at which point the
+       user  may  enter  any  valid  TELECOPY  command.  If any of the
+       preliminary  commands  are  needed  to   establish   parameters
+       relevant  to  the use of lower case characters, trailing blanks
+       and so on, they should be input first.
+
+            As a user with Tymshare licence, you may receive  progress
+       reports periodically by using the 'TIME' command at this point.
+       It is only necessary to do this once to set the  switch.   This
+       will  also  report  the  rate  per  second characters are being
+       transferred.
+
+            To enter the file specification part  of  TELECOPY,  issue
+       the command 'RUN (CR)'.
+
+            When the RUN command is issued, the program  will  request
+       the  "COPY  FROM" file and then the "COPY TO" file.  The syntax
+       for entering this information is:
+
+                      (USERNAME:SYSTEM NUMBER)FILE NAME
+
+       For example:   (JONES:7)DATA
+
+            It is possible to input the string  without  the  prompts.
+       Type the information directly after the ':'.
+
+            If the username or file name is omitted on the "TO"  side,
+       the  "FROM"  information  is  used.   More  than  one  file may
+       transferred (using same system, same user  name)  by  typing  a
+       string of file names separated by commas.  If the system number
+       is omitted on the "FROM" side, the logged in system is assumed.
+
+            The command string is limited to 300 characters,  and  may
+       be  typed  on several lines by ending intermediate lines with a
+       line feed.  The string is terminated when a carriage return  is
+       encountered.
+
+            If an attempt is made to copy to  an  existing  file,  the
+       program will ask for confirmation.
+
+            The  message  "COPY  STARTING"  will  be  typed  when  the
+       transfer of the data starts.
+
+            Upon completion, the message "FILE COPIED TO FILE" will be
+       displayed on the terminal.
+
+
+
+                   TYMCOM-IX SPECIFIC INSTRUCTIONS
+
+
+            The following differences prevail when using this  program
+       to  transfer  files  from or to a TYMCOM-IX and another type of
+       host:
+
+            Only symbolic files may  be  transferred.   Tymcom-x  line
+       numbered  files, such as created with LINED, will have the line
+       numbers stripped when transferring  to  the  TYMCOM-IX  system.
+       TYMCOM-X  tabs will be expanded to spaces based on standard tab
+       settings when transferring to  the  TYMCOM-IX.   The  TYMCOM-IX
+       compressed  blanks  will  be  expanded when transferring to the
+       TYMCOM-X.  File names must meet the syntax requirements of  the
+       appropriate system.
+
+
+                                    NOTE
+
+           You are referred to  the  naming  conventions  for  the
+           TYMCOM-IX  in  the  EXECUTIVE  MANUAL  (May  1976) page
+           23,24.
+
+
+                    TYMCOM-X SPECIFIC INSTRUCTIONS
+
+
+            The following differences should be  borne  in  mind  when
+       using  this  program to transfer files between the TYMCOM-X and
+       other host types:
+
+            Only symbolic files may  be  transferred.   TYMCOM-X  line
+       numbered  files, such as created with LINED, will have the line
+       numbers stripped when  transferred  to  the  TYMCOM-IX  system.
+       TYMCOM-IX  compressed  blanks will be expanded when transferred
+       to TYMCOM-X.  TYMCOM-X tabs will be converted to  spaces  based
+       on  standard  tab  setting  when  transferred to the TYMCOM-IX.
+       When transferring onto an old file on the TYMCOM-IX,  the  file
+       will  be  opened  in  sequential  mode,  meaning  that  the old
+       contents are lost.  This differs from  the  TYMCOM-IX  transfer
+       where  old files are opened in update mode.  This means that if
+       the the TELECOPY is aborted by using an escape key the original
+       contents  of  the  old file will be preserved.  File names must
+       meet the syntax requirements of the recipient system.
+
+
+                                    NOTE
+
+           Refer to the Tymshare XEXEC MANUAL  (Dec.   1974)  page
+           13,14  for  a  discussion  of  valid  file names on the
+           TYMCOM-X.
+
+
+
+                   TYMCOM-370 SPECIFIC INSTRUCTIONS
+
+
+            The following differences prevail when using this  program
+       to  transfer  files from or to a TYMCOM-370 and another type of
+       system:
+
+            Only symbolic files may  be  transferred.   TYMCOM-X  line
+       numbered  files, such as created with LINED, will have the line
+       numbers stripped when transferring to  the  TYMCOM-370  system.
+       TYMCOM-X  tabs will be expanded to spaces based on standard tab
+       settings when transferring to the TYMCOM-370.  Blank  lines  in
+       the  TYMCOM-X  file  will  cause  a  record of one blank on the
+       TYMCOM-370, and if the file is returned to the  TYMCOM-X  by  a
+       subsequent file transfer, the "SUPRESS" option should be given.
+       File names must meet the syntax requirements of the appropriate
+       system.
+
+
+                                    NOTE
+
+           For  a  discussion  of  these   requirements   on   the
+           TYMCOM-370,  refer to Tymshare's 'CMS REFERENCE MANUAL'
+           (Oct 1974) page 20-22.
+
+
+       ((SAMPLE RUNS))
+
+       '.'R TELECO (CR)                        (CALL THE PROGRAM)
+
+       ':'RUN (CR)
+       'COPY FROM FILE:' (TRAINING:33)TELECO.DOC (CR)
+
+       'COPY TO FILE:' (TRAINING:40)TELECO TEXT (CR)
+                                               (NOTE FILENAME
+                                                CHANGE FOR 370 SYNTAX)
+       'COPY STARTING'
+
+       'TELECO.DOC SYSTEM 33
+        COPIED TO
+        TELECO TEXT SYSTEM 40'
+
+       '10354 CHARS. TRANSMITTED'              (COMPLETION MESSAGE)
+       ':'QUIT (CR)                            (RETURN TO EXEC)
+
+
+       Here the same transfer is accomplished but prompting is
+       omitted. It is assumed the user is logged on to C33 so the 'TO'
+       system
+       may also be omitted.
+
+       '.'R TELECO (CR)
+
+       ':'(TRAINING)TELECO.DOC,(TRAINING:40)TELECO TEXT (CR)
+       'COPY STARTING'
+
+
+
+       'TELECO.DOC SYSTEM 33
+        COPIED TO
+        TELECO TEXT SYSTEM 40'
+
+       10354 CHARS. TRANSMITTED'
+
+
+       In this example, the file is transferred to C35 with the same
+       file name kept on both systems. Also, 'FROM' and 'TO'
+       specifications
+       are input together on the same line.
+
+       ':'(TRAINING:33)TELECO.DOC,:35 (CR)     (NOTE USE OF : TO 
+       'COPY STARTING'                          SEPARATE 'FROM' AND
+                                                'TO' SPECS.)
+
+       'TELECO.DOC SYSTEM 33
+       COPIED TO
+         SYSTEM 35'                            (SAME FILENAME)
+
+       '10354 CHARS. TRANSMITTED'
+       ':'
+
+
+       Now TELECOPY is run on a TYMCOM-IX. Several files can be copied
+       with a single command string input.
+
+       '-'TELECOPY (CR)
+
+       ':'(MARTINEZ:10)AFILE,BFILE,CFILE,:8,AFILE1,BFILE1,CFILE1 (CR)
+                                               (USE COMMA BETWEEN
+       FILES)
+       'COPY STARTING'
+
+       'AFILE SYSTEM 10
+       COPIED TO
+       'AFILE1 SYSTEM 8'
+
+       '25 CHARS. TRANSMITTED'
+
+       'BFILE SYSTEM 10
+       COPIED TO                               (THE PROGRAM CONTINUES
+       BFILE1 SYSTEM 8'                         WITH THE NEXT FILE)
+
+       '465 CHARS. TRANSMITTED'
+
+       'CFILE SYSTEM 10
+       COPIED TO
+       CFILE1 SYSTEM 8'
+
+       '2534 CHARS. TRANSMITTED'               (WHEN ALL DONE TELECOPY
+       ':'                                      RETURNS TO COMMAND
+                                                MODE)
+
+
+
+       In this example, the destination name for the TELECOPY 
+       already exists.
+
+       ':'(940MAN:35)OPSYS.DOC,:33 (CR)
+
+       'OKAY TO WRITE ON OLD FILE?' Y (CR)     (A 'NO' HERE ABORTS THE
+                                                TELECOPY AND RETURNS
+                                                TO COMMAND MODE)
+
+       'COPY STARTED'
+
+       'OPSYS.DOC SYSTEM 35
+        COPIED TO
+          SYSTEM 33'
+
+       '243578 CHARS. TRANSMITTED'
+       ':'
+
+
+
+       ((ERRORS AND RECOVERIES))
+
+
+            If the error  message  'UNABLE  TO  LOG  INTO  SYSTEM  NN'
+       outputs,  there is a possibility that the destination system is
+       unavailable.   To  test  this   possibility,   login   to   the
+       destination  system.   If  you can login, proceed to 'pull' the
+       file from the source  system.   Another  cause  of  this  error
+       message is attempting to use a different username on one system
+       than another.  If not, perhaps one of the the usernames is  not
+       valid on the host system it references.
+
+            For error messages  in  the  form  'UNABLE  TO  OPEN  FILE
+       FILENAME',  chances  are  there  is a protection on the file or
+       directory involved.  Check this by using the  appropriate  EXEC
+       commands that output file or directory protection status.
+
+            The  error  message  'CIRCUIT  ZAPPED'  indicates  that  a
+       telecommunications  problem  occurred during the TELECOPY.  For
+       best results, quit out of telecopy and reenter the  program  to
+       try   again.   If  the  method  of  old  file  overwriting  was
+       sequential, then the destination file is probably gone.
+   

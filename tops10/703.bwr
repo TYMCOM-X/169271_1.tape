@@ -1,0 +1,331 @@
+
+
+
+            PRELIMINARY BEWARE FILE FOR 7.03 DISTRIBUTION
+
+
+
+
+
+                             Revision:  1
+
+                         Date:  2 August 1985
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+COPYRIGHT (C) 1986 BY
+DIGITAL EQUIPMENT CORPORATION, MAYNARD, MASS.
+
+
+THIS SOFTWARE IS FURNISHED UNDER A LICENSE AND MAY BE USED AND  COPIED
+ONLY  IN  ACCORDANCE  WITH  THE  TERMS  OF  SUCH  LICENSE AND WITH THE
+INCLUSION OF THE ABOVE COPYRIGHT NOTICE.  THIS SOFTWARE OR  ANY  OTHER
+COPIES  THEREOF MAY NOT BE PROVIDED OR OTHERWISE MADE AVAILABLE TO ANY
+OTHER PERSON.  NO TITLE TO AND OWNERSHIP OF  THE  SOFTWARE  IS  HEREBY
+TRANSFERRED.
+
+THE INFORMATION IN THIS SOFTWARE IS SUBJECT TO CHANGE  WITHOUT  NOTICE
+AND  SHOULD  NOT  BE  CONSTRUED  AS  A COMMITMENT BY DIGITAL EQUIPMENT
+CORPORATION.
+
+DIGITAL ASSUMES NO RESPONSIBILITY FOR THE USE OR  RELIABILITY  OF  ITS
+SOFTWARE ON EQUIPMENT WHICH IS NOT SUPPLIED BY DIGITAL.
+BEWARE FILE FOR 7.03 DISTRIBUTION                               Page 2
+
+
+                          TABLE OF CONTENTS
+
+
+     This file contains the following information concerning the  7.03
+     monitor release:
+
+
+     1.0  Introduction
+
+
+     2.0  List of files included in the 7.03 release
+
+
+     3.0  Installation instruction for 7.03
+
+
+     4.0  Warnings of known deficiences in 7.03
+
+
+     5.0  Important differences between 7.02 and 7.03
+
+
+     6.0  Dependencies
+
+
+     7.0  Unbundled software
+BEWARE FILE FOR 7.03 DISTRIBUTION                               Page 3
+
+
+1.0  INTRODUCTION
+
+The major reason for release 7.03 of the TOPS-10 operating  system  is
+to  support  CI/HSC50  disk  subsystem,  to  implement  the  corporate
+networking protocols DECnet-10 phase IV  for  ethernet  communication,
+and  to implement a number of security enhancements including password
+encryption.  Additionally,  7.03  implements  support  for  user  mode
+extended  addressing,  alternate  contexts  (PUSH/POP),  LAT  terminal
+concentrators,  CTERM  (the   corporate   network   virtual   terminal
+protocol),  and  a number of minor enhancements.  Installation of 7.03
+is very similar to the installation of 7.02 except for the  fact  that
+there  is  a  new microcode and BOOT.  Also, the 7.03 package contains
+GALAXY 5.0.  The installation of these new products and  ramifications
+with  respect to dropping back to 7.02 are discussed in the section on
+operator differences below.
+BEWARE FILE FOR 7.03 DISTRIBUTION                               Page 4
+
+
+2.0  LIST OF FILES INCLUDED IN 7.03
+
+The 7.03 release consists of:
+
+     1.  The distribution tape with 2 save sets:
+
+         A.  Monitor files
+
+         B.  ANF10 Network files
+
+     2.  SMP - (CPNSER) - an unbundled product
+
+     3.  DECnet-10 - an unbundled product
+
+     4.  DEC-10 2780/3780 IBMCOM E/T - an unbundled product
+
+     5.  The appropriate bootable tape, floppies, or DECtapes for your
+         configuration
+
+     6.  The full DEC supported CUSP distribution (2 tapes)
+
+     7.  The customer supported tape with 2 save sets
+
+         A.  Customer supported utilities
+
+         B.  Customer supported monitor files
+
+
+     8.  Tools tape
+
+BEWARE FILE FOR 7.03 DISTRIBUTION                               Page 5
+
+
+2.1  The Following New Utilities Are Required With 7.03:
+
+     BOOT V3 - Replaces MONBTS, contains various microcodes.
+
+     DAEMON V22 - Supports error reporting for the CI and NI.  
+
+     UUOSYM V17 - Updated with 7.03 monitor symbols.
+
+
+
+2.2  This Documentation File Can Be Found On The Monitor Save Set:
+
+
+       STOPCD.MEM Stopcodes
+
+
+
+2.3  This Documentation File Can Be Found On The Network Save Set:
+
+
+       DN8TSK.MEM DN87 Spec
+BEWARE FILE FOR 7.03 DISTRIBUTION                               Page 6
+
+
+3.0  INSTALLATION INSTRUCTIONS
+
+During this field test, in addition to the normal distribution  tapes,
+we  will also include an auxiliary tape which will contain last minute
+packaging changes, patch files, temporary documentation, etc.
+
+
+                                 NOTE
+
+               This auxiliary  tape  MUST  BE  RESTORED
+               LAST   in  non-interchange  format  when
+               doing any software installations.
+
+
+To avoid last minute editing while preparing field test tapes, it will
+be  our procedure throughout field test to include a patch file on the
+field test auxiliary tape.  It is essential that this  patch  file  be
+installed  before attempting to run the field test monitor.  The patch
+file is on the auxiliary distribution tape.  The naming convention for
+the  patch  file  will  be  the processor identifier, the monitor load
+number with the letter "A" appended  to  it  and  the  extension  DDT.
+E.g.,  the  names  of  the  patch  files  for this field test tape are
+KL217A.DDT  and  KS217A.DDT.   See  DDT.MAN   for   instructions   for
+installing patch files.
+
+Each patch in  the  patch  file  documents  the  functional  piece  of
+software  that  the  patch applies to so it will be necessary for each
+installation to edit  the  file  eliminating  patches  which  are  not
+applicable  to  that  site.  E.g., if a patch says [KLNI only], a site
+which doesn't have a KLNI would edit that portion of  the  patch  file
+out before attempting to install the patches.
+
+Included with this  field  test  tape  are  new  versions  of  various
+microcodes  and  RSX-20F.   It is essential that these new versions be
+installed for the proper operation of the system.  RSX-20F is  version
+15-31,  the  DX20/TX02 microcode is version 10(71), the KL10 microcode
+is version 2(411), the CI-20 microcode is version 4(711), and finally,
+the KLNI microcode is version 1(167).
+
+     1.  All files which are in [10,7,COPFE] on  the  auxilliary  tape
+         must  be  copied  to  all front-ends.  (See appendix B of the
+         RSX-20F manual for instructions on how to use FE to copy this
+         software from the auxiliary field test tape.)
+
+     2.  All files which are in [10,7,SYSTEM] on the  auxilliary  tape
+         must be copied to SYS:.
+
+The new TOPS-10 DECnet and PSI Installation Guide is included with the
+documentation  files  on the Auxilliary Tape.  This manual documents a
+version of NETGEN that is not yet available for customer testing.  The
+NETGEN program that is included with the DECnet software is a previous
+version of NETGEN.  For documentation of the  distributed  version  of
+NETGEN,  please  refer  to  the  TOPS-10 DECnet Network Generation and
+Installation Procedures.  This manual is available from SDC using  the
+order   number  AA-P379A-TB.   The  new  version  of  NETGEN  will  be
+BEWARE FILE FOR 7.03 DISTRIBUTION                               Page 7
+
+
+distributed to Field Test sites at a later time.
+
+For normal installation, refer to the  TOPS-10  Software  Installation
+Guide.   This  is  provided  on  the  auxiliary  tape  in  the DOC SFD
+(SOFTIN.MEM).
+
+For sites that have ANF10 networks, read and follow the TOPS-10  ANF10
+Network Installation Guide.
+
+For sites that have DECnet-10 networks, read and  follow  the  TOPS-10
+DECnet-10  and  PSI  Installation  Guide.   This  is  provided  on the
+auxiliary tape in the DOC SFD (DECINS.MEM).
+BEWARE FILE FOR 7.03 DISTRIBUTION                               Page 8
+
+
+4.0  WARNINGS OF KNOWN DEFICIENCIES IN 7.03
+
+4.1  AUTOCONFIGURE
+
+The AUTOCONFIGURE CONFIG command is known to cause  system  hangs  and
+STOPCDs so it is recommended that it not be used.
+
+
+
+5.0  IMPORTANT DIFFERENCES BETWEEN 7.02 AND 7.03
+
+5.1  Differences Important To System Programmers
+
+5.1.1  Maximum Number Of Jobs - We regularly build and run a  200  job
+monitor  and  have  successfully logged in and run 200 jobs.  However,
+the  actual  maximum  number  of  runnable  jobs  is  both  load   and
+configuration  dependent.   Although  it may be possible to create and
+run a monitor with more jobs, the supported maximum is 175, as  stated
+in the Software Product Description.
+
+
+
+5.1.2  DAEMON - The DAEMON on the 7.03 distribution tape will only run
+with  7.03,  i.e., it will not function correctly with 7.02 or earlier
+monitors.  The 7.02 version of DAEMON should be renamed to  DAE702.EXE
+on  SYS  as  part  of the 7.03 installation.  When the 7.03 version of
+DAEMON is started, it determines if the monitor is  7.03  and  if  not
+causes DAE702 to be started.
+
+
+
+5.1.3  MONBTS - The functions of  the  MONBTS  module  have  now  been
+implemented  in  BOOT.   BOOT can now be configured to contain various
+microcodes and sites will probably want to configure  BOOT  with  only
+those  microcodes  necessary  for the devices that they have.  Because
+BOOT does contain microcodes, the loading procedure  executed  by  KLI
+takes significantly longer with 7.03 than with 7.02.
+
+
+
+5.1.4  MONGEN For Unsupported Configurations - MONGEN     has     been
+modified   to   allow  the  system  administrator  to  select  various
+unsupported (customer supported) options.  See the MONGEN help  output
+or consult the MONGEN documentation in the Installation Guide.
+
+
+
+5.2  Differences Important To The User
+
+BEWARE FILE FOR 7.03 DISTRIBUTION                               Page 9
+
+
+5.3  Differences Important To The Operator
+
+5.3.1  Dropping Back To 7.02 - The   major   operational    difference
+between  7.02  and  7.03  on  a  KL10  processor is the fact that 7.03
+requires a new microcode and bootstrap (BOOT).   7.02  will  run  with
+7.03  KL  microcode,  bootstrap, and V15-31 RSX-20F provided autopatch
+tape #9 has been applied to it.
+
+If autopatch tape #9 hasn't been installed, you may use the  following
+dropback procedures.  To facilitate dropping back, KLI will record the
+name of the default files which the  microcode  and  BOOT  are  to  be
+loaded from in its configuration file.  Rename the 7.02 BOOT.EXB to be
+OBOOT.EXB;2.  Install the 7.03 microcode as KLX.MCB;411 and  the  7.03
+BOOT as BOOT.EXB;3.  The RSX20F file system will now contain
+
+     KLX.MCB;411 for use with 7.03,
+     BOOT.EXB;3 and
+
+     UB.MCB;400 for use with 7.02
+     OBOOT.EXB;2
+
+To run 7.03, RSX20F should be rebooted;  the operator  should  respond
+'YES'  to  the  KLI  enter  dialog  question.   When  KLI  asks if the
+microcode  should  be  reloaded,  the  operator   should   type   'YES
+KLX.MCB;411'.   When  KLI  asks  load  bootstrap,  the operator should
+respond 'BOOT.EXB;3'.  This procedure will cause  the  7.03  microcode
+and  bootstrap  to be loaded.  If the configuration file is written, a
+<CR> or 'NO' response to the KLI enter dialog question will  load  the
+microcode   and   bootstrap  specified  in  the  most  recent  dialog.
+Likewise, to run 7.02, the  operator  should  go  through  the  dialog
+specifying the 7.02 microcode and bootstrap.
+
+This monitor should be assembled by MACRO V53B and loaded by LINK  V5A
+with DDT V42, which are supplied on the CUSP tape.
+
+
+
+6.0  UNBUNDLED SOFTWARE
+
+     CPNSER - Multi CPU interface.
+
+     DECnet-10 - Support software for DECnet-10 version 4.
+
+
+[End of 703.BWR]

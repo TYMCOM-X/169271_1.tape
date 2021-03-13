@@ -1,0 +1,120 @@
+00:00:58 S 20-Dec-86
+00:15:03 S -S- run #1 job 3 Req #2443  Running DSK:(MAIL)MAILER.SAV
+00:15:08 S -R- run #1 job 3 Done-End <0>
+00:37:04 S -S- run #1 job 3 Req #2442  Running DSK:(MAIL)ONTMTP.SAV
+00:41:18 S -R- run #1 job 3 Done-End <0>
+01:15:01 S -S- run #1 job 3 Req #2444  Running DSK:(MAIL)MAILER.SAV
+01:15:06 S -R- run #1 job 3 Done-End <0>
+02:15:02 S -S- run #1 job 3 Req #2446  Running DSK:(MAIL)MAILER.SAV
+02:15:07 S -R- run #1 job 3 Done-End <0>
+02:37:03 S -S- run #1 job 3 Req #2445  Running DSK:(MAIL)ONTMTP.SAV
+02:41:16 S -R- run #1 job 3 Done-End <0>
+03:00:05 S 20-Dec-86
+03:15:00 S -S- run #1 job 3 Req #2447  Running DSK:(MAIL)MAILER.SAV
+03:15:05 S -R- run #1 job 3 Done-End <0>
+04:15:01 S -S- run #1 job 3 Req #2449  Running DSK:(MAIL)MAILER.SAV
+04:15:06 S -R- run #1 job 3 Done-End <0>
+04:37:02 S -S- run #1 job 3 Req #2448  Running DSK:(MAIL)ONTMTP.SAV
+04:41:17 S -R- run #1 job 3 Done-End <0>
+05:15:04 S -S- run #1 job 3 Req #2450  Running DSK:(MAIL)MAILER.SAV
+05:15:09 S -R- run #1 job 3 Done-End <0>
+06:00:15 S 20-Dec-86
+06:15:00 S -S- run #1 job 3 Req #2452  Running DSK:(MAIL)MAILER.SAV
+06:15:05 S -R- run #1 job 3 Done-End <0>
+06:37:02 S -S- run #1 job 5 Req #2451  Running DSK:(MAIL)ONTMTP.SAV
+06:41:13 S -R- run #1 job 5 Done-End <0>
+07:15:06 S -S- run #1 job 5 Req #2453  Running DSK:(MAIL)MAILER.SAV
+07:15:10 S -R- run #1 job 5 Done-End <0>
+08:13:04 S -S- stream #1 Req #2417 DSK:(JMS)MIDNIT.LOG=DSK:(JMS)MIDNIT.CTL
+08:13:15 P Waiting for interlock
+08:13:16 S Given interlock
+08:13:16 P Got interlock
+08:13:16 P EXECX Job Processor %1(203) starting in frame 5
+08:13:17 P Stream #1 Req #2417 DSK:(JMS)MIDNIT.LOG=DSK:(JMS)MIDNIT.CTL
+08:13:18 S Starting job processor in frame 5
+08:15:06 S -S- run #1 job 9 Req #2455  Running DSK:(MAIL)MAILER.SAV
+08:15:20 S -R- run #1 job 9 Done-End <0>
+08:19:56 P Stream #1 Req #2417 * completed *
+08:19:58 S -R- stream #1 Done-End <0>
+08:35:19 P Signing off.
+08:37:04 S -S- run #1 job 5 Req #2454  Running DSK:(MAIL)ONTMTP.SAV
+08:41:15 S -R- run #1 job 5 Done-End <0>
+09:00:32 S 20-Dec-86
+09:15:02 S -S- run #1 job 5 Req #2456  Running DSK:(MAIL)MAILER.SAV
+09:15:08 S -R- run #1 job 5 Done-End <0>
+10:00:03 S -S- stream #1 Req #2420 DSK:(JMS)FNDBAD.LOG=DSK:(JMS)FNDBAD.ALL
+10:00:14 P Waiting for interlock
+10:00:15 S Given interlock
+10:00:15 P Got interlock
+10:00:15 P EXECX Job Processor %1(203) starting in frame 5
+10:00:16 P Stream #1 Req #2420 DSK:(JMS)FNDBAD.LOG=DSK:(JMS)FNDBAD.ALL
+10:00:17 S Starting job processor in frame 5
+10:06:05 S -R- stream #1 Done-End <0>
+ted *
+10:15:03 S -S- run #1 job 6 Req #2459  Running DSK:(MAIL)MAILER.SAV
+10:15:08 S -R- run #1 job 6 Done-End <0>
+10:21:18 P Signing off.
+10:37:06 S -S- run #1 job 5 Req #2458  Running DSK:(MAIL)ONTMTP.SAV
+10:41:30 S -R- run #1 job 5 Done-End <0>
+11:15:02 S -S- run #1 job 5 Req #2461  Running DSK:(MAIL)MAILER.SAV
+11:15:06 S -R- run #1 job 5 Done-End <0>
+11:30:01 S -S- stream #1 Req #2427 DSK:(M33)XFER.LOG=DSK:(M33)XFER.CTL
+11:30:12 P Waiting for interlock
+11:30:13 S Given interlock
+11:30:13 P Got interlock
+11:30:13 P EXECX Job Processor %1(203) starting in frame 5
+11:30:14 P Stream #1 Req #2427 DSK:(M33)XFER.LOG=DSK:(M33)XFER.CTL
+11:30:14 S Starting job processor in frame 5
+11:37:47 P Stream #1 Req #2427 * completed *
+11:37:50 S -R- stream #1 Done-End <0>
+11:53:30 P Signing off.
+12:00:25 S 20-Dec-86
+12:15:01 S -S- run #1 job 3 Req #2463  Running DSK:(MAIL)MAILER.SAV
+12:15:07 S -R- run #1 job 3 Done-End <0>
+12:37:01 S -S- run #1 job 3 Req #2462  Running DSK:(MAIL)ONTMTP.SAV
+12:41:06 S -R- run #1 job 3 Done-End <0>
+13:15:05 S -S- run #1 job 3 Req #2465  Running DSK:(MAIL)MAILER.SAV
+13:15:09 S -R- run #1 job 3 Done-End <0>
+14:00:04 S -S- stream #1 Req #2428 DSK:(CARL)XEXMAI.LOG=DSK:(CARL)XEXMAI.CTL
+14:00:15 P Waiting for interlock
+14:00:16 S Given interlock
+14:00:16 P Got interlock
+14:00:17 P EXECX Job Processor %1(203) starting in frame 3
+14:00:17 S Starting job processor in frame 3
+14:00:18 P Stream #1 Req #2428 DSK:(CARL)XEXMAI.LOG=DSK:(CARL)XEXMAI.CTL
+14:03:40 P Stream #1 Req #2428 * completed *
+14:03:43 S -R- stream #1 Done-End <0>
+14:15:03 S -S- run #1 job 5 Req #2467  Running DSK:(MAIL)MAILER.SAV
+14:15:09 S -R- run #1 job 5 Done-End <0>
+14:19:28 P Signing off.
+14:37:03 S -S- run #1 job 3 Req #2466  Running DSK:(MAIL)ONTMTP.SAV
+14:41:08 S -R- run #1 job 3 Done-End <0>
+15:00:30 S 20-Dec-86
+15:15:00 S -S- run #1 job 3 Req #2469  Running DSK:(MAIL)MAILER.SAV
+15:15:06 S -R- run #1 job 3 Done-End <0>
+16:15:03 S -S- run #1 job 3 Req #2471  Running DSK:(MAIL)MAILER.SAV
+16:15:07 S -R- run #1 job 3 Done-End <0>
+16:37:02 S -S- run #1 job 3 Req #2470  Running DSK:(MAIL)ONTMTP.SAV
+16:41:07 S -R- run #1 job 3 Done-End <0>
+17:15:06 S -S- run #1 job 3 Req #2472  Running DSK:(MAIL)MAILER.SAV
+17:15:09 S -R- run #1 job 3 Done-End <0>
+18:00:35 S 20-Dec-86
+18:15:00 S -S- run #1 job 3 Req #2474  Running DSK:(MAIL)MAILER.SAV
+18:15:05 S -R- run #1 job 3 Done-End <0>
+18:37:01 S -S- run #1 job 3 Req #2473  Running DSK:(MAIL)ONTMTP.SAV
+19:15:09 S -R- run #1 job 3 Done-End <0>
+ning DSK:(MAIL)MAILER.SAV
+20:15:04 S -S- run #1 job 3 Req #2477  Running DSK:(MAIL)MAILER.SAV
+20:15:10 S -R- run #1 job 3 Done-End <0>
+20:37:00 S -S- run #1 job 3 Req #2476  Running DSK:(MAIL)ONTMTP.SAV
+20:41:09 S -R- run #1 job 3 Done-End <0>
+21:00:42 S 20-Dec-86
+21:15:02 S -S- run #1 job 3 Req #2478  Running DSK:(MAIL)MAILER.SAV
+21:15:08 S -R- run #1 job 3 Done-End <0>
+22:15:03 S -S- run #1 job 3 Req #2480  Running DSK:(MAIL)MAILER.SAV
+22:15:09 S -R- run #1 job 3 Done-End <0>
+22:37:05 S -S- run #1 job 3 Req #2479  Running DSK:(MAIL)ONTMTP.SAV
+22:41:07 S -R- run #1 job 3 Done-End <0>
+23:15:01 S -S- run #1 job 3 Req #2481  Running DSK:(MAIL)MAILER.SAV
+23:15:07 S -R- run #1 job 3 Done-End <0>
+00:00:47 S 21-Dec-86

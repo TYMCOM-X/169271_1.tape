@@ -1,0 +1,841 @@
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Mon, 14 Oct 85 15:07:19 PDT 
+To: carl 
+Subject: vmfile sources 
+
+    Carl,
+
+    The VMFILE sources in your directory seem to have undergone a change
+    since I last listed them.  Was there anything significant done to them?
+    Should I not try to use the VMFILE module for PRT?
+
+    /ken
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Mon, 14 Oct 85 15:15:28 PDT 
+To: Ken Dawson <Ken@X930.Tymnet> 
+Subject: Re: vmfile sources 
+
+Oh yes... I added a few more routines and started working on making it
+read "backwards" (which it doesn't quite do yet).  I don't know what
+version you printed... but it should be useable... if it doesn't seem
+to work right, then get the current copy and try again... If I break
+something, I'll tend to put it back or fix it... so whatever is on my
+directory should be in useable condition...
+
+at this very instant, I'm modifying how something works, but it should
+not have broken anything... I'll let you know in about 1/2 hr, as I was
+just about to test it when I saw your message...
+/Carl
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Mon, 14 Oct 85 15:37:45 PDT 
+To: ken 
+Subject: VMFILE still works...not broken. 
+
+Give me a call (at the office) when you get a chance.
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Fri, 18 Oct 85 16:34:30 PDT 
+To: Ken Dawson <ken@X930.Tymnet>, Joe Smith <jms@X930.Tymnet>, Osman Guven
+	<osman@X930.Tymnet> 
+Subject: VMFILE! It's all done! It works!!! 
+
+See (CARL)VMFILE.REQ for additional info.
+
+  and example of some of it's use can be seen by comparing the two
+files (CB-SAIL)MARKER.000 and (CB-SAIL)MARKER.SAI.  Ciao... more on
+this later.  If you have any problems, call me or write me... I'm
+off for the weekend... sigh!
+
+/Carl
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Tue, 22 Oct 85 0:46:54 PDT 
+To: carl 
+Subject: host 180 
+
+    <CARL> on host 180 is in place, with your last name as pwd.  OAD1 was
+    down; you'll have to ftp files you wish moved when it is up.  Virgil
+    cautions out that 180 is a flakey environment, roaming from one
+    hardware situation to another.
+
+    /Ken
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Tue, 22 Oct 85 13:14:44 PDT 
+To: carl 
+Subject: VMFILE and lonely CRs 
+
+    Carl,
+
+    We discussed the treatement of lonely CRs, but I cannot recall how they
+    are to be detected procedurally.  Did you actually deal with them yet?
+
+    /Ken
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Tue, 22 Oct 85 16:20:36 PDT 
+To: Ken Dawson <ken@X930.Tymnet> 
+Subject: Lonely CRs 
+
+They are not detectable.... i.e.   DATA-CR-DATA-CR-LF  looks like
+                                     DATA-DATA-CR-LF  (I think).
+You'll have to try it yourself to be sure.  If I detect a CR just
+prior to an EOL then VMGETC(S,VM$ECR)='15 else it =0.  The way this
+is implemented is that I ignore CRs all the time as a character.  If
+I see one, I set a flag.  At eol I return whatever is available.  If
+I see any other character, I clear the flag (going forwards) and don't
+do anything going backward.  So, DATA-CR-DATA-LF going backward will
+appear as the same as DATA-DATA-CR-LF  and forward as DATA-DATA-LF.
+{sigh}.
+
+I think this is how it works... the solution is to not do overstriking
+and all works fine.  For normal source files, there isn't any kind
+of problem.  Only for funny DDT and other files would there be a problem.
+/Carl
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Tue, 22 Oct 85 22:42:36 PDT 
+To: Carl A Baltrunas <Carl@X930.Tymnet> 
+Subject: Re: Lonely CRs 
+
+    Indeed, when reading (forward) in a test file containing
+    "++++<cr>____<lf>", I wound up with "++++____<lf>".
+
+    /ken
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Wed, 23 Oct 85 15:08:11 PDT 
+To: carl 
+Subject: systat 
+
+    Did you know that there are cases when SYSTAT will report the BUBB-11
+    node as "???"?  Do you care?  Mayabe JMS does.
+
+    /ken
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Sat, 26 Oct 85 4:06:58 PDT 
+To: Ken Dawson <ken@X930.Tymnet> 
+Subject: Ohmigosh! VMFILE changed! 
+
+Well, I decided that I needed the capability to WRITE files using my new
+mapping package VMFILE as well as just being able to read them. So,...
+
+  Slot_ VMFILE( StringFilename, AccessMode(0) )
+	where access mode is [0]=Read,[1]=Write-single-access,[2]=Update-
+	single access,[3]=Multiple-update.
+
+  Bool_ VMTEXT( Slot, StringTextMessage )
+	where text message can be any length sail will accept.  it may
+	just as well be multiple lines. It works! great! even!
+
+  Value_ VMGETC( Slot, VM$Msg )      ::= # of text messages ending with ^D
+  Value_ VMGETC( Slot, VM$MSize )    ::= # of text messages in file ... ^D
+  Value_ VMGETC( Slot, VM$Access )   ::= Access mode used by VMFILE call.
+
+  Line_ VMLINE( Slot, Break, Dir(0) )
+	such that ^D is now included in the class of "line-break" characters
+	and a text messge of L1<crlf>L2<crlf><^D> is 3 lines long and one
+	message long.  I've thought that it might be nice to allow ^D to go
+	away and use the old behavior, but I can't imagine anyone who would
+	want ^D as a text charcter, so unless you demand a way to make it
+	a transparent character again... sigh!
+
+For more details, I've updated VMFILE.REQ with some of hte changes to the
+documentation, and VMFOO.SAI uses the new features reasonably well.
+I hope I didn't spoil your listings again... oh well!  Ohmigosh!
+
+/Carl
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Sat, 26 Oct 85 21:28:48 PDT 
+To: Ken Dawson <ken@X930.Tymnet> 
+Subject: VMFILE release! 
+
+Ken,
+  While finishing up the last set of things for VMFILE, I undertook
+the task of the lone Carriage-return!  The way it's setup to work...
+
+    Text_ VMLine( Slot, EolBreak, Direction(default=0) )
+
+    Text      contains the line of data, or null for blank lines.
+
+    EolBreak  contains #LF for normal lines, #FF for page marks,
+              #VT if present, #EOT (^D) if present for message texts,
+              #CR if a carriage-return was seen without a #LF, or
+              #NUL (^@ or 0) if at the end of file.
+
+    To check to see if the line was terminated by a CRLF, or CRFF, or
+    CRVT the value returned by VMGetC(slot,VM$ECR) will have a #CR if
+    seen, otherwise will be 0.
+
+    To determine if at the end of file, Text must be null and EolBreak
+    must contain a 0, otherwise there may be a string in Text without
+    a valid end-of-line when at the end, or you may have a blank line.
+
+It seems to work both directions quite well.  I'm not sure if it keeps
+track of the message or page counts correctly, but I think it does now.
+Let me know if you find any problems.
+
+    I presume you got the mail about VMTEXT, so I won't repeat myself.
+    Feel free to give me a call, whenever to talk about it.  Although,
+    I may be unavailable for parts of tomorrow, since it so  "happens"
+    that Cherie & I will be married exactly 6 months tomorrow.
+
+Ciao!  /Carl
+I really do hope to NOT make any more changes for awhile!
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Sun, 27 Oct 85 23:55:25 PST 
+To: carl 
+Subject: class 
+
+    It seems that I'll be attending class on N First St this whole bloody
+    coming up week.  All about ISIS programming, or some such.  So it seems
+    I won't be fit to talk to 'til next week.
+
+    I am awfully glad to see lonely CRs recognized.  The only files I can
+    think of which might contain ^D, and which might be printed are
+    PEAK.INI files.
+
+    /ken
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Tue, 5 Nov 85 14:38:01 PST 
+To: carl 
+Subject: vmfile - the routine. 
+
+    Carl,
+
+    Correct me if I'm right:  It seems that I recently discovered that
+    vmfile does not assume the GFDed directory when trying to look up a
+    file that I don't qualify with a username.  This seems wrong.
+
+    Right?
+
+    /ken
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Wed, 6 Nov 85 11:01:37 PST 
+To: Ken Dawson <ken@X930.Tymnet> 
+Subject: VMFILE changes 
+
+After reading your mail and checking the code, I guess I saw that I left
+in the code which looked for files in your AUN if you didn't specify any
+username.  Since 
+all my testing was in my directory, i never noticed it.
+
+I've put in code which expects to run on a P034/P or later monitor.  We
+added a few GETTABS which are nice.  '30 & '31 which are DEC's username
+table entries,  *** OOPS *** well, P034/P01 and later?, I'll check ***
+and we store the GFD username there instead.  (In one version, we just
+make these point to .GTUNM & .GTUN1, maybe /P maybe not).  Anyway, when
+you GFD someplace the monitor puts the GFD username in these locations and
+only "MAGIC" programs can somehow set these to 0.
+
+Anyway, if no usrername is passed, I read these GETTAB entries.  It works
+correctly on 930, even if it doesn't work elsewhere YET!  As soon as the
+next monitor goes out, it will work everywhere, since that shouldn't take
+too too long, 'cause it is needed everywhere for my new PERP to work...
+/Carl
+
+Also, VMFREE now takes a second argument, added so I can use VMFREE to
+rename (delete) a file I've been writing.  The second argument is labeled
+BITS and if -1 will delete a file that was open for writing/update/etc,
+and any other non-zero value will be used as bits to the CLOSE uuo.  BUT,
+the only useful bits are things to ignore access and such, 'cause just
+closing the input or output side will have unfortunate effects since the
+next uuo in sequence is a RELEASE!
+
+Ciao!  /Carl
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Sun, 17 Nov 85 23:44:02 PST 
+To: carl 
+Subject: concatenation & PUT.SAI 
+
+    It seems that the remaining nulls were due to instances of the
+    concatenation of your NULL into the resulting string.  My solution is
+    to only append "Tmp" and "Brk" onto the result when they are nonzero;
+    and this seems adequate to remove spurious nulls from the output.  Is
+    something askew in SAIL?
+
+    /ken
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Mon, 18 Nov 85 12:29:41 PST 
+To: carl 
+Subject: (spl)type and the (yetch) scanset printer 
+
+    Exactly which parameters of my redundant printer is Type interested in?
+    Some samples follow:
+
+        ESC & "A1"        Direct the ensuing data traffic to the printer
+        ESC & "A0"        Direct the ensuing data traffic to the terminal
+        ESC & "Q"         Set 16.5 horizontal pitch
+        ESC & "E"         Set 12.0 horizontal pitch
+        ESC & "N"         Set 10.0 horizontal pitch
+        ESC & "P"         Set "proportional" horizontal pitch
+
+    Notify me of whatever else you need to know to complete the brain
+    transplant.
+
+    /ken
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Mon, 18 Nov 85 14:07:22 PST 
+To: ken 
+Subject: not valid on 33, 58, 95 
+
+
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Tue, 19 Nov 85 19:19:51 PST 
+To: Ken Dawson <ken@X930.Tymnet> 
+Subject: System 24 (noon to midnight) 
+
+System 24 is supposed to be available from noon to midnight!
+Don't put your only copy of anythig there, but feel free to hammer
+on it a little.  We may wipe things out once or twice in the near future
+so feel free to work then telecopy it off when done... sigh!  Only worry
+if we tell you something of a disaster... sigh!
+
+I validated KEN, KDAWSON, PEAK, KLIB, KDEV1 for your use.  If you need more
+check with me first so you will NOT get zapped.  PS: Don't use TOO MUCH
+space, but feel free to use some.  /Carl
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Fri, 22 Nov 85 10:46:49 PST 
+To: carl 
+Subject: Life, the Universe, and CHUFD 
+
+    Each time I embark on a new development project with the monolithic
+    MFDSCN iterator routines, I ask myself "whatever happened to the
+    'get-first/get-next' paradigm for iterating through wildcard specs?".
+    This time I thought I'd ask you as well.  No doubt there was a very
+    particular reason why you took the approach you did, but I find that as
+    I increment the design of PUT to the next step (adding wildcard
+    support), I must totally redesign my mainline code.  I know I'm
+    probably being dense, but I'd like to know.
+
+    /ken
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Fri, 22 Nov 85 11:53:26 PST 
+To: Ken Dawson <ken@X930.Tymnet> 
+Subject: Re: Life, the Universe, and CHUFD 
+
+Sigh... is there really that much redesign?  Think of the calls that
+you setup as "WHILE (ANY-FILES-MATCHING-SPEC) DO FILE-PROC" with the
+UFD-PROC as an invisible filter...
+
+By the way, I didn't design it the way it is... DWS did it and called it
+FILSCN which Adele had me look at it and speed it up, which I did.  Anyway
+the idea is sound... but the general case most people only want the two
+procedures, UFDPROC, FILEPROC and for single directories, only FILEPROC
+has any meaning.  I wish you could OMIT procedures... HMMMMMM... you can
+have default arguments, I wonder if you can have default procedures, and
+put the procedures it uses inside MFDSCN?   HMMMMM....
+
+/Carl
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Mon, 25 Nov 85 9:05:49 PST 
+To: carl 
+Subject: c24 
+
+    When the time comes, and :24 can stay up for more than a few seconds at
+    a time, would you please insure that it has an up-to-date version of
+    the oper password file?
+
+    Thanks,
+
+    /ken
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Sat, 30 Nov 85 11:59:52 PST 
+To: wrs 
+Subject: (wrs)36 and diskspace 
+
+    Bill,
+
+    Just checking to see if you realize that your account on :36 has
+    expanded by 16K pages since the 18th of November.  Is this expected, or
+    is there a runaway condition somehwere?
+
+    /ken
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Mon, 2 Dec 85 18:04:38 PST 
+To: carl 
+Subject: (UFD) and DUSAGE 
+
+    Just Checking:
+
+    Does (UFD) freak DUSAGE out?  I just did one on :36, and found that
+    DUSAGE reported that (UFD)'s usage went from 1407 to 0 since a few days
+    ago.  I suppose that there is "no problem" since I'm able to log in,
+    but I'm curious as to whether DUSAGE cn make sense of the (UFD)
+    directory.
+
+    /ken
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Thu, 26 Dec 85 21:21:33 PST 
+To: Ken Dawson <Ken@X930.Tymnet> 
+Subject: Re: (spl)type and the (yetch) scanset printer 
+
+Ken,
+  I've located the lobotomized sources to TYPE and was interested in adding
+your SCANSET printer.  I'd swear that you sent me something on paper, but I
+was unable to find it the other day when I left the office.
+
+  I located a SCANSET 410 & 415 manual and what it says conflicts with what
+you sent me in the messafge I am replying to.  Also, I am unclear to your
+meaning:  e.g.
+            ESC & "A1"  direct the ensuing data traffic to the printer
+
+is this:  ESC & A 1   or is it  ESC A 1  ???  I will assume it is the former.
+                                              since ESC & x x certainly will
+                                              cause a HP26xx terminal grief.
+
+The manual I have says nothing of pitch, but says that...
+  ESC ; 0     Close printer port
+  ESC ; 1     Open printer port, no char display, trap commands
+  ESC ; 2     Open printer port, dispaly characters
+  ESC ; 3     PRINT SCREEN
+  ESC ; 4     Open printer port, transparent display until ESC ; 0 seen
+
+I'd like to add /DEVICE:SCANSET but I think I need more info.  I'll get
+back to you as soon as you get back to me.
+
+/Carl
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Thu, 26 Dec 85 21:37:07 PST 
+To: Ken Dawson <ken@X930.Tymnet> 
+Subject: Scanset / ADM11 
+
+Well,
+  /DEV:SCANSET  will be the one in my manual
+  /DEV:ADM11P   will be the one used by PUT.SAI
+
+and I saw you mean ESC A 0  and  ESC A 1 without the ampersand !
+Will send mail whane it's testable.
+
+/Carl
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Fri, 27 Dec 85 0:59:19 PST 
+To: Ken Dawson <ken@X930.Tymnet> 
+Subject: TYPE / TYPER 
+
+(SPL)TYPER on 930 now runs (SYS)TYPE instead of (MPL)TYPE.
+(SYS)TYPE  on 930 now has /DEVICE:TI820 /DEVICE:SCANSET /DEVICE:ADM11P
+                  in addition to the old /DEVICE:TTY and /DEVICE:LA50
+
+/HPITCH takes 5, 6, 8, 10, 12, 16  as values. For ADM-11P it uses
+                  /HPITCH:5 for proportional and 10, 12, 16 as designated.
+
+Not having such a device, I cannot test it.  /DEV:SCANSET is implemented
+as per my SCANSET manual, but there are NO guarantees!  Sigh!
+
+From: Postmaster 
+Date: Thu, 16 Jan 86 15:03:32 PST 
+To: NTD.D/CHANG@Ontyme.Tymnet 
+Subject: Returned MAIL 
+
+The following message was not delivered because:
+RCPT To: <ken@c36.Tymnet>
+550 <ken@c36.Tymnet> invalid, not sending mail
+
+
+
+----------
+RCPT To: ken@c36.Tymnet 
+Received: From EMSNTD.Ontyme.Tymnet by C39.Tymnet; Thu, 16 Jan 86 14:26:35 PST
+From: NTD.D/CHANG@Ontyme.Tymnet 
+Date: 14 JAN 86 16:42:05 
+To: NTD.K/DAWSON@Ontyme.Tymnet 
+Message-id: I02528@Ontyme.Tymnet 
+Subject: 14-bit Node Numbers 
+
+TO:  NTD Personnel
+FR:  David Chang
+RE:  14-bit Node Numbers
+DA:  January 14, 1986
+
+================================================
+
+The public network will be supporting 14-bit node numbers.  There are
+possibly several applications that expects node numbers to be always 12
+bits or uses a 12-bit node number field.  Note that extending the node
+numbers beyond 12 bits means that the octal representation is extended
+to beyond 4 digits.  Please check your respective products ASAP.
+From: MDEMS.SUP@Ontyme.Tymnet 
+Date: 23 JAN 86 09:22:55 
+To: MDEMS.K/DAWSON@Ontyme.Tymnet 
+Message-id: M52980@Ontyme.Tymnet 
+Subject: 5-DIGIT NODE NUMBERS 
+
+                     T Y M N E T    O P E R A T I O N S
+
+DATE>      16 JAN 86  10:39
+
+TO>        WHOM IT MAY CONCERN
+
+COPIES>    
+
+FROM>      DENISE CORNELY-DQA
+
+
+SUBJECT>   5-DIGIT NODE NUMBERS
+
+
+-----------------------------------------------------------------------
+
+
+PLEASE BE AWARE THAT 5-DIGIT NODE NUMBERS ARE BEING ASSIGNED
+BY THE NET PROFILE DATABASE.  PLEASE MAKE ANY ADJUSTMENTS TO
+YOUR RECORDS AS NEEDED.
+
+THANK YOU.
+
+ANY QUESTIONS CONTACT ME AT 408-942-5220.
+From: Ken Dawson <Peak@X930.Tymnet> 
+Date: Tue, 28 Jan 86 14:04:45 PST 
+To: Carl A Baltrunas<Carl@X930.Tymnet> 
+Subject: here's the code. 
+itle Rtn Contains ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                              Rtn Contains                               =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+        Look for the presence of the string Tst in the string Src,
+        using the appropriate comparison.  We loosely base this code
+        on the "kequ" routine from the SAIL runtimes written in FAIL.
+
+ 
+==========================================================================;
+
+
+  internal simple boolean procedure Contains (string Src, Tst;
+      boolean Exactly(FALSE));
+  begin "Contains"
+    integer
+      SrvLen,
+      SrvPtr;
+
+    start!code
+      define
+        CASEBIT   = '40,
+        R1        = '01,
+        R2        = '02,
+        R3        = '03,
+        R4        = '04,
+        SrcLen    = '01,
+        SrcPtr    = '02,
+        TstLen    = '03,
+        TstPtr    = '04,
+        Ch1       = '13,
+        Ch2       = '14,
+        MatchCase = '15,
+        Sp        = '16,
+        P         = '17;
+
+      label
+        A1,
+        B1,
+        B2,
+        C1,
+        D1,
+        D2,
+        E1,
+        TrueRet,
+        FalseRet;
+
+
+        move      MatchCase, Exactly;
+        push      P, R2;
+        push      P, R3;
+        push      P, R4;
+
+        hrrz      TstLen, -1(Sp);
+        skipg     TstLen;
+        jrst      FalseRet;
+        hrrz      SrcLen, -3(Sp);
+        camge     SrcLen, TstLen;
+        jrst      FalseRet;
+        move      SrcPtr, -2(Sp);
+        ibp       SrcPtr;
+
+      A1:
+        jumple    SrcLen, FalseRet;
+        move      TstPtr, 0(Sp);
+        ibp       TstPtr;
+        hrrz      TstLen, -1(Sp);
+
+      B1:
+        camge     SrcLen, TstLen;
+        jrst      C1;
+        jumple    SrcLen, C1;
+        ldb       Ch1, SrcPtr;
+        ldb       Ch2, TstPtr;
+        xor       Ch1, Ch2;
+        jumpe     Ch1, C1;
+        jumpn     MatchCase, B2;
+        caie      Ch1, CASEBIT;
+        jrst      B2;
+        trz       Ch2, CASEBIT;
+        cail      Ch2, "A";
+        caile     Ch2, "Z";
+        skipa;
+        jrst      C1;
+
+      B2:
+        ibp       SrcPtr;
+        soja      SrcLen, B1;
+        
+      C1:
+        camge     SrcLen, TstLen;
+        jrst      FalseRet;
+        jumple    SrcLen, FalseRet;
+        movem     SrcPtr, SrvPtr;
+        movem     SrcLen, SrvLen;
+
+      D1:
+        jumple    TstLen, E1;
+        ldb       Ch1, SrcPtr;
+        ldb       Ch2, TstPtr;
+        xor       Ch1, Ch2;
+        jumpe     Ch1, D2;
+        jumpn     MatchCase, E1;
+        caie      Ch1, CASEBIT; 
+        jrst      E1;
+        trz       Ch2, CASEBIT;
+        cail      Ch2, "A";
+        caile     Ch2, "Z";
+        jrst      E1;
+
+      D2:
+        ibp       SrcPtr;
+        ibp       TstPtr;
+        soj       SrcLen,;
+        soja      TstLen, D1;
+
+      E1:
+        jumpe     TstLen, TrueRet;
+        move      SrcPtr, SrvPtr;
+        ibp       SrcPtr;
+        move      SrcLen, SrvLen;
+        soja      SrcLen, A1;
+
+      FalseRet:
+        setz      R1,;
+        skipa;
+
+      TrueRet:
+        seto      R1,;
+
+        pop       P, R4;
+        pop       P, R3;
+        pop       P, R2;
+    end;
+  end "Contains";
+
+
+! ===================================+=====================================
+==========================================================================;
+
+From: Ken Dawson <Peak@X930.Tymnet> 
+Date: Wed, 29 Jan 86 13:27:31 PST 
+To: Carl A Baltrunas<Carl@X930.Tymnet> 
+Subject: peak not valid user 
+
+    I ran mhx and found that PEAK is not valid (or attainable) on :33, :58,
+    :95 so far.
+
+    /ken
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Thu, 6 Feb 86 1:20:08 PST 
+To: Carl A Baltrunas <Carl@X930.Tymnet>, Osman Guven <osman@X930.Tymnet>, Joe
+	Smith <jms@X930.Tymnet> 
+Cc: Craig Fletcher <fletcherc@X930.Tymnet>, Dennis Coffey
+	<dencoff@X930.Tymnet>, Bruce Ring <bring@C26.Tymnet>, William R Soley
+	<wrs@C39.Tymnet>, Peak Maintainer <Peak@X930.Tymnet> 
+Subject: System 118 up 50000+p free 
+
+System 118 is up!!!
+I've deleted major portions of (M33),(OSU),(KSBACK) and a few more,
+completely deleted (OSP),(OSB) and a few more, removed CTMKTG1 and
+CTMKTG7 from the system, and trimmed as much as I could find out of
+"Monitor-only" directories.
+
+The result: 50,000 +++ free pages on system 118!
+
+!da
+6-Feb-1986 1:19:15 PST
+
+!sysno
+TYMSHARE X118-P034/P15 2-3-86
+! core 0
+! core
+0:0+0/512 pages
+Vir. core left=51004
+
+
+Sigh!
+
+/Carl
+From: Ken Dawson <Peak@X930.Tymnet> 
+Date: Tue, 11 Feb 86 4:02:44 PST 
+To: Carl A Baltrunas<Carl@X930.Tymnet> 
+Subject: getlch and aux ckts 
+
+    First, sorry for getting weird on the phone yesterday.  Please allow me
+    to take this opportunity to get weird through the mail:
+
+    My copy of the YAMM, corroborated by (sailib)uuosym.def, says that the
+    line characteristics bit indicating auxckt-ness is "1b12".  I wrote a
+    little test program which basically does
+
+        seto    1, ;
+        ttcall  6, 1;
+
+    and prints the result.  I proceeded to run this program (TST on my
+    directory on :930) both when logged in directly and when logged in via
+    TAUX from an alien system.  The results were:
+
+        [000040,,000000]        1b12
+        [123321,,000014]        Direct login
+        [101321,,000015]        TAUX   login
+
+    Note that lc.axc (1b12) is unaffected.  I must be doing something
+    wrong.  I know that LOADII kicks your butt if it sees you logged in
+    under an auxckt. I wonder how it knows...
+
+    /Ken
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Tue, 11 Feb 86 10:00:22 PST 
+To: Ken Dawson <Peak@X930.Tymnet> 
+Subject: AUX CIRCUIT-ness 
+
+GETLCH bits may or may not reflect reality.  I doubt that anyone has
+looked at those in years.  The YAMM is also a bit out of date (no pun
+[bit] intended) as under .GTLOG it is documented to use the 1000 bit
+of the node number to determine if it's AUX or not... That was based
+on the "fact" that all bases were node numbers less than 1000 and all
+TYMSATs started at 1000.  When TYMNET-II came about with node numbers
+starting at 2000, that story went out the window.  The "real" test of
+aux-circuit-ness is to look at the TID byte of .GTLOG/UPTLOG and a 0
+value means we have an aux circuit.  (One exception: If the entire
+node field of .GTLOG is 0, we are on a PTY and all bets are off).
+
+When I get time, I'll take a look at what sets lc.axc and we'll see if
+we can mae it do someting reasonable... sigh.
+
+PS: OK about weirdness... everything seems to be going that way of late.
+
+/Carl
+From: Ken Dawson <Peak@X930.Tymnet> 
+Date: Thu, 13 Feb 86 13:12:35 PST 
+To: Carl A Baltrunas<Carl@X930.Tymnet> 
+Subject: .gtlog 
+
+    What you said is really true.  Thanks for you help.  It just seems that
+    I remember you speaking about certain 12-bit node numbers which were
+    soon going to become 14-bit node numbers.  Could the two 6-bit parts in
+    the .gtlog word be what you were referring to?  As I recall, the whole
+    14-bits was going to become a single field.
+
+    Am I on drugs?
+
+    /ken
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Thu, 13 Feb 86 14:54:14 PST 
+To: Ken Dawson <Peak@X930.Tymnet> 
+Subject: DRUGS? 
+
+NO, YOU ARE NOT ON DRUGS....  YOU WERE CORRECT ABOUT .GTLOG AND
+THE 12-BIT TO 14-BIT NODE NUMBERS.  AACTUALLY, IT WILL BE 15 BITS
+AND I WILL TELL YOU ABOUT IT NEXT WEEK.
+
+/CARL
+From: Ken Dawson <Peak@X930.Tymnet> 
+Date: Fri, 28 Feb 86 9:38:36 PST 
+To: peak 
+Subject: LISP's undefined symbol TYPECH 
+
+    Note that the symbol TYPECH is undefined to the current executable
+    LISP.  I suspect that Tim's last version was not released.  Check it
+    out.
+
+        findit$Find file: lisp###.*
+        (K.LISP)LISP.INI             2  01-Apr-82  12:03  ALL  RD  NO
+        (K.LISP)LISP.LSP             4  01-Apr-82  12:04  ALL  RD  NO
+        (K.LISP)LISP.SUM             3  31-Dec-83  17:18  ALL  RD  NO
+        (K.LISP)LISP.SRT             2  31-Dec-83  17:18  ALL  RD  NO
+        (DWS)LISP.INI                2  31-Mar-82  21:17  ALL  RD  NO
+        (DWS)LISP.LSP                4  31-Mar-82  21:17  ALL  RD  NO
+        (SYS)LISP.LSP                4  05-Jan-76  11:11  ALL  RD  RD
+        (SYS)LISP.SAV               14  05-Jan-76  11:11  ALL RUN RUN
+        (SYS)LISP.LOD                9  16-Feb-82  16:12  ALL  RD  RD
+        (SYS)LISP.SYN               11  20-Jan-82  12:06  ALL  RD  RD
+        (SYS)LISP.SYM                2  16-Feb-82  16:12  ALL  RD  RD
+        (PEAK)LISP.INI               2  01-Apr-82  12:03  ALL  RD  NO
+        (PEAK)LISP.LSP               4  01-Apr-82  12:04  ALL  RD  NO
+        (KDAWSON)LISP.INI            2  01-Apr-82  12:03  ALL  RD  NO
+        Find file: 
+
+    /Ken
+From: Ken Dawson <Peak@X930.Tymnet> 
+Date: Fri, 28 Feb 86 15:31:37 PST 
+To: Carl A Baltrunas<Carl@X930.Tymnet> 
+Subject: pardone MOI!!!! 
+
+    Imagine my suprise (and vauge sense of deja vu) when i tried logging
+    into :897 and got some bogus crap message about it not being around
+    anymore and that the F3 is now X62.  What gives?
+
+    /ken
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Fri, 28 Feb 86 16:10:46 PST 
+To: Ken Dawson <Peak@X930.Tymnet> 
+Subject: 897 ... 
+
+Apparently, when NTD was told that they had to pay maintenance on 897,
+which previously was paid by AUGMENT, they balked and said turn it off.
+So,  897 is no more.
+
+Did you lose anything?  It might be retrievable, but I donno...I'll have
+to check with BLDG-A operations... i.e. did they do an all-files prior to
+it's de-commission, and if so, can the tapes be loaded elsewhere.
+
+I won't check, unless you lost something.  sigh.
+/carl
+From: Ken Dawson <Peak@X930.Tymnet> 
+Date: Fri, 28 Feb 86 16:50:23 PST 
+To: Carl A Baltrunas <Carl@X930.Tymnet> 
+Subject: Re: 897 ... 
+
+    I lost nothing except pride. the stuff which was there can be placed
+    elsewhere.
+
+    /ken
+From: Ken Dawson <Peak@X930.Tymnet> 
+Date: Mon, 17 Mar 86 11:18:38 PST 
+To: Carl A Baltrunas<Carl@X930.Tymnet> 
+Subject: Possible Channel Brain Damage Discovered 
+
+    Carl,
+
+    I was loping through "The collected short works of CAB" this morning,
+    when I came across a routine in CVFNAM.SAI which appears to scarf
+    channels.  It is CvPPN.  It does an Open(getchan), per the usual lore,
+    but it never releases the channel before returning.  I'm not sure, but
+    I think this is an error.  At any rate it is at least unclean.  it may
+    even account for the funny problems FDM has with file lists and
+    successive READ commands.
+
+    /ken
+
+From: Ken Dawson <Peak@X930.Tymnet> 
+Date: Mon, 17 Mar 86 23:23:51 PST 
+To: Carl A Baltrunas<Carl@X930.Tymnet>, mdems.k/dawson@ontyme 
+Subject: gan 3 accounts on B39 
+
+    Carl,
+
+    Has there been any provision made for our accounts to be accessible on
+    BUBBNET since they exiled 39 to the other side of the rainbow (kansas,
+    not oz)?  I think that PEAK may be valid (???), but my password doesn't
+    work.  I'm wondering how hosed up the situation might be for the whole
+    gan.
+
+    (Also note the test of Ontyme/Tums)
+
+    /ken
+   #.G'

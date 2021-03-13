@@ -1,0 +1,436 @@
+
+
+
+                      PROBE ON THE INTERDATA 7/32
+                      ----- -- --- --------- ----
+
+       ((INTRODUCTION))
+
+            PROBE is the access  and  control  program  for  the  TYMNET
+       supervisor.   It is a major subsystem which runs on the Interdata
+       model 7/32.  The primary operator functions in PROBE are:
+
+               1) to determine the general status of the network;
+
+               2) to check on the status of individual nodes in the net
+                  especially if it becomes necessary to reload a node
+                  or move a host from one hardware to another;
+
+               3) to establish a central logger terminal which can
+                  extract information of interest to operations about
+                  all the systems in an entire computer center.
+
+            In addition, PROBE can be used to manipulate the  useage  of
+       individual nodes and long lines, move the network supervisor from
+       one Interdata to another, and perform other activities  vital  to
+       the  maintenance  of TYMNET.  For the most part, these additional
+       capabilities are within the  domain  of  TYMNET  NETWORK  CONTROL
+       CENTER and require special status.  It is imperative that NETWORK
+       CONTROL be involved as much as possible in  any  of  these  other
+       procedures.
+
+       ((COMMAND SUMMARY))
+
+               1) LOGIN TO PROBE ON THE ACTIVE SUPERVISOR;
+
+               2) NEXT ENTER THE NAME WCO AND THE CURRENT OPER PASSWORD;
+
+               3) TYPE THE PROBE COMMAND 'STATUS';
+
+                (A. NODE CHECKING - N IS A NODE NUMBER)
+                ---------------------------------------
+
+               A4) TYPE THE COMMAND 'HOST N' TO DETERMINE THE STATUS OF
+                   THAT HOST (EG. 'HOST 38')
+
+               A5) TYPE 'NODE N' FOR ADDITIONAL INFO ON THAT NODE;
+
+               A6) QUIT THE PROGRAM AND LOGOUT OF THE INTERDATA WITH
+                   THE 'EXIT' COMMAND.
+
+                   (B. FOR RUNNING A LOGGER TERMINAL)
+                   ----------------------------------
+
+               B4) TYPE THE COMMAND 'EXTRACT 700' FOR CUPA CHECKING
+                   TYPE 'EXTRACT 701' FOR CUPC CHECKING.
+
+
+
+                                STARTUP
+
+            The first person to login to PROBE after the 7/32  has  been
+       brought  up  will be asked to supply Greenwich Mean Time (GMT) in
+       the format DD:HH:MM where DD is the  number  of  days  since  the
+       begining  of  the year.  When the TYMNET clock is installed, this
+       function will normally be handled by the TYMNET clock.  By typing
+       a  control Q here the program will skip the date input and prompt
+       for login.
+
+
+                                 LOGIN
+
+            All Interdata supervisors will run  on  "host"  systems  120
+       through 127.  The following are valid ways of getting into PROBE:
+
+                       PROBE:127;(password);
+                       PROBE:*;(password)cr
+
+            The asterisk (*) refers to the currently active supervisor.
+
+
+                                     NOTE
+
+           One may end the PROBE password with a semicolon or
+           carriage return, but not both.
+
+
+
+            After the circuit has been built to the 7/32, PROBE will ask
+       for an additional username.  You should use WCO as the username.
+       After the name has been entered, PROBE will ask for the password.
+       This password is the same for WCO as the login password for OPER
+       on Tymshare hosts.
+
+
+                              COMMAND MODE
+
+            Whenever a colon appears on the left hand margin, PROBE is
+       ready to accept another command.
+
+            All PROBE commands must be typed out in full on one line and
+       ended with a carriage return.
+
+            To get back to PROBE command mode (after login has been
+       completed) type a control Q or escape.  This will abort the
+       current activity and return to command mode.
+
+
+
+               COMMANDS WHICH INVOLVE GENERAL INFORMATION
+               -------- ----- ------- ------- -----------
+
+
+       HELP (or H, or ?)
+
+       Refers user to the document file PROBE.DOC.
+
+       SEND J MESSAGE 
+
+       This sends a message to the user on job j.  Use the WHO command
+       to find out the proper job label.
+
+       SYS 
+
+       Type out host, or system number.
+
+       TIME 
+
+       Type out the current time.
+
+       WHO 
+
+       The WHO command lists the current PROBE users and their job
+       labels.  The joblabels are needed for the SEND and HANG commands.
+
+       VERSION 
+
+       Print out the version numbers of PROBE, the kernel, and the
+       supervisor.
+
+       EXIT
+
+       This command quits the PROBE program and logs out of the
+       INTERDATA 7/32.
+
+
+
+              COMMANDS WHICH INVOLVE THE STATUS OF TYMNET
+              -------- ----- ------- --- ------ -- ------
+
+       STAT 
+
+       This command prints out the numbers of nodes in each of the 5
+       takeover states, the df (see below), and the reject count.  The
+       reject count is the count of the number of times the supervisor
+       could not build a circuit because of shut lines, lines out of
+       channels, or nodes out of passthroughs.  The source and
+       destination nodes of the last rejected login attempt are printed
+       after the reject count.  If SUP is not running (neither awake nor
+       asleep) the kernel's Status will appear at the end of the first
+       line.  The kernel status may be interpreted as follows:
+
+               NUMBER  MEANING
+               ------  -------
+        1000    FROZEN BY OPERATOR
+         800    PARITY ERROR IN THE SUPERVISOR - OR JOE RINDE HAS
+                STOPPED THE SUPERVISOR FOR EXAMINATION
+         100    SUPERVISOR HAS FAILED TO RECOVER FROM A CRASH - THE
+                SUPERVISOR CODE AREA HAS PROBABLY BEEN CLOBBERED.
+
+       COUNT 
+
+       This counts the number of nodes, terminations,  and  passthroughs
+       in the net.  It does not count internal circuits as terminations.
+
+       DF (NUMBER) (Requires Status 01)
+
+       This is used to compute the drowsiness factor.  When a supervisor
+       goes  to  sleep  or otherwise fails to send 'sleeping pills', the
+       other supervisor systems will remain dormant for only the  number
+       of  seconds  they  are  supposed  to remain asleep based on their
+       ranking in the 'supervisor pecking order'.  The drowsiness factor
+       is  a  number  that  is  factored into this.  1000 decimal is the
+       largest number that one  may  enter.   This  has  the  effect  of
+       suppressing the supervisor.
+
+       AWAKE (Requires Status 01)
+
+       This  command  will  awaken  the  supervisor  immediately.   This
+       overrides all previous reasons for sleeping, including a large DF
+       (Drowsiness Factor - how long the  supervisor  in  question  will
+       remain dormant when an active supervisor goes to 'sleep'.
+
+       SLEEP (Requires Status 01)
+
+       Put the current active supervisor to sleep.
+
+       LSHUT 
+
+       List all the shut lines.
+
+
+
+               COMMANDS WHICH INVOLVE THE STATUS OF NODES
+               -------- ----- ------- --- ------ -- -----
+
+       CT NODE 
+
+       This command traces all circuits terminating at this  node.   All
+       port numbers are in decimal.
+
+       CP NODE 
+
+       This traces all circuits passing through this node.
+
+       CL NODE LINE 
+
+       Use this to trace all circuits on this line.
+
+       HOST 
+
+       This command types information about a host  or  hosts.   If  for
+       example,  you  type 'HOST 19' PROBE types info about host 19.  If
+       you type 'HOST'(CR), the program types info about all hosts.  The
+       info  typed  is  host  number,  down,  shut or answered, position
+       number on its base, and base number.
+
+       AN 
+
+       This command will type out  node  number,  version  number,  host
+       numbers  (if any), terminations (not counting internal circuits),
+       passthroughs, crash count, upstream node number,  and  downstream
+       node number for all nodes in the net.
+
+       AD 
+
+       This will list all down nodes including those nodes which are not
+       in net, but are known by nodes which are in the net.
+
+       EXC 
+
+       List lines which are out or in some other exceptional state.
+
+       N
+
+       N is short for node.  see below.
+
+       NODE NODE 
+
+       This will give version number, crash count,  upstream  direction,
+       downstream  direction,  and exceptional conditions for this node.
+       This command will also provide the  number  of  passthroughs  and
+       terminations.   If  the  node is a base it will give host numbers
+       and status of each host.  Hosts will appear in order of  position
+       on  base  (0  or  1).  neighbor number, number of groups, cost of
+       using line, and exceptional conditions  for  each  line  will  be
+       output.
+
+
+
+       NEIGHBOR NODE 
+
+       This will scan node descriptors of all nodes to  find  references
+       to  the  specified  node.   Output from this command includes the
+       node number, line number, and number of groups for  the  neighbor
+       of the specified node.
+
+       RETAKE NODE (Requires Status 20)
+
+       This instructs the supervisor to retake the node.
+
+       BORI node LINE (Requires Status 20)
+
+       This tells a node to reset it's BORI header (Beginning Of  Record
+       Input).
+
+       ESHUT NODE NODE (Requires Status 10)
+
+       This will make an entry to the supervisor's shut line table.  The
+       effect is to shut the line between the specified nodes.  This can
+       also be done by using the 1DOWN program.
+
+       RSHUT NODE NODE (Requires Status 10)
+
+       Use this command to remove a shut between these two nodes.
+
+       CLEAR NODE (Requires Status 10)
+
+       This removes all line shuts involving the specified node.
+
+       NSHUT NODE (Requires Status 10)
+
+       This puts a shut in all lines on the specified node.
+
+
+
+            COMMANDS WHICH EXTRACT INFORMATION TO THE LOGGER
+            -------- ----- ------- ----------- -- --- ------
+
+       EXTRACT NODE NODELIST
+
+            EXTRACT will generate current log reports from certain nodes
+       and  provide  messages  of  interest  to operations such as 'HOST
+       DOWN', 'OUT OF DBITS' and so on.  To specify all  relevant  bases
+       within a computer center, a code may be typed:
+
+               CUPERTINO BUILDING A    700
+               CUPERTINO BUILDING C    701
+               PALO ALTO               702
+               HOUSTON                 703
+               VALLEY FORGE            704
+
+            The format of this  PROBE  command  is  'EXTRACT  NODE  NODE
+       LIST'.   For example if you type 'EXTRACT 1 701, this will report
+       data from all bases in Cupertino C plus  base  1.   If  you  type
+       'EXTRACT  703'  the program will report only information on SCO -
+       Tymshare's computer center in Houston Texas.
+
+       LOG TIME
+
+            The 'LOG TIME' command starts the logger output  of  all  or
+       specified  information  on  all  hosts,  lines  and  nodes in the
+       network.  The valid formats to this command are:
+
+       LOG 100         Start 100 minutes before now.
+       LOG 123:12:30   Start on the 123 day of the year, 12 hour,
+                       30 minutes. The time is in GMT.
+       LOG             Start now.
+       LOG S10         Start 10 minutes ago. Print each record with
+                       the time to the nearest second.
+       LOG H5          Start 5 minutes ago. Print all records in hex.
+       LOG B3          Start 3 blocks before current supervisor
+                       position. A block is 64 entries.
+                       This is useful when time is scrambled.
+
+            The PROBE LOG command will allow the option of single letter
+       qualifiers  which  modify  what information will be output and in
+       what format.  The S qualifier instructs the program  to  print  a
+       time  to  the  nearest  second  with  each record output.  If the
+       qualifier H is used all records output will  be  in  hexadecimal.
+       The  other  qualifiers  are  D (Disable) and X (eXceptions only).
+       The D qualifier will ignore nonfatal  errors,  bad  records,  and
+       certain  undecoded  errors.   The X qualifier will print out only
+       host and line related information (Line Out, Reset, or  OK,  Host
+       Up,  Down,  Answered,  or  Shut,  Host  Unhappy  bits).   The 'X'
+       qualifier will override a D qualifier.
+
+
+
+       ((SAMPLE RUN))
+
+
+               (LOGGING INTO PROBE ON THE INTERDATA 7/32)
+
+       'PLEASE LOG IN:' PROBE:*;               (A '*' DIRECTS LOGIN
+                                                TO THE ACTIVE SUPERVISOR
+                                                ALSO NOTE: NO FINAL ';')
+       'NAME' WCO(CR)                          (NOW IDENTIFY YOURSELF
+                                                TO THE PROBE PROGRAM)
+       'PASSWORD:'                             (USE THE OPER PSWD HERE)
+       '121'                                   (THIS IS ACTIVE SUPV.)
+       ':'                                     (PROBE IS READY FOR
+                                                COMMAND INPUT NOW)
+
+                  (PROBE COMMANDS FOR OVERALL STATUS)
+
+       ':'STAT(CR)                             (SEE COMMAND DESCR.
+       '0 0 0 0 204'                            ABOVE FOR THE MEANING
+       'DF 0 REJECTS 196 1015 53'               OF THESE NUMBERS)
+
+       ':'COUNT(CR)                            (THIS COUNTS NODES,
+       '204 NODES 2303 TERMINATIONS 2340 PASSTHROUGHS'
+                                                AND TRAFFIC IN NET)
+
+       ':'LSHUT(CR)                            (WHICH LINES ARE SHUT?)
+       '1201 1026'                             (THESE ARE THE NODES
+       '34 127'                                 WHOSE LINES ARE SHUT)
+       '1026 1070'
+       '1026 1172'
+       'ETC'
+
+       ':'AD(CR)                               (USE THIS TO LIST ALL
+                                                NODES DOWN IN THE NET)
+       '16 125 131 377 1026 1077 1151 1206     (NODES DOWN LISTED
+       1220 1224 1231 1240 1370 1374 1377      IN NUMERICAL ORDER)
+
+                (PROBE SAMPLES OF INDIVIDUAL NODE INFO)
+
+       ':'NODE 1000(CR)                        (LIST ALL INFO ON THAT
+       'VERSION 413 TYPE 3 CRASH 3 UP 177       NODE)
+       DOWN 1006 PORTS 26 PASSTHROUGHS 126
+       LINE STATUS:
+       0 5 3 0 1
+       1 1006 3 6 5 
+       ETC'                                   (HERE ARE CIRCUITS TO
+                                                THAT NODE. SEE COMMAND
+                                                DESCR. ABOVE)
+
+       ':'HOST 33(CR)                          (ALL NET INFO ON C33)
+       '33 ANSWERED 0 47'                       33 IS HOST 0 ON BASE)
+
+                     (EXTRACTING TO THE LOGGER TTY)
+
+       ':'EXTRACT 700 30(CR)                     (USE THIS FOR CUPA AND
+                                                THE PERP SYSTEM ON H8)
+
+
+
+       ':'EXTRACT 701(CR)                      (MONITOR CUPC ONLY)
+
+       ':'EXTRACT 702(CR)                      (LOGGER FOR PALO ALTO)
+
+       ':'EXTRACT 703(CR)                      (USE THIS FOR SCO)
+
+       ':'EXTRACT 704(CR)                      (AND THIS FOR VFO)
+
+
+
+       ((ERRORS AND RECOVERIES))
+
+
+            As mentioned earlier, all PROBE commands must  be  typed  in
+       full.   In  general  if  an  operand is ommitted the program will
+       assume 'ALL' was intended.  Any command can be aborted  by  using
+       the Control Q or 'ESCAPE' key.
+
+            Regarding login errors, the most common has been  forgetting
+       that  the  password typein must be terminated by EITHER a CR or a
+       semicolon (;) but NOT BOTH.  If you type both  the  program  will
+       assume the CR was part of the probe user input and will loop with
+       this incorrect input.  In cases where the login was  correct  but
+       the  message  'PLEASE LOG IN' occurs instead of being logged into
+       the INTERDATA, the  most  likely  cause  is  that  there  are  no
+       available  job  slots  remaining on the machine.  Currently there
+       are 12 available slots and often many of these must  be  used  in
+       the field while corrective maintenance occurs on the net.
+   

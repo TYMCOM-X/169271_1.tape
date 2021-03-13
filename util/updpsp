@@ -1,0 +1,244 @@
+^^
+.PAPER SIZE 60,79
+.FLAG CAPIT
+.LM 7
+.NOFILL.NOJUST
+.CENTER;^&PROCEDURES FOR MODIFYING PSPPDP\&
+.SKIP 1
+.CENTER;^&FILES NEEDED\&
+.SKIP 1
+.CENTER;PSPATO.MAC
+.CENTER;PSPCIR.MAC
+.CENTER;PSPEEP.MAC
+PSPLIB.MAC
+.CENTER;PSPPDP.MAC
+.CENTER;PSPSLV.MAC
+.SKIP 1
+.FILL.JUST
+\\
+^The above files are under the username <UTIL on all <TYMCOM-10's.
+^Backup copies are under the username <FREMONTDOC on system 74.
+.SKIP 1
+.NOFILL.NOJUST
+.LM 11
+^From the <EXEC, type in:
+.SKIP 1
+.LM 15
+^^
+"!"MOD PSPPDP.MAC (CR)
+"NUMBER OF CHARACTERS"
+"*"F '<NUMTAB'=
+"PRINT?" Y (CR)
+.SKIP 1
+.LM 7
+\\
+.FILL.JUST
+^Line number reports here everytime <NUMTAB is found.  ^The line you
+are concerned with is the line reporting all the <DEC hosts numbers.
+^this is the line you want to <ADD or <REMOVE host numbers.  ^Once
+this is done, you want to <SAVE it.  ^Enter <EXIT at the "*" prompt.
+.SKIP 1
+.LM 15
+^^
+.NOFILL.NOJUST
+"*"EXIT (CR)
+.SKIP 1
+.LM 11
+\\
+\\
+^From the <EXEC, type in:
+.SKIP 1
+.LM 15
+^^
+"!"LOAD PSPPDP,PSPCIR,PSPEEP (CR)
+"MACRO: PSPPDP"
+"MACRO: PSPCIR"
+"MACRO: PSPEEP"
+"LOADING"
+"6 PAGES CORE"
+.SKIP 1
+"!"SAVE PSPPDP (CR)
+"PSPPDP saved"
+.SKIP 1
+"!"DEC ALL RD RUN PSPPDP.SAV (CR)
+.LM 7
+.FILL.JUST
+\\
+.NOTE
+^In the <PSPPDP.MAC document, there is another part that reports
+system serial number and hardware alpha character.  ^It is under the heading of
+<ALFACK.
+.SKIP 1
+^The procedures on how to update this part is covered on page 3
+of this document.
+.SKIP 1
+^This part is normally updated by <TYMCOM-10 ^Software ^Support, if
+they know the <CPU ^Serial ^Number.
+.END NOTE
+.PAGE
+^The next step is to set up the <slave program.  ^To do this, from
+the <EXEC, type in:
+.SKIP 1
+^^
+.NOFILL.NOJUST
+.LM 15
+"!"LOAD PSPSLV,PSPCIR,PSPLIB (CR)
+"MACRO: PSPSLV"
+"MACRO: .MAIN"
+"LOADING"
+"4 PAGES CORE"
+.SKIP 1
+"!"SAVE PSPSLV (CR)
+"PSPSLV saved"
+.SKIP 1
+"!"
+.SKIP 1
+.LM 7
+.FILL.JUST
+\\
+^This file must have <SY and <RF license assigned to it
+and be declared <ALL <ALL <ALL for it to run.
+.SKIP 1
+.LM 15
+.NOFILL.NOJUST
+^^
+"!"R SETLIC (CR)
+.SKIP 1
+"FILE NAME:" PSPSLV.SAV,SY,RF (CR)
+.SKIP 1
+"EXIT"
+.SKIP 1
+"!"DEC ALL ALL ALL PSPSLV.SAV (CR)
+.SKIP 1
+.LM 7
+\\
+.FILL.JUST
+^If you use the program <PSPATO, perform the following:
+.SKIP 1
+.LM 11
+^From the <EXEC, type in:
+.SKIP 1
+^^
+.NOFILL.NOJUST
+.LM 15
+"!"LOAD PSPATO (CR)
+"MACRO: PSPATO"
+"LOADING"
+"2 PAGES CORE"
+.SKIP 1
+"!"SAVE PSPATO (CR)
+"PSPATO saved"
+.SKIP 1
+"!"
+.SKIP 1
+.LM 7
+\\
+.FILL.JUST
+^At this time, you can <DELETE all the *.<REL files.
+.SKIP 1
+^Store the following files from <UTIL to tape and restore to <UTIL
+on all your <TYMCOM-10'S.  ^It is best to do it by tape rather than
+telecopy.  ^If you telecopy, the file loses <LICENSE and its <DECLARATION,
+and you will need to log into each host and set each file up correctly.
+^^
+.LM 15
+.SKIP 1
+.NOFILL.NOJUST
+PSPPDP.SAV
+PSPSLV.SAV
+PSPATO.SAV
+.PAGE
+^^
+.PAPER SIZE 60,79
+.LM 7
+.NOFILL.NOJUST
+.FLAG CAPIT
+.CENTER;^&CONVERTING "DECIMAL" NUMBER TO "OCTAL"\&
+.SKIP 1
+\\
+<DDT is the simplest conversion method.
+.SKIP 1
+^^
+.LM 11
+"!"R DDT (CR)                      ;CALL 'DDT'
+.SKIP 1
+ENTER LOCATION ONE:  1/            ;IGNORE ALL OUTPUT
+.SKIP 1
+ENTER THE DECIMAL NUMBER (CPU SERIAL NUMBER) FOR CONVERSION FOLLOWED
+BY A (.) PERIOD.
+.SKIP 1
+1321. (CR)
+.SKIP 1
+OPEN LOCATION 'ONE' FOR OCTAL CONVERSION:
+.SKIP 1
+1[ (CR)
+.SKIP 1
+CONTROL 'C' OUT.
+.SKIP 1
+.LM 15
+^&EXAMPLE\&
+.SKIP 1
+"!"R DDT (CR)
+.SKIP 1
+1/   371416    1321. (CR)            ;IGNORE OUTPUT.  ENTER CPU
+                                     ;SERIAL NUMBER FOLLOWED
+                                     ;BY A PERIOD.
+.SKIP 1
+1[    2451 (CR)                      ;CONVERTED INPUT FOR CPU
+                                     ;SERIAL NUMBER
+\\
+.FILL.JUST
+.NOTE
+^This is the number (2451) you will need for section <ALFACK of the <PSPPDP.MAC
+program.
+.END NOTE
+.NOFILL.NOJUST
+^^
+_^C
+.SKIP 1
+"!"
+.PAGE
+.LM 7
+.CENTER;^&CONVERTING "ALPHA" CHARACTERS TO "OCTAL"\&
+.SKIP 1
+.LM 11
+"!"R DDT (CR)
+.SKIP 1
+ENTER LOCATION ONE:   1/                ;IGNORE OUTPUT.
+.SKIP 1
+ENTER THE 'ALPHA' CHARACTERS (HARDWARE 'ID') FOR CONVERSION.
+.SKIP 1
+OPEN DOUBLE QUOTE ("), SLASH (/), ALPHA CHARACTERS (FF), SLASH (/).
+.SKIP 1
+"/FF/
+.SKIP 1
+OPEN LOCATION ONE FOR CONVERSION:
+.SKIP 1
+1[ (CR)
+.SKIP 1
+IGNORE COMMAS AND ANY OUTPUT TO THE RIGHT OF THE COMMAS.
+.SKIP 1
+CONTROL 'C' OUT.
+.SKIP 1
+.LM 15
+^&EXAMPLE\&
+.SKIP 1
+"!"R DDT (CR)
+.SKIP 1
+1/   2,,7160   "/FF/ (CR)   ;IGNORE OUTPUT, ENTER ALPHA
+                            ;CHARACTERS (HARDWARE ID).
+.SKIP 1
+1[   316020,,0 (CR)         ;CONVERTED INPUT IS TO THE
+                            ;LEFT OF THE COMMAS
+\\
+.FILL.JUST
+.NOTE
+^This is the number (316020) you will need for section <ALFACK of the <PSPPDP.MAC
+program.
+.END NOTE
+.NOFILL.NOJUST
+^^
+_^C (CR)
+.SKIP 1
+"!"
+.PAGE

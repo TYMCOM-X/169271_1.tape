@@ -1,0 +1,348 @@
+
+
+
+                                 BOOT
+
+
+                    TOPS-10 Level D Disk Bootstrap
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        Date:       January 1983
+                        File:       BOOT.RNO
+                        Software version: 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Copyright (c) 1980,1981,1982,1983 by
+Digital Equipment Corporation, Maynard, Mass.
+
+
+This software is furnished under a license and may be used and  copied
+only  in  accordance  with  the  terms  of  such  license and with the
+inclusion of the above copyright notice.  This software or  any  other
+copies  thereof may not be provided or otherwise made available to any
+other person.  No title to and ownership of  the  software  is  hereby
+transferred.
+
+The information in this software is subject to change  without  notice
+and  should  not  be  construed  as  a commitment by Digital Equipment
+Corporation.
+
+Digital assumes no responsibility for the use or  reliability  of  its
+software on equipment which is not supplied by Digital.
+BOOT - TOPS-10 Level D Disk Bootstrap                           Page 2
+INTRODUCTION
+
+
+1.0  INTRODUCTION
+
+BOOT is the TOPS-0 level D  disk  bootstrap  for  the  KL10  and  KS10
+processors.   It  is  an  adaptation  of  MONBTS, the monitor resident
+bootstrap, and contains all of the features and functionality  offered
+by MONBTS.
+
+
+
+2.0  FEATURES
+
+The following is a partial list of features of BOOT:
+
+     1.  Is very fast (dumps 1024k in about 6 seconds)
+
+     2.  Dumps all of memory, not just the first 256K
+
+     3.  Zeroes all of memory, not just the first 256K
+
+     4.  Correctly handles parity and NXM traps
+
+     5.  Has five-level SFD support
+
+     6.  Has full extended RIB support
+
+     7.  Has a reasonable command scanner
+
+     8.  Won't overwrite dumps without explicit operator intervention
+
+     9.  Sets  the  unprocessed  dump  bit   so   that   CRSCPY   will
+         automatically copy the dump
+
+    10.  Is easy to build
+
+
+
+
+3.0  COMMAND SYNTAX
+
+When it is loaded and started by the processor front-end, BOOT prompts
+with:
+
+     BOOT Vn(m)
+
+     BOOT>
+
+Commands are of the form:
+
+     DEV:FILE.EXT[PATH]/SWITCHES
+
+where switches are:
+
+/DUMP     Dump the monitor on the specified file
+BOOT - TOPS-10 Level D Disk Bootstrap                           Page 3
+COMMAND SYNTAX
+
+
+/EDDT     Load and start the monitor at the EDDT start location (401).
+          This is equivalent to a /START:401 switch.
+
+/LOAD     Load but do not start the monitor
+
+/REBOOT   Restart a monitor suspended by system sleep
+
+/START:n  Load and  start  the  monitor  at  location  n  (default  is
+          contents of .JBSA) in the file being loaded.  If nothing but
+          the /START switch is given, BOOT will  simply  jump  to  the
+          already loaded monitor at the specified address.
+
+Defaults for dumping are:
+
+     DSK:CRASH.EXE[1,4]
+
+Defaults for loading are:
+
+     DSK:SYSTEM.EXE[1,4]
+
+Defaults for system sleep restart are:
+
+     DSK:CRASH.EXE[1,4]
+
+If no explicit structure  is  specified  (or  the  operator  specifies
+DSK:),  BOOT  starts  at  DSKA and tries every structure through DSKO.
+Once it finds an appropriate structure, BOOT will print one of:
+
+                   [Dumping on dev:file.ext[path]]
+                  [Loading from dev:file.ext[path]]
+                 [Reloading from dev:file.ext[path]]
+
+to let the operator know what it is doing.  If an exception  condition
+occurs,  BOOT will print an error message and ask the operator what to
+do.  Most of the error messages should be self explanatory.
+
+
+
+4.0  BUILDING BOOT
+
+BOOT searches F, S, and DTEPRM (KL only) so you tell it which kind  of
+CPU  that  you have by the settings of the FTK?10 switches in F.  BOOT
+can be assembled to include support for the DX20/RP20 microcode.  This
+option,  available  only  to  sites  that  purchase an RP20 subsystem,
+allows BOOT to be loaded with  the  DX20/RP20  microcode.   When  BOOT
+loads  a  monitor  with  RP20  support, it passes the microcode to the
+monitor and the monitor keeps the microcode resident in memory so that
+it  can  load  RP20  DX20s  as  necessary.  This option is selected by
+setting FTMCRS non-zero as indicated by the parameter file FTMCRS.MAC.
+
+BOOT is loaded into memory starting at the physical page specified  by
+the  FTPAGE  feature  test  setting.   The  default  assembly  for all
+versions adjusts this parameter as necessary such that BOOT is  loaded
+jusk below 256K.
+BOOT - TOPS-10 Level D Disk Bootstrap                           Page 4
+BUILDING BOOT
+
+
+The naming convention for BOOT  files  is  BTcnnn.*,  where  c  is  an
+indication  of  the  options selected for the assembly, and nnn is the
+core size, e.g., 256 for the 256K version.  The option characters that
+are currently in use are as follows:
+
+  L - KL10 processor, KL paging, no DX20/RP20 support
+  M - KL10 processor, KL paging, DX20/RP20 support
+  S - KS10 processor, KI paging
+
+The BOOT control files, BOOT.CTL and RPBOOT.CTL, may be used to  build
+the  various versions of BOOT.  BOOT.CTL builds the L, and S versions;
+RPBOOT.CTL builds the M version.
+
+It is important to note that the process of building BOOT for the KL10
+requires  edit  40 to RSXT10.  This edit consists solely of making the________
+RSXT10 internal buffers large enough to handle a  large  program.   To
+install  edit  40  in  previous  versions  of RSXT10, change the BLOCK
+statement at label SRCBUF in  RSXTTL.MAC  to  BLOCK  10K  and  rebuild
+RSXT10.
+
+The process of building BOOT may be summarized pictorially as follows:
+
+     F.UNV------\!------!            !------!
+     S.UNV-------!      !            !      !
+                 !MACRO !-BTcnnn.REL-! LINK !-BTcnnn.EXE
+     DTEPRM.UNV--!      !            !      !
+     BOOT.MAC---/!------!            !------!
+
+For KS10 processors, this is the entire process.
+
+If support for DX20/RP20 microcode is  selected  on  KL10  processors,
+BOOT  must  be  run  in  user  mode  after it is loaded to read in the
+DX20/RP20 microcode as follows:
+
+                     !------!
+                     !      !
+        IN:DXMCD.ADX-!BTcnnn!-BTcnnn.EXE
+                     !      !
+                     !------!
+
+Finally, the .EXE file must be converted to an .EXB file  for  RSX-20F
+as follows:
+
+           !------!            !------!            !------!
+           !      !            !      !            !      !
+BTcnnn.EXE-!FILEX !-BTcnnn.SAV-!NOPAG0!-BTcnnn.SAV-!RSXT10!-BTcnnn.EXB
+           !      !            !      !            !      !
+           !------!            !------!            !------!
+BOOT - TOPS-10 Level D Disk Bootstrap                           Page 5
+INSTALLATION INSTRUCTIONS
+
+
+5.0  INSTALLATION INSTRUCTIONS
+
+5.1  Installing BOOT On The KS10 Front-end
+
+Once the correct version  of  BOOT  is  built  for  your  system,  the
+procedure  for  installing  it  on the KS10 front-end is quite simple.
+Follow  the  instructions  in  chapter  6  of  the   TOPS-10   Monitor
+Installation  Guide  through  step [KS-34].  Replace step [KS-35] with
+the command:
+
+         SMFILE>WRITE BOOT BTSxxx.EXE[PPN]
+
+where BTSxxx.EXE[PPN] gives the filespec of the  BOOT  that  you  have
+just  built.   Continue with the rest of the procedure as indicated in
+the Installation Guide.
+
+
+
+5.2  Installing BOOT On The KL10 Front-end
+
+The procedure for installing  BOOT  on  the  KL10  front-end  is  more
+complicated because it involves transferring the .EXB file through the
+DTE onto the front-end  file  system.   On  the  -10  side,  you  need
+SYS:FE.EXE which you should already have on SYS:.
+
+To transfer BOOT to the front-end file system do the following from  a
+[1,2] job:
+
+     1.  Copy the .EXB file that you have just built to  BOOT.EXB[1,2]
+         on the a structure that is in the job search list.
+
+     2.  If you are on a multi-CPU system, type the command:
+
+                 .SET CPU ONLY CPU n
+
+         where n is the CPU number of the CPU that has  the  front-end
+         you  want  to  update.   Do  not do this step if you are on a
+         single CPU system.
+
+     3.  Type the command:
+
+                 .R FE
+
+         This runs the FE program which provides one-half of the  path
+         necessary to do the transfer.
+BOOT - TOPS-10 Level D Disk Bootstrap                           Page 6
+INSTALLATION INSTRUCTIONS
+
+
+     4.  Go to the CTY of the CPU that has the front-end that you want
+         to update and type the following commands:
+
+                 ^\                      ;Type control-backslash
+                 PAR>MCR MOU             ;Start up MOU
+                 MOU>FE:                 ;Mount the FE device
+                 MOU -- MOUNT COMPLETE   ;MOU types this
+                 MOU>^Z                  ;Type control-Z to exit MOU
+                 ^\                      ;Type a control-backslash
+                 PAR>MCR PIP             ;Start up PIP
+                 PIP>SY:BOOT.*;*/LI      ;Do a directory of BOOT.*
+         
+                   -- PIP types the directory here --
+
+         You have now mounted the FE device (the logical  device  that
+         completes  the path to the -10 disk) and taken a directory of
+         BOOT.*.  This directory is important  in  case  you  have  to
+         delete the new copy of BOOT, so you should keep it handy.
+
+         The next step in the procedure is to copy the new  BOOT  from
+         the -10 disk to the front-end disk.  Note the "/NV" switch in
+         the commands below.  It is important because it prevents  the
+         new  BOOT  from  superseding  the  old  one.   Now  type  the
+         following:
+
+                 PIP>SY:BOOT.EXB/NV=FE:[1,2]BOOT.EXB
+                                         ;Copy the file to the front-end
+                 PIP:SY:BOOT.*;*/LI      ;Do another directory of BOOT.*
+         
+                   -- PIP types the directory here --
+
+         You should now compare the previous directories with the  new
+         ones  and  make  sure  that BOOT was copied successfully.  To
+         complete the procedure, type the following:
+
+                 PIP>^Z                  ;Type a control-Z to exit PIP
+                 ^\                      ;Type a control-backslash
+                 PAR>MCR DMO             ;Start up DMO
+                 DMO>FE:                 ;Dismount the FE device
+                 DMO -- DISMOUNT COMPLETE ;DMO types this
+                 DMO>^Z                  ;Type a control-Z to exit DMO
+                 ^\                      ;Type a control-backslash
+                 PAR>^Z                  ;Type a control-Z to return to
+                                         ;the monitor
+
+         This sequence of  commands  transfers  BOOT.EXB[1,2]  to  the
+         front-end  file  system  using  the next available generation
+         number.  You should now test the new BOOT by  reloading  your
+         monitor in the normal manner.
+
+BOOT - TOPS-10 Level D Disk Bootstrap                           Page 7
+INSTALLATION INSTRUCTIONS
+
+
+5.3  What To Do If It Doesn't Work
+
+If, after copying the new BOOT to the front-end, you discover that  it
+ddoesn't  work,  you  should  delete  the  appropriate  file  from the
+front-end file system.  You can do this by  comparing  the  first  and
+second  directory  listings  that  resulted  from the procedure above.
+Once you know which file to delete,  you  can  do  so  by  typing  the
+following (n is the generation number obtained from the directories):
+
+         ^\                      ;Type a control-backslash
+         PAR>MCR PIP             ;Start up PIP
+         PIP>SY:BOOT.EXB;n/DE    ;Delete the file.  n=the generation
+                                 ;number from the directory listing
+         PIP>^Z                  ;Type a control-Z to exit PIP
+         ^\                      ;Type a control-backslash
+         PAR>^Z                  ;Type a control-Z
+  

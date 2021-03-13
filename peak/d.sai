@@ -1,0 +1,312 @@
+define !  = "comment", !! = "comment";
+!! title Program D ;
+! *************************************************************************
+*************************************+*************************************
+*                                                                         *
+*                                                                         *
+*                     D - A smarter directory command                     *
+*                                                                         *
+*                                                                         *
+*************************************+*************************************
+
+  edit history
+    14-Oct-85   v1.0(32) (kmd)       Bring the username string creation out
+                                     to the ufdproc routine.
+     2-Oct-85   v1.0(26) (kmd)       Bring final state into the fsm array,
+                                     upgrade the output a bit, change to
+                                     mfdscn.
+    25-Sep-85   v1.0(21) (kmd)       Remove FSM stuff to another module.
+    23-Aug-85   v1.0(1)  (kmd)       First Edit - just a skeleton in some
+                                     closet.
+
+
+**************************************************************************;
+
+
+begin "D"
+  require "(KLib)Sail.Hdr"     source!file;
+  require "(KLib)Sys.Req"      source!file;
+  require "(KLib)Util.Req"     source!file;
+  require "(KLib)WldCrd.Req"   source!file;
+  require "(Sailib)Mfdscn.Req" source!file;
+
+
+! ************************************************************************;
+
+  safe integer array
+    FSM1 [0:6, 0:63],
+    FSM2 [0:3, 0:63];
+
+      ! Finite state machine storage for Filename and Extension
+      ! specifications.
+      ;
+
+  string
+    FileSpec;
+
+      ! The User's file specification, including general wildcards.
+      ;
+
+  integer array
+    Fn  [0 : 5],
+    Ext [0 : 2];
+
+      ! Arrays for holding the filename and extension parts of the file
+      ! currently being tested.  Note that if the left half of a character
+      ! is non-zero, then that character was matched by the parser under
+      ! some form of wildcard transition.
+      ;
+
+  string
+    UFD.Out.Str;
+
+      ! A static version of the UFD (username) string.
+      ;
+
+
+! ************************************************************************;
+!! title Rtn Wantfile ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                              Rtn Wantfile                               =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+==========================================================================;
+
+
+  boolean procedure Wantfile (reference integer Fn1, Ext1);
+  begin "Wantfile"
+    integer
+      I,
+      Ptr;
+
+    Ptr _ point(6, Fn1, -1);
+
+    for I _ lb.rows(Fn) step 1 until ub.rows(Fn) do
+      Fn[I] _ ildb(Ptr);
+
+    Ptr _ point(6, Ext1, -1);
+
+    for I _ lb.rows(Ext) step 1 until ub.rows(Ext) do
+      Ext[I] _ ildb(Ptr);
+
+    return(Match.FSM(FSM1, Fn) and Match.FSM(FSM2, Ext));
+  end "Wantfile";
+
+
+! ===================================+=====================================
+==========================================================================;
+!! title Rtn FileProc ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                              Rtn FileProc                               =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+==========================================================================;
+
+
+  procedure FileProc (reference integer Ch, Cnt, Brk, Eof;
+      integer array LkB);
+  begin "FileProc"
+    integer
+      C,
+      I;
+    string
+      Str;
+
+    ! print("(", Cv.PPN(LkB[1]), ")");
+    print(UFD.Out.Str);
+
+    Str _ cv6str(LkB[2]);
+    I   _ lb.rows(Fn);
+
+    while (C _ lop(Str)) do
+    begin
+      if (not lh(Fn[I])) then
+        C _ tolower(C);
+
+      print(C & null);
+      inc(I);
+    end;
+
+    print(".");
+
+    Str _ cv6str(hl(lh(LkB[3])));
+    I   _ lb.rows(Ext);
+
+    while (C _ lop(Str)) do
+    begin
+      if (not lh(Ext[I])) then
+        C _ tolower(C);
+
+      print(C & null);
+      inc(I);
+    end;
+
+    print(crlf);
+
+    ! print(cv6str(LkB[2]) & "." & cv6str(hl(lh(LkB[3]))), crlf);
+  end "FileProc";
+
+
+! ===================================+=====================================
+==========================================================================;
+!! title Rtn WantUFD ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                               Rtn WantUFD                               =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+==========================================================================;
+
+
+  boolean procedure WantUFD (reference integer Aun);
+  begin "WantUFD"
+    return(true);
+  end "WantUFD";
+
+
+! ===================================+=====================================
+==========================================================================;
+!! title Rtn UFDProc ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                               Rtn UFDProc                               =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+==========================================================================;
+
+
+  procedure UFDProc (reference integer Chan; integer array Lkb);
+  begin "UFDProc"
+    UFD.Out.Str _ "(" & cv6str(Lkb['27]) & cv6str(Lkb['30]) & ")";
+  end "UFDProc";
+
+
+! ===================================+=====================================
+==========================================================================;
+!! title Mainline Code;
+! ***********************************+*************************************
+*                                                                         *
+*                                                                         *
+*			       Mainline Code				  *
+*                                                                         *
+*                                                                         *
+*************************************+************************************;
+
+
+  begin "Mainline Code"
+    integer
+      Brk,
+      Ext,
+      Name,
+      PPN;
+    string
+      Filename.Str,
+      Extension.Str,
+      PPN.Str,
+      Username.Str;
+
+    !version(!ver('1, '0), !edit('32), !date(14-Oct-1985));
+    do.banner("D - a Better Directory command");
+
+    while (FileSpec _ Prompt.User(crlf &
+        "Enter a File Spec (cr to stop): ")) do
+    begin
+      integer
+        Tmp;
+
+      if (not Parse.Filespec(FileSpec, Username.Str, Filename.Str,
+          Extension.Str, PPN.Str)) then
+      begin
+        print("Invalid File Spec """, FileSpec, """", crlf);
+
+        continue;
+      end;
+
+      if (not Filename.Str) then
+      begin
+        Filename.Str  _ "*";
+      end;
+
+      if (not Extension.Str) then
+        Extension.Str _ "*"
+      else
+        lop(Extension.Str);
+
+      if (length(Username.Str)) then
+        PPN _ Cv.Username(UserName.Str)
+      else if (length(PPN.Str)) then
+        PPN _ cvo(PPN.Str)
+      else
+        PPN _ Get.Gfd.PPN;
+
+      Name _ cvsix(Filename.Str);
+      Ext _  cvsix(Extension.Str);
+
+      if ((Tmp _ Setup.FSM(FSM1, Filename.Str)) neq 0) then
+      begin
+        Print.FSM(FSM1);
+
+        if (Tmp = -1) then
+          print(crlf, "Filename specification too long.")
+        else
+          print(crlf, "Illegal character '" & SixToASCII(Tmp) & "'");
+
+        continue;
+      end
+      else if ((Tmp _ Setup.FSM(FSM2, Extension.Str)) neq 0) then
+      begin
+        Print.FSM(FSM2);
+
+        if (Tmp = -1) then
+          print(crlf, "Extension specification too long.")
+        else
+          print(crlf, "Illegal character '" & SixToASCII(Tmp) & "'");
+        continue;
+      end
+      else
+      begin
+        integer
+          Start,
+          Stop;
+
+        Start _ calli(-1, -'143);
+        MFDSet($F.Dump, 0, 0, 0);
+        MFDScn(cvsix("*"), cvsix("*"), cvsix("*"), -1, WantUFD,
+            UFDProc, WantFile, FileProc);
+        ! UFDscn((PPN), cvsix("*"), cvsix("*"), -1, WantFile, FileProc);
+        Stop _ calli(-1, -'143);
+
+        print("Seconds: ", Stop - Start, crlf);
+      end;
+    end;
+
+    exit;
+  end "Mainline Code";
+end "D";
+
+
+! ***********************************+*************************************
+**************************************************************************;
+   

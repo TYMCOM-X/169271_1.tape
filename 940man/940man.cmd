@@ -1,0 +1,11 @@
+(940MAN)*.MAN
+*.HDW
+*.NET
+*.DSK
+*.MES
+*.ACT
+*.TAP
+*.LST
+*.BAT
+*.OPR
+940MAN.CTL

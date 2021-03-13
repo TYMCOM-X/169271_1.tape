@@ -1,0 +1,88 @@
+07:40:51 S ** 03-Dec-86 XEXEC %1(204) in frame 4 ** user OPER **
+07:40:51 S run #1 job 5 grafted.
+07:41:52 S 03-Dec-86
+07:41:52 S 03-Dec-86
+08:13:02 S -S- stream #1 Req #1738 DSK:(JMS)MIDNIT.LOG=DSK:(JMS)MIDNIT.CTL
+08:13:13 P Waiting for interlock
+08:13:13 S Given interlock
+08:13:14 P Got interlock
+08:13:14 P EXECX Job Processor %1(201) starting in frame 1
+08:13:15 S Starting job processor in frame 1
+08:13:15 P Stream #1 Req #1738 DSK:(JMS)MIDNIT.LOG=DSK:(JMS)MIDNIT.CTL
+08:15:04 S -S- run #2 job 7 Req #1782  Running DSK:(MAIL)MAILER.SAV
+08:15:23 S -R- run #2 job 7 Done-End <0>
+08:19:38 P Stream #1 Req #1738 * completed *
+08:19:38 S -R- stream #1 Done-End <0>
+08:35:15 P Signing off.
+08:37:04 S -S- run #2 job 1 Req #1781  Running DSK:(MAIL)ONTMTP.SAV
+08:41:44 S -R- run #2 job 1 Done-End <0>
+09:00:25 S 03-Dec-86
+09:15:01 S -S- run #2 job 3 Req #1783  Running DSK:(MAIL)MAILER.SAV
+09:15:06 S -R- run #2 job 3 Done-End <0>
+10:00:03 S -S- stream #1 Req #1742 DSK:(JMS)FNDBAD.LOG=DSK:(JMS)FNDBAD.ALL
+10:00:13 P Waiting for interlock
+10:00:14 S Given interlock
+10:00:14 P Got interlock
+10:00:14 P EXECX Job Processor %1(201) starting in frame 3
+10:00:15 P Stream #1 Req #1742 DSK:(JMS)FNDBAD.LOG=DSK:(JMS)FNDBAD.ALL
+10:00:15 S Starting job processor in frame 3
+10:06:36 P Stream #1 Req #1742 * completed *
+10:06:37 S -R- stream #1 Done-End <0>
+10:15:02 S -S- run #2 job 7 Req #1786  Running DSK:(MAIL)MAILER.SAV
+10:15:08 S -R- run #2 job 7 Done-End <0>
+10:22:16 P Signing off.
+10:37:03 S -S- run #2 job 3 Req #1785  Running DSK:(MAIL)ONTMTP.SAV
+10:41:07 S -R- run #2 job 3 Done-End <0>
+11:15:01 S -S- run #2 job 1 Req #1788  Running DSK:(MAIL)MAILER.SAV
+11:15:06 S -R- run #2 job 1 Done-End <0>
+12:00:02 S -S- stream #1 Req #1751 DSK:(M33)XFER.LOG=DSK:(M33)XFER.CTL
+12:00:12 P Waiting for interlock
+12:00:13 S Given interlock
+12:00:14 P Got interlock
+12:00:14 P EXECX Job Processor %1(201) starting in frame 1
+12:00:14 S Starting job processor in frame 1
+12:00:15 P Stream #1 Req #1751 DSK:(M33)XFER.LOG=DSK:(M33)XFER.CTL
+12:01:15 S 03-Dec-86
+12:15:04 S -S- run #2 job 7 Req #1790  Running DSK:(MAIL)MAILER.SAV
+12:15:09 S -R- run #2 job 7 Done-End <0>
+12:37:04 S -S- run #2 job 7 Req #1789  Running DSK:(MAIL)ONTMTP.SAV
+12:41:26 S -R- run #2 job 7 Done-End <0>
+13:15:03 S -S- run #2 job 7 Req #1791  Running DSK:(MAIL)MAILER.SAV
+13:15:07 S -R- run #2 job 7 Done-End <0>
+14:15:06 S -S- run #2 job 7 Req #1793  Running DSK:(MAIL)MAILER.SAV
+15:15:01 S -S- run #2 job 7 Req #1794  Running DSK:(MAIL)MAILER.SAV
+ Req #1792  Running DSK:(MAIL)ONTMTP.SAV
+15:15:09 S -R- run #2 job 7 Done-End <0>
+16:15:03 S -S- run #2 job 7 Req #1796  Running DSK:(MAIL)MAILER.SAV
+16:15:06 S -R- run #2 job 7 Done-End <0>
+16:37:02 S -S- run #2 job 7 Req #1795  Running DSK:(MAIL)ONTMTP.SAV
+16:41:46 S -R- run #2 job 7 Done-End <0>
+17:00:33 P Stream #1 Req #1751 * aborted - time limit exceeded at line 14 *
+17:00:38 S -R- stream #1 Abort-Time <0>
+17:15:02 S -S- run #2 job 8 Req #1797  Running DSK:(MAIL)MAILER.SAV
+17:15:08 S -R- run #2 job 8 Done-End <0>
+17:16:46 P Signing off.
+18:00:58 S 03-Dec-86
+18:13:29 S Insufficient License - SY JL WC HF -
+19:47:33 S ** 03-Dec-86 XEXEC %1(204) in frame 4 ** user OPER **
+19:47:34 S run #1 job 5 grafted.
+19:47:36 S -S- run #2 job 8 Req #1799  Running DSK:(MAIL)MAILER.SAV
+19:47:40 S -R- run #2 job 8 Done-End <0>
+19:47:41 S -S- run #2 job 8 Req #1798  Running DSK:(MAIL)ONTMTP.SAV
+19:48:38 S 03-Dec-86
+19:48:38 S 03-Dec-86
+19:53:24 S -R- run #2 job 8 Done-End <0>
+20:15:04 S -S- run #2 job 8 Req #1800  Running DSK:(MAIL)MAILER.SAV
+20:15:07 S -R- run #2 job 8 Done-End <0>
+20:37:03 S -S- run #2 job 8 Req #1801  Running DSK:(MAIL)ONTMTP.SAV
+20:41:23 S -R- run #2 job 8 Done-End <0>
+21:00:47 S 03-Dec-86
+21:15:05 S -S- run #2 job 8 Req #1802  Running DSK:(MAIL)MAILER.SAV
+21:15:08 S -R- run #2 job 8 Done-End <0>
+22:15:02 S -S- run #2 job 9 Req #1804  Running DSK:(MAIL)MAILER.SAV
+22:15:10 S -R- run #2 job 9 Done-End <0>
+22:37:03 S -S- run #2 job 8 Req #1803  Running DSK:(MAIL)ONTMTP.SAV
+22:41:28 S -R- run #2 job 8 Done-End <0>
+23:15:03 S -S- run #2 job 3 Req #1805  Running DSK:(MAIL)MAILER.SAV
+23:15:07 S -R- run #2 job 3 Done-End <0>
+00:00:49 S 04-Dec-86

@@ -1,0 +1,106 @@
+/* title Pgm Filter */
+/*  Filter.C - A filter program to create a double spaced right justified
+ *             rendition of the input for text processing purposes.
+ */
+
+#include <stdio.h>
+#include <ctypes.h>
+#include <dos.h>
+#include <kd.h>
+
+typedef
+  integer control_type;                 /* get_next_token()'s control result */
+
+#define CTL_NORMAL      0
+#define CTL_EOF         1
+#define CTL_BOP         2
+
+#define LINEBUF_LEN     133             /* length of a text line */
+#define TOKEN_LEN       80              /* length of a given token */
+
+LSTRING
+  tokbuf,                               /* the current token */
+  linebuf_in,                           /* input line buffer */
+  linebuf_out;                          /* output line buffer */
+/* title Rtn main */
+/*  main - Do everything that needs to be done.
+ */
+
+void main (argc, argv, envp)
+  int
+    argc;
+  STRING
+    argv [];
+  STRING
+    envp [];
+{
+  init_lstring(tokbuf,      TOKEN_LEN);
+  init_lstring(linein_buf,  LINEBUF_LEN);
+  init_lstring(lineout_buf, LINEBUF_LEN);
+
+  <open input file>
+  <open output file>
+
+  for (clear_linebuf(linein_buf), clear_tokbuf(tokbuf);
+      (control = get_next_token(tokbuf)) != CTL_EOF;
+      )
+  {
+    if (control == CTL_BOP)
+      flush_linebuf(linebuf_out);
+
+    put_this_token(tokbuf);
+  }
+
+  if (strlen(linebuf_out))
+    flush_linebuf(linebuf_out);
+
+  <close input file>
+  <delete bak file>
+  <rename input file to bak file>
+  <close output file>
+  <rename output file as input file>
+}
+/* title Rtn clear_linebuf */
+/*  The indicated line buffer should be zeroed to the cosmos.
+ */
+
+void clear_linebuf (buffer);
+  STRING
+    buffer;
+{
+}
+/* title Rtn flush_linebuf */
+/*  The output line buffer needs to be flushed to the stdio.  Perform no
+ *  fill or justify operations.
+ */
+
+void flush_linebuf ();
+{
+}
+/* title Rtn clear_tokbuf */
+/*  Clear the indicated token buffer.
+
+void clear_tokbuf (tok);
+  STRING
+    tok;
+{
+}
+/* title Rtn get_next_token */
+/*  Pick up the next token from the input file and place it in the
+ *  specified buffer.
+ */
+
+control_type get_next_token (buffer);
+  STRING
+    buffer;
+{
+}
+/* title Rtn put_this_token */
+/*  Whatever it may mean, throw this provided token to the output device.
+ */
+
+void put_this_token (tok)
+  string
+    tok;
+{
+}

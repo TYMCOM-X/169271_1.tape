@@ -1,0 +1,597 @@
+define !  = "comment", !! = "comment";
+!! title Program Put ;
+! *************************************************************************
+*************************************+*************************************
+*                                                                         *
+*                                                                         *
+*                    Put - Output files to the printer                    *
+*                                                                         *
+*                                                                         *
+*************************************+*************************************
+
+  edit history
+    26-Jun-86   v1.3(63)  kmd   Attempt to deal with  the buffering
+                                problem by sending only a measured
+                                amount of data to the network per
+                                second.
+    15-May-86   v1.3(61)  kmd   Try to empty the pipe of characters
+                                before quitting when an escape has
+                                been trapped.
+    19-Mar-86   v1.3(60)  kmd   VMLine first indicates EOF or BOF by
+                                returning 0 in Brk.  Remove
+                                "length(Str)" from the EOF
+                                consideration.
+    18-Mar-86   v1.3(57)  kmd   Scanset printers require FFs to occur
+                                "at the beginning of a line" in order
+                                to be significant.  Files that do not
+                                end with CRLF, or at least CR,
+                                essentially nullify the effect of the
+                                succeeding FFs.  We now force a CR if
+                                one was not on the last line of the
+                                file.
+    13-Mar-86   v1.3(53)  kmd   Add Indirect Files, Notice To Quit and
+                                the No File Matched error.
+    26-Feb-86   v1.2(52)  kmd   Insure that output gets redirected to
+                                the terminal if an escape occurs.
+    25-Feb-86   v1.2(51)  kmd   Make all loops - including the hidden
+                                loop inside the UFDscn call - obey the
+                                escape condition.
+    24-Feb-86   v1.2(50)  kmd   Support escape (= ^C or ESC) interrupts,
+                                doing the correct thing while printing to
+                                the device.
+     9-Jan-86   v1.1(40)  kmd   Change call to MFDscn to call of UFDscn for
+                                uninteresting filespecs (ie, no wildcards
+                                in UFD).  This was occasioned due to the
+                                fact that the user needs RF license to read
+                                the MFD, and this blocks the former routine
+                                from accessing even UFDs to which it has
+                                access through other means (eg, RP license)
+     4-Dec-85   v1.0(37)  kmd   Change a few output messages.
+    25-Nov-85   v1.0(36)  kmd   Inject MFDSCN into the scheme, adding
+                                vanilla flavored wildcarding to filespecs.
+    23-Nov-85   v1.0(31)  kmd   Add "Printing..." message.
+    21-Nov-85   v1.0(27)  kmd   Pick up filespecs from the command line, if
+                                they are present, otherwise, prompt.
+    15-Nov-85   v1.0(16)  kmd   Strip leading and redundant embedded
+                                FFs from the output.  Restructure to
+                                loop the prompt until done.
+    21-Oct-85   v1.0(12)  kmd   Change over to VMFILE for input.
+     7-Oct-85   v0.1(11)  kmd   Skip leading FFs.
+    14-Aug-85   v0.1(6)   kmd   Adapt for printer output.
+    12-Aug-85   v0.1(5)   kmd   Install copy logic
+     9-Aug-85   v0.1(4)   kmd   Do file lookup calls.
+     6-Aug-85   v0.1(4)   kmd   Add requires for the world.
+     5-Aug-85   v0.1(1)   kmd   First Edit - just a skeleton in some
+                                closet.
+
+
+***************************************************************************
+
+    Future developments outstanding:
+
+        o  Interesting Filespecs
+
+          -  correct wildcards in Fn and Ext fields
+
+          -  wildcards in UFD field (must check for RF license (or RP
+             inside, same GAN))
+
+
+**************************************************************************;
+
+begin "Put"
+  require "(KLib)Sail.Hdr"     source!file;
+  require "(KLib)Sys.Req"      source!file;
+  require "(KLib)Util.Req"     source!file;
+  require "(Klib)CmdLin.Req"   source!file;
+  require "(Klib)VMFile.Req"   source!file;
+  require "(Sailib)MFDscn.Req" source!file;
+
+
+! ************************************************************************;
+
+  define
+    EscChn     = 10,
+    NtqChn     = 11,
+    Sleep.Time = 3;
+
+  boolean
+    File.Matched,
+    Ntq.Occured,
+    Esc.Occured,
+    Print.Occured,
+    Proceed;
+
+  integer
+    Index,
+    Old.SpecLength;
+
+  string
+    Full.FileSpec,
+    UFD.Out.Str;
+
+
+  record!class IF.Rec
+  (
+    integer
+      Slot;
+    record!pointer (IF.Rec)
+      Prev
+  );
+  
+  record!pointer (IF.Rec)
+    Ptr;
+
+
+! ************************************************************************;
+!! title Rtn WantFile ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                              Rtn WantFile                               =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+==========================================================================;
+
+
+  boolean procedure WantFile (reference integer Fn1, Ext1);
+  begin "WantFile"
+    Full.Filespec _ UFD.Out.Str & cv6str(Fn1) & "." & cv6str(Ext1);
+    set(File.Matched);
+    return(Proceed);
+  end "WantFile";
+
+
+! ===================================+=====================================
+==========================================================================;
+!! title Rtn FileProc ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                              Rtn FileProc                               =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+==========================================================================;
+
+
+  procedure FileProc (reference integer Ch, Cnt, Brk1, Eof;
+      integer array LkB);
+  begin "FileProc"
+    integer
+      Brk,
+      Input.Slot,
+      OldBrk,
+      Out.Count,
+      Tmp;
+    string
+      Str;
+    define
+      FWD      = 0;
+
+
+    if (not Proceed) then
+      return;
+
+    if ((Input.Slot _ VMFile(Full.FileSpec, VM$Read)) <= 0) then
+    begin
+      if (rh(Input.Slot) = !erprt) then
+        print("Protection failure on """, Full.FileSpec, """", crlf)
+      else
+        print("VMFile Failed (""", Full.FileSpec, """, ",
+            xwdstr(Input.Slot), ")", crlf2);
+
+      return;
+    end;
+
+    print(cr, "Printing: ", Full.FileSpec,
+        blanks(Old.SpecLength-length(Full.FileSpec)));
+
+    Old.SpecLength _ length(Full.FileSpec);
+    set(Print.Occured);
+    print(esc & "A1");                ! Address the printer;
+    print(esc & "E");                 ! Set 12 cpi Horizontal Pitch;
+
+    do
+    begin
+      Str _ VMLine(Input.Slot, Brk, FWD);
+      Tmp _ VMGetC(Input.Slot, VM$ECR);
+    end
+    until (Brk neq FF or length(Str));
+
+    if (Tmp) then
+      appnd(Str, Tmp);
+
+    if (Brk) then
+      appnd(Str, Brk);
+
+    print(Str);
+    Out.Count _ 10;
+
+    while (Brk and Proceed) do
+    begin
+      OldBrk _ Brk;
+      Str    _ VMLine(Input.Slot, Brk, FWD);
+      Tmp    _ VMGetC(Input.Slot, VM$ECR);
+
+      if (length(Str) or Brk neq FF or OldBrk neq FF) then
+      begin
+        if (Tmp) then
+          appnd(Str, Tmp);
+
+        if (Brk) then
+          appnd(Str, Brk);
+
+        print(Str);
+
+        if (Out.Count > 0) then
+          dcr(Out.Count)
+        else
+        begin
+          Out.Count _ 5;
+          calli(Sleep.Time, calli!sleep);
+        end;
+      end;
+    end;
+
+    if (not Proceed) then
+      auxclv(-1, 0, !axcbo);
+
+        ! This is supposed to flush the pipe of text which may still be
+        ! there.
+        ;
+
+    VMFree(Input.Slot);
+
+    if (OldBrk neq FF) then
+    begin
+      if (not Tmp) then
+        print(CR);
+
+      print(FF);                      ! Jump to next page;
+    end;
+
+    print(esc & "A0");                ! Address the terminal again;
+  end "FileProc";
+
+
+! ===================================+=====================================
+==========================================================================;
+!! title Rtn WantUFD ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                               Rtn WantUFD                               =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+==========================================================================;
+
+
+  boolean procedure WantUFD (reference integer Aun);
+  begin "WantUFD"
+    return(Proceed);
+  end "WantUFD";
+
+
+! ===================================+=====================================
+==========================================================================;
+!! title Rtn UFDProc ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                               Rtn UFDProc                               =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+==========================================================================;
+
+
+  procedure UFDProc (reference integer Chan; integer array Lkb);
+  begin "UFDProc"
+    UFD.Out.Str _ "(" & cv6str(Lkb['27]) & cv6str(Lkb['30]) & ")";
+  end "UFDProc";
+
+
+! ===================================+=====================================
+==========================================================================;
+!! title Rtn EscSvc ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                               Rtn EscSvc                                =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+==========================================================================;
+
+
+  simple procedure EscSvc;
+  begin "EscSvc"
+    set(Esc.Occured);
+    clear(Proceed);
+  end "EscSvc";
+
+
+! ===================================+=====================================
+==========================================================================;
+!! title Rtn NtqSvc ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                               Rtn NtqSvc                                =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+==========================================================================;
+
+
+  simple procedure NtqSvc;
+  begin "NtqSvc"
+    set(Ntq.Occured);
+    clear(Proceed);
+  end "NtqSvc";
+
+
+! ===================================+=====================================
+==========================================================================;
+!! title Rtn Print.Help ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                             Rtn Print.Help                              =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+==========================================================================;
+
+
+  simple procedure Print.Help;
+  begin "Print.Help"
+    print("Help goes here");
+  end "Print.Help";
+
+
+! ===================================+=====================================
+==========================================================================;
+!! title Rtn New.IF.Record ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                            Rtn New.IF.Record                            =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+==========================================================================;
+
+
+  record!pointer (IF.Rec) procedure New.IF.Record
+      (record!pointer (IF.Rec) Ptr1);
+  begin "New.IF.Record"
+    record!pointer (IF.Rec)
+      X;
+
+    X _ new!record(IF.Rec);
+    IF.Rec:Slot[X] _ 0;
+    IF.Rec:Prev[X] _ Ptr1;
+    return(X);
+  end "New.IF.Record";
+
+
+! ===================================+=====================================
+==========================================================================;
+!! title Rtn Get.Next.Fs ;
+! =========================================================================
+=====================================+=====================================
+=                                                                         =
+=                                                                         =
+=                             Rtn Get.Next.Fs                             =
+=                                                                         =
+=                                                                         =
+=====================================+=====================================
+
+
+==========================================================================;
+
+
+  string procedure Get.Next.Fs;
+  begin "Get.Next.Fs"
+    string
+      Str;
+
+    Str _ null;
+
+    while (not length(Str)) do
+    begin
+      if (Ptr = null!record) then
+      begin
+        if (ArgC > 1) then
+        begin
+          if (Index >= ArgC) then
+            return(null)
+          else
+          begin
+            Str _ ArgV[Index];
+            inc(Index);
+          end;
+        end
+        else
+        begin
+          Str _ Prompt.User("Enter file to be printed: ");
+
+          if (not length(Str)) then
+            return(null);
+        end;
+      end
+      else
+      begin
+        integer
+          Brk;
+
+        Str _ VMLine(IF.Rec:Slot[Ptr], Brk);
+
+        if (not (Str or Brk)) then
+        begin
+          Ptr _ IF.Rec:Prev[Ptr];
+          continue;
+        end;
+      end;
+
+      if (Str = "@") then
+      begin
+        lop(Str);
+        Ptr _ New.IF.Record(Ptr);
+
+        if ((IF.Rec:Slot[Ptr] _ VMFile(Str, VM$Read)) <= 0) then
+        begin
+          print("No such indirect file as """, Str, """", crlf);
+          Ptr _ IF.Rec:Prev[Ptr];
+        end;
+
+        Str _ null;
+      end;
+    end;
+
+    return(Str);
+  end "Get.Next.Fs";
+
+
+! ===================================+=====================================
+==========================================================================;
+!! title Mainline Code;
+! ***********************************+*************************************
+*                                                                         *
+*                                                                         *
+*			       Mainline Code				  *
+*                                                                         *
+*                                                                         *
+********************************+************************************;
+
+
+  begin "Mainline Code"
+    string
+      Filespec;
+
+
+    !version(!ver('1, '3), !edit('72), !date(7-July-1986));
+    do.banner("Put - Print files on the Scanset via ADM11");
+    print(crlf);
+    clear(Print.Occured);
+    Old.SpecLength _ 0;
+    set(Proceed);
+
+    clear(Esc.Occured);
+    intmap(tinass(-1, !iaesc, EscChn), EscSvc, 0);
+    enable(newenb(EscChn));
+
+    clear(Ntq.Occured);
+    intmap(intass(!iantq, NtqChn), NtqSvc, 0);
+    enable(newenb(NtqChn));
+
+    if (ArgC > 1) then
+    begin
+      integer
+        I;
+
+      for I _ 1 step 1 until ArgC-1 do
+      begin
+        if (Contains(ArgV[I], "?")) then
+        begin
+          Print.Help;
+          exit;
+        end;
+      end;
+    end;
+
+    Ptr   _ null!record;
+    Index _ 1;
+
+    while (Proceed and length(Filespec _ Get.Next.Fs)) do
+    begin
+      integer
+        Ext,
+        Fn,
+        PPN;
+      string
+        ExtStr,
+        FnStr,
+        PPNStr,
+        UnStr;
+
+      if (Starts.With("/quit", Filespec)) then
+        done;
+
+      if (Parse.Filespec(Filespec, UnStr, FnStr, ExtStr, PPNStr)) then
+      begin
+        Fn  _ cvsix(FnStr);
+        Ext _ cvsix(ExtStr[2 to inf]);
+
+        if (length(UnStr)) then
+          PPN _ Cv.Username(UnStr)
+        else if (length(PPNStr)) then
+          PPN _ cvo(PPNStr)
+        else
+          PPN _ Get.Gfd.PPN;
+
+        UFD.Out.Str _ "(" & Cv.PPN(PPN) & ")";
+      end
+      else
+      begin
+        print("Bad Filespec """, Filespec, """", crlf);
+        continue;
+      end;
+
+      clear(File.Matched);
+      UFDscn(PPN, Fn, Ext, -1, WantFile, FileProc);
+
+      if (not File.Matched) then
+        print(crlf, "No file matched filespec """, FileSpec, """", crlf);
+    end;
+
+
+    if (Print.Occured) then
+    begin
+      print(esc & "A1");                ! Last FF to clear the printer;
+      print(FF);
+      print(esc & "A0");
+    end;
+
+    if (Esc.Occured) then
+      print(" - ABORTED", crlf);
+
+    if (Ntq.Occured) then
+      print("Notice to Quit received - please log out", crlf);
+
+    exit;
+  end "Mainline Code";
+end "Put";
+
+
+! ***********************************+*************************************
+**************************************************************************;
+   -@Lm

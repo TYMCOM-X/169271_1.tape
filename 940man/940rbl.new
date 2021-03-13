@@ -1,0 +1,244 @@
+
+
+
+               CHECK LIST FOR REBUILDING TYMCOM IX SYSTEM
+               ******************************************
+
+
+
+       SYSTEM  /HARDWARE ID 
+                           -----------------------------------
+       DATE OF REBUILD
+                           -----------------------------------
+
+       NOTE 1:  Get approval from the center manager before starting the
+       rebuild.
+
+       NOTE 2:  If you are rebuilding C1 assure that the latest  version
+       of  the  MUD  is  restored  and "PJ" is not allowed on the system
+       until the MUD is good.
+
+       NOTE 3:  CUPA operators!  Follow ARCUS document to obtain  latest
+       set of packs for the rebuild.
+
+       REASON FOR REBUILD:
+
+       ------------------------------------------------------------------
+
+       ------------------------------------------------------------------
+
+       ------------------------------------------------------------------
+
+
+
+       1.  If it is possible, run a 1STORE BACKUP to  recover  all  data
+       that has been created today.  If not possible, indicate below and
+       go to step 2.
+
+              COMPLETED BY                            DATE/TIME:
+                        ------------------------------------------------
+
+             REASON FOR NO BACKUP:
+                        --------------------------------------------
+
+                        --------------------------------------------
+
+
+       2.  On the attached sheet of  paper  write  the  tape  type  (eg.
+       backup),  date  and tape nunber (eg.  2 of 2) for all tapes to be
+       used in the rebuild.  At this point you should  also  remove  the
+       write rings from all tapes.
+
+              COMPLETED BY                            DATE/TIME:
+                        ------------------------------------------------
+
+              TAPE LIST QA'D BY:
+                        -----------------------------------------------
+                                                                  Page 2
+
+
+                    TAPES USED ON TYMCOM IX REBUILD
+                    ----- ---- -- ------ -- -------
+
+
+       SYS......    DATE......    QA......
+
+
+       TAPE TYPE   DATE......    TAPE NO......         COMMENTS
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+
+       ........    ..........    .............
+                                                                  Page 3
+
+
+       3.  Install the latest good set of packs.  
+
+              DATE AND TIME OF PACKS:
+                        -----------------------------------------
+
+       Make a duplicate of the latest good set of  packs  by  using  the
+       1PACKCOPY  program,  writing  over  the clobbered set.  Bring the
+       system up and run 1REFRESH if needed.  Run 1SETMAP  (DO  NOT  LET
+       OPCOM  RUN!)  and  place a SHUT in the system.  Hang "PJ" and any
+       other users who may have logged on.
+
+              COMPLETED BY                            DATE/TIME:
+                           -------------------------------------------
+
+
+       4.  If you are rebuilding C1 now  is  the  time  to  restore  the
+       latest  good version of the MUD.  If you aren't rebuilding C1, go
+       to step 5.
+
+
+       5.  Reload the latest LUD file and set the LUD  as  shown  below.
+       This requires manager status.
+
+       '-'1OPER
+       '*'SET LUD
+       'NAME:' FAIRCHILD
+       'PASSWORD:'
+       '*'Q
+       'EOJ'
+       '-'
+
+               COMPLETED BY                            DATE/TIME:
+                        ----------------------------------------------
+
+
+       6.  Run the GMKFD program.
+
+       '-'( ) GMKFD
+       'REPORT FIXES?'   Y
+       'EOJ'
+       '-'
+
+               COMPLETED BY                            DATE/TIME:
+                        ---------------------------------------------
+
+
+       7.  Restore all backup tapes from packcopy to  present.   Exclude
+       user  UN1  until the last backup tape.  Do not restore the RAWACT
+       file yet!
+
+               COMPLETED BY                            DATE/TIME:
+                        ---------------------------------------------
+                                                                  Page 4
+
+
+       8.  Run the 1DEF program.  This will use the FD  trailer  on  the
+       last  backup  tape  deleting  any files not on the trailer.  This
+       program is run after the last backup tape with the last  good  FD
+       trailer is restored.
+
+               COMPLETED BY                            DATE/TIME:
+                        ---------------------------------------------
+
+
+       9.  Run the FLAGOFF program to reinitialize changed bits.
+
+       '-'1FLAGOFF
+       'FLAGOFF VERSION 2.00'
+       'YOUR NAME:' FAIRCHILD
+       'YOUR PASSWORD:'
+
+       'THIS COMMAND IS TO BE USED ONLY AFTER A DISC REBUILD AS
+       IT RESETS ALL CHANGE FLAGS AND REINITIALIZES ALL STORAGE.'
+
+       'DO YOU WISH TO PROCEED?'    Y
+       'EOJ'
+       -'
+
+               COMPLETED BY                            DATE/TIME:
+                        -----------------------------------------------
+
+
+       10.  If the rebuild occurs on the first day of the month, restore
+       user  2 from the end of the EOM accounting tape.  CUPA operators!
+       obtain this tape from Dick Kovack @6374.
+
+               COMPLETED BY                            DATE/TIME:
+                        ------------------------------------------------
+
+
+       11.  Restore the latest good rotating accounting file (RAWACT) to
+       UN1.  This requires manager status and will crash the system.
+
+               COMPLETED BY                            DATE/TIME:
+                        ------------------------------------------------
+
+
+       12.  Bring the system up.  Run 1SETMAP and  let  the  OPCOM  file
+       complete.  If the system looks good let the users on.
+                                                                  Page 5
+
+
+       13.  Notify all districts using IMS mail  of  the  disk  rebuild.
+       Log into (OPER1) on H8 and follow the example below:
+
+       '-'SEND
+       'TO' .(CUPAMAIL)/SNDMAIL-NAMES/          ;A LIST FILE OF DISTRICT
+       'TYPE LETTER'                            ;MAIL NAMES.
+
+       "DUE TO HARDWARE PROBLEMS SYSTEM  XX  HAD  TO  BE  REBUILT.   ALL
+       DIRECTORIES  WILL  EXIST AS OF "DATE/TIME".  WE ARE SORRY FOR ANY
+       INCONVENIENCE THIS MAY HAVE CAUSED.  TYMSHARE OPERATIONS"
+
+               COMPLETED BY                            DATE/TIME:
+                        -----------------------------------------------
+
+
+       14.  Record all actions taken in the system and shift log books.
+
+               COMPLETED BY                            DATE/TIME:
+                        -----------------------------------------------
+
+
+       15. Save all teletype output.
+
+               COMPLETED BY                            DATE/TIME:
+                        -----------------------------------------------
+ 

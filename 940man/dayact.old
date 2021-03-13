@@ -1,0 +1,309 @@
+:C: 1ACCOUNTING (DAILY)
+
+
+                        DAILY ACCOUNTING
+                        ----------------
+
+INTRODUCTION
+------------
+
+        THIS PROGRAM IS USED TO CALL ALL THE PROGRAMS OR PROGRAM
+CHAINS IN THE ACCOUNTING SYSTEM WHICH ARE IN THE FILE DIRECTORIES
+OF (*4ACCT) AND (*4PROG).  IT ALSO WRITES OUT THEIR RESTART FILES.
+1ACCOUNTING CAN ONLY BE USED BY A PERSON WITH DISTRICT STATUS OF
+ZERO.
+
+        EVERY EVENING, PRIOR TO TAKEDOWN, 1STORAGE, 1GASP AND 
+1ACCOUNTING IS RUN (SEE 1STORAGE AND 1GASP DOCUMENTATION ELSEWHERE
+IN THIS MANUAL).  THESE TWO PROGRAMS OUTPUT FILES WHICH MUST BE PRE-
+SENT BEFORE 1ACCOUNTING CAN BE RUN.
+
+        1ACCOUNTING OUTPUTS INFORMATION TO THE OPERATOR'S TTY PER-
+TAINING TO BILLABLE TIME, TOTAL TIME, BILLABLE CPU, TOTAL CPU, AND
+TOTAL LOGOUTS.
+
+        THIS INFORMATION IS TO BE SAVED ON THE TTY PAPER AND PUT IN
+THE APPRORPIATE FOLDER IN THE BATCH CONTROL AREA.
+
+VALID COMMANDS
+--------------
+
+        DAILY                           RUN DAILY ACCOUNTING
+
+        WEEKLY                          RUN WEEKLY ACCOUNTING
+
+        MONTHLY                         RUN MONTHLY ACCOUNTING
+
+        MTD BATCH                       RUN MONTH TO DATE BATCH PRO-
+                                         CESSING REPORT
+
+        MTD STORAGE                     RUN END MONTH TO DATE STORAGE
+                                         REPORT
+
+        LOOK                            LOOK AT CUSTOMER, ACCOUNT, AND
+                                         USER FILES
+
+        ME-LOOK                         LOOK AT MONTH END CUSTOMER,
+                                         ACCOUNT, AND USER FILES
+
+        CREATE TAPELIB                  CREATES A TAPELIB TRANSFER
+                                         FILE FOR TAPE STORAGE BILLING
+                                         AT THE END OF THE MONTH.
+
+        HELP                            REPRINTS THIS LIST
+
+        VERSION                         LISTS LATEST VERSION
+
+        Q OR QUIT                       EXITS THE PROGRAM
+
+
+
+
+
+
+OPERATION AND SAMPLE OUTPUT
+---------------------------
+
+-DS (OPERATOR'S NAME)                    (SET STATUS)
+
+-                                       (ENTER PASSWORD)
+-1ACCOUNTING
+
+ENTER YOUR NAME PLEASE
+
+ENTER YOUR PASSWORD
+
+COMMAND? DAILY(CR)                      (ENTER (DAY) OR (DAILY))
+
+COUNTRY? US(CR)                         (ENTER (US) OR (UNITED STATES);
+                                         (FRANCE); (UK) OR (UNITED
+                                         KINGDOM))
+
+THANK YOU.
+
+FILE CHECK PROGRAM RUNNING              ((*4PROG)/FILCHK/)
+                                        (CHECKS TO SEE IF ALL (*4ACCT)
+                                         FILES ARE PRESENT, IF FILES
+                                         ARE MISSING, IF A FILE IS BAD,
+                                         OR IF THE COMMANDS FILE CANT BE
+                                         OPENED.  ERROR MESSAGES ARE 
+                                         LISTED AT THE END OF THIS
+                                         DOCUMENTATION)
+
+END OF FILE CHECK                       (OUTPUTS IF EVERYTHING IS OKAY)
+
+THE DAILY SORT IS STARTING.             ((*4PROG)/SORT/)
+                                        (SORTS RECORDS TO ENSURE
+                                         DAILY ACCOUNTING HAS BEEN
+                                         DONE TO DATE.  ERRORS MESSAGES
+                                         ARE LISTED AT THE END OF
+                                         THIS DOCUMENTATION)
+
+DATE OF REPORT? (MM-DD-YY)              ((MM-DD-YY) = CURRENT DAY DAILY
+                                         ACCOUNTING IS TO BE RUN.
+                                         ENTERED BY OPERATOR.  ERROR
+                                         MESSAGES ARE LISTED AT THE END
+                                         OF THIS DOCUMENTATION)
+
+
+THE DAILY SORT IS FINISHED.             (OUTPUTS IF EVERYTHING IS OKAY)
+
+THE DAILY COMPARE IS STARTING.          ((*4PROG)/CAL/)
+                                        (COMPARES ACCOUNTING WITH LUD
+                                         AND KEEPS TRACK OF HOW MANY
+                                         USERS IN ACCOUNTING.  ERROR
+                                         MESSAGES ARE LISTED AT THE END
+                                         OF THIS DOCUMENTATION)
+
+END OF DAILY COMPARE                    (OUTPUTS IF EVERYTHING IS OKAY)
+
+THE DAILY MERGE IS RUNNING.             ((*4PROG)/DM/)
+                                        (THIS PROGRAM MERGES THE DAILY
+                                         SORTED DETAIL TO THE WEEKLY
+                                         RECORD FILE CHECKING FOR DUP-
+                                         LICATE RECORDS, GAN'S NOT 
+                                         ASSIGNED AND DISCOUNT RECORDS.
+                                         IT THEN UPDATES THE AI&D FILE
+                                         WITH THE CONNECT TIME AND CPU
+                                         (TRU).  ERROR MESSAGES ARE LIS-
+                                         ED AT THE END OF THIS DOCUMEN-
+                                         TATION).
+
+
+THE DAILY TOTALS ARE:                   (DAILY TOTALS MUST MATCH THE
+                                         TOTALS OUTPUTED WHEN 1GASP
+                                         WAS RUN FOR THE SAME DAY)
+
+
+BILLABLE TIME    54:43
+BILLABLE CPU     22849
+BILL PREM CPU      841
+
+TYMSHARE TIME   119:35
+TYMSHARE CPU     18662
+TYM PREM CPU      3515
+
+TOTAL TIME      174:18
+TOTAL            41511
+TOTAL PREM CPU    4356
+
+LOGOUTS            283
+
+
+
+THE DAILY MERGE AND ACCOUNT UPDATE ARE FINISHED
+
+ OLD FILE
+
+NO USER NAME TRANSACTIONS FOR 06-14
+
+E. O. J.                                (OUTPUTS IF EVERYTHING IS OKAY)
+
+
+STORAGE PROGRAM RUNNING                 ((*4PROG)/STORG/)
+                                        (THIS PROGRAM UPDATES THE USER
+                                         STORAGE IN /UI&D/ AND THE
+                                         ACCOUNT STORAGE IN /AI&D/.
+                                         THE STORAGE IS TAKEN FROM 
+                                         (*4RAW ACCT)MMSTORDD.  ERROR
+                                         MESSAGES ARE LISTED AT THE END
+                                         OF THIS DOCUMENTATION)
+
+
+
+END STORAGE PROGRAM
+
+ OLD FILE
+
+POOH STARTING 2.4
+
+END OF JOB                              (OUTPUTS IF EVERYTHING IS OKAY)
+
+CUSTOMER INFORMATION UPDATE RUNNING.    ((*4PROG)/CI-UPD/)
+                                        (THIS PROGRAM UPDATES MTD TIME,
+                                         MTD STORAGE, AND MTD BATCH
+                                         PROCESSING IN THE CUSTOMER
+                                         INFORMATION FILE.  THE INFO 
+                                         IS TAKEN FROM THE ACCOUNT 
+                                         AND USER INFORMATION FILES.
+                                         ERROR MESSAGES ARE LISTED AT
+                                         THE END OF THIS DOCUMEN-
+                                         TATION)
+
+END CUSTOMER INFORMATION UPDATE.
+
+ OLD FILE
+ OLD FILE
+ OLD FILE
+ OLD FILE
+ OLD FILE
+ OLD FILE
+ OLD FILE
+
+MONTH TO DATE SUMMARY IS RUNNING.       ((*4PROG)/MTD-SUM/
+
+THE MONTH TO DATE SUMMARY REPORT IS IN FILE:  (BILLING) S17SUM14
+
+END OF DAILY ACCOUNTING.                (QUITS TO THE EXEC)
+
+-
+
+
+ERROR MESSAGES
+--------------
+
+       THE PRIMARY RECOVERY PROCEDURE WHEN ACCOUNTING ERRORS OCCUR IS
+TO BRING ANY AND ALL ERRORS TO THE ATTENTION OF YOUR SUPERVISOR; IF
+THE ERROR IS NON-RECOVERABLE (AND MOST OF THEM ARE) THEN A MESSAGE
+SHOULD BE SENT TO (RJK) ON C1 OR C2.
+
+        FILE CHECK
+        ----------
+
+        (*4ACCT)FILS IS MISSING.  RESTORE FROM ANOTHER SYSTEM AND TRY
+         AGAIN.
+
+        (NAME OF FILE) IS MISSING.
+
+        (NAME OF FILE) IS BAD.
+
+        CONTACT ACCOUNTING PROGRAMMING AND DO NOT PROCEED.
+
+        CANNOT OPEN COMMANDS FILE - TERMINATING.
+
+        
+        DAILY SORT
+        ----------
+
+        THE FACT FILE FROM SYS (##)
+         HAS NOT BEEN RECEIVED.
+
+        DATE FORMAT INCORRECT.          (ENTER CORRECT DATE FORMAT AS
+                                         (MM-DD-YY))
+
+        THE ACCOUNTING HAS BEEN RUN     (CHECK TO SEE IF CORRECT DATE
+         FOR (MM-DD-YY)                  HAS BEEN ENTERED)
+
+        DO YOU WISH TO CONTINUE?        (IF CORRECT DATE HAS BEEN ENTER-
+         (Y OR N)                        ED ANSWER 'N'.  SOMEONE
+                                         HAS ALREADY ENTERED DAILY
+                                         ACCOUNTING FOR THE ABOVE DATE.
+                                         ENTER 'Y' AFTER HAVING CHECKED
+                                         TO SEE IF DAILY ACCOUNTING HAS,
+                                         IN FACT, NOT BEEN ENTERED FOR
+                                         THE CURRENT DAY)
+
+        DAILY ACCOUNTING TERMINATED.    (IF 'N' IS ENTERED IN ANSWER TO
+                                         ABOVE RESPONSE)
+
+        THE DAILY ACCOUNTING HAS NOT    (PROGRAM TERMINATES WHEN THIS
+         BEEN RUN FOR (MM-DD-YY)         MESSAGE IS OUTPUTED.  DAILY
+                                         ACCOUNTING MUST BE RUN FOR THIS
+                                         DAY BEFORE DAILY ACCOUNTING CAN
+                                         BE ENTERED FOR THE CURRENT 
+                                         DATE)
+
+        DAILY COMPARE
+        -------------
+
+        CUSTOMER FILE INCORRECT SIZE.
+
+        ACCOUNT FILE INCORRECT SIZE.
+
+        GAN (NNNN) IS ASSIGNED IN ACTG BUT NOT LUD.
+
+        GAN (NNNN) IS ASSIGNED IN LUD BUT NOT ACTG.
+
+        GAN (NNNN) IS CANCELED IN ACTG BUT NOT LUD.
+
+        GAN (NNNN) UUN (NNNN) HAS A NAME OF (NNNN) IN ACTG AND NOT
+         IN LUD.
+
+        GAN (NNNN) USER (NAME) HAS A UUN OF (NNNN) IN ACTG AND
+         (NNNN) IN LUD.
+
+        GAN (NNNN) USER (NAME) IS ASSIGNED IN THE LUD AND NOT
+         ACTG.
+
+        GAN (NNNN) USER (NAME) HAS DISTRICT (NNNN) IN LUD AND DISTRICT
+         (NNNN) IN ACTG.
+
+        GAN (NNNN) USER (NAME) IS ASSIGNED IN ACTG BUT NOT IN LUD.
+
+
+        DAILY MERGE
+        -----------
+
+        THE FOLLOWING ACCOUNTS ARE NOT ASSIGNED IN ACTG (NNNN) 
+         GAN (NNNN) TIME (NNNN).
+
+        DUPLICATE TIME (NNNN).
+
+        STORAGE PROGRAM
+        ---------------
+
+        LENGTH FILE CLOBBERED.
+
+        THE FOLLOWING USERS NUMBERS APPEAR IN THE OUTPUT OF LENGTH
+       BUT NOT IN THE USER INFORMATION FILE - U.N. (NNNN).
+  

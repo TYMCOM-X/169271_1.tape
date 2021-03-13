@@ -1,0 +1,62 @@
+:C: 1GASP
+                               1GASP
+                               -----
+
+PURPOSE:      CONVERTS THE RAW ACCOUNTING INTO SEVERAL FILES LOCATED UNDER THE
+              *4RAW ACCT DIRECTORY AND NAMED AS FOLLOWS:
+            
+                           ACCTG FILE:  MMPACTDD
+                   FOREIGN ACCTG FILE:  MMFACTDD
+                   PREMIUM ACCTG FILE:  MMPREMDD
+                   NAME CHANGE   FILE:  MMNAMEDD
+                            STAT FILE:  MMSTATDD
+                         ROYALTY FILE:  MMROYLDD
+
+           WHERE MM=MONTH OF THE YEAR AND WHERE DD=DAY OF THE MONTH.
+           FOR EXAMPLE- THE ACCTG FILE FOR 10 NOVEMBER WOULD BE: 11PACT10
+
+
+
+PROCEDURE:  1) SET OPER STATUS
+
+            2) IN THE EXEC TYPE   -1GASP
+
+
+SAMPLE OUTPUT:
+
+                -1GASP
+                
+                GASP R7.02
+                
+                
+                ENTER MONTH-DATE-YEAR:  MM-DD-YY
+                
+                ACCTG FILE (*4RAW ACCT) 04PACT19
+                FOREIGN ACCTG FILE (*4RAW ACCT) 04FACT19
+                PREMIUM FILE (*4RAW ACCT) 04PREM19
+                STAT FILE (*6STAT) 04STAT19
+                NAME CHANGE FILE (*4RAW ACCT) 04NAME19
+                
+                
+                REVENUE TERMINAL TIME 106:35
+                REVENUE COMPUTE SECONDS 32356
+                REVENUE PREMIUM COMPUTE SECONDS 3239
+                REVENUE LOGOUTS 298
+                
+                NON-REVENUE TERMINAL TIME 73:43
+                NON-REVENUE COMPUTE SECONDS 29671
+                NON-REVENUE PREMIUM COMPUTE SECONDS 1310
+                NON-REVENUE LOGOUTS 159
+                
+                MAXIMUM USERS WERE 22
+                
+                
+                EOJ
+                -
+                
+ERROR MESSAGES:
+                
+                1 BAD TIME RECORD BYPASSED
+                
+                1 BAD PUBLIC OR SUBSYSTEM RECORDS BYPASSED
+                

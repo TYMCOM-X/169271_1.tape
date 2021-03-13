@@ -1,0 +1,45 @@
+:C: FORMAT OF OPERATING INSTRUCTIONS
+
+     The programs in this document are presented in a fixed format.
+Each write-up is divided into nine sections.  If a particular section
+does not apply to the program, it is indicated by the word "NONE".
+If a capability within a particular section has not been implemented but
+will be incorporated, it is labelled as "NOT AVAILABLE AT THE
+PRESENT TIME".
+
+
+                               FORMAT AND CONTENT
+
+     SECTION 1 - DESCRIPTION:  A brief description of what the
+                 program can accomplish.
+
+     SECTION 2 - OPERATION REQUEST FORMAT:  The exact format with all
+                 fields identified.  Each field identifier is explain-
+                 ed in terms of its meaning, range of values, and max-
+                 imum number of characters.
+
+     SECTION 3 - OPTIONS:  A list of options associated with the
+                 operation request or the operation of the program.
+
+     SECTION 4 - INPUTS:  A list of the inputs that are required to
+                 operate the program.
+
+     SECTION 5 - OUTPUTS:  A list of all output from the program.
+
+     SECTION 6 - UTILITY INTERFACE:  A description of the relation
+                 between the described program and any other utility
+                 program.
+
+     SECTION 7 - LIMITATIONS:  A description of any operational or
+                 program limitations.  These are categorized as se-
+                 curity, data, and other limitations.
+
+     SECTION 8 - MESSAGES:  A list and explanation of messages
+                 associated with the program.  The messages are cat-
+                 egorized as error messages, informational messages,
+                 and on-line decisions.
+
+     SECTION 9 - LISTINGS:  A description of the actual listings
+                 associated with the program.  Sample printouts may
+                 be included.
+

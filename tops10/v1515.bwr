@@ -1,0 +1,449 @@
+
+BEWARE FILE FOR RSX-20F V15-15:
+
+
+
+1) INSTALLATION
+
+Follow the procedure for building the front-end file system outlined in the
+appropriate software installation guide for your system (TOPS-10 Software
+Installation Guide, chapter 6; or TOPS-20 KL Model B Installation Guide,
+chapter 4).  
+
+TOPS-10 customers with DECtapes will notice that three tapes have been supplied
+rather than two.  Tape 'C' may be copied to the disk structure after finishing
+tapes 'A' and 'B', and running SAV, as outlined in section 6.1.1 of the TOPS-10
+Software Installation Guide.  To install tape 'C', use the following procedure:
+	1) Remove the tape from drive 0 and mount Dectape 'C'.
+	2) Type a control-\ on the CTY to invoke the parser:
+	PAR%MCR MOU <return>
+	MOU>DT0: <return>
+	MOU -- MOUNT COMPLETE
+	MOU><control-Z>
+
+	<control-\>
+
+	PAR%MCR PIP <return>
+	PIP>DB0:=DT0: <return>
+	PIP>TT:=DB0:/LI <return>
+	PIP><control-Z>
+
+	<control-\>
+
+	PAR%MCR DMO <return>
+	DMO>DT0: <return>
+	DMO -- DISMOUNT COMPLETE
+	DMO><control-Z>
+
+At this point you can boot the system from disk as described in section 6.1.3.
+
+
+
+
+
+2) CHANGE TO KLI DIALOG
+
+	An additional question has been added to the KLI dialog relating to 
+the MCA25 Cache Page Table. This question will only appear if the MCA25 is
+present.  The MCA25 is divided into two parts which may be used either
+selectively or together.  Normally one should use both, but for maintenance
+purposes either half may be used exclusively.  An example of the new KLI
+dialog follows:
+
+
+
+Sample TOPS-10 dialog:
+
+
+RSX-20F VE15-15 17:00 17-SEP-84
+
+[SY0: redirected to DB0:]
+[DB0: mounted]
+KLI -- VERSION VA15-15 RUNNING
+KLI -- ENTER DIALOG [NO,YES,EXIT,BOOT]?
+KLI>YES
+KLI -- KL10 S/N: 2476., MODEL B, 60 HERTZ
+KLI -- KL10 HARDWARE ENVIRONMENT:
+	MCA25 CACHE PAGER UPGRADE
+	MOS MASTER OSCILLATOR
+	EXTENDED ADDRESSING
+	INTERNAL CHANNELS
+	CACHE
+
+KLI -- SELECT PAGE TABLE [FILE,BOTH,0,1]?
+KLI>BOTH
+KLI -- PAGE TABLE SELECTED: BOTH
+KLI -- RELOAD MICROCODE [YES,VERIFY,FIX,NO]?
+KLI>YES KLX.MCB
+KLI -- MICROCODE VERSION 2.0[400] LOADED
+KLI -- RECONFIGURE CACHE [FILE,ALL,REVERSE,YES,NO]?
+KLI>ALL
+KLI -- ALL CACHE ENABLED
+KLI -- CONFIGURE KL MEMORY [FILE,ALL,REVERSE,YES,NO]?
+KLI>ALL
+
+LOGICAL MEMORY CONFIGURATION.
+  ADDRESS  SIZE  INT  TYPE CONTROLLER
+ 00000000  768K   4   MF20  10
+
+KLI -- LOAD KL BOOTSTRAP [FILE,YES,NO,FILENAME]?
+KLI>
+KLI -- WRITE CONFIGURATION FILE [YES,NO]?
+KLI>
+KLI -- CONFIGURATION FILE WRITTEN
+KLI -- BOOTSTRAP LOADED AND STARTED
+
+BOOT V2(17)
+
+BOOT>
+
+
+
+
+Sample TOP-20 dialog:
+
+RSX-20F VB15-15 17:00 17-SEP-84
+
+[SY0: redirected to DB0:]
+[DB0: mounted]
+KLI -- VERSION VB15-15 RUNNING
+KLI -- ENTER DIALOG [NO,YES,EXIT,BOOT]?
+KLI>YES
+KLI -- KL10 S/N: 2476., MODEL B, 60 HERTZ
+KLI -- KL10 HARDWARE ENVIRONMENT:
+	MCA25 CACHE PAGER UPGRADE
+	MOS MASTER OSCILLATOR
+	EXTENDED ADDRESSING
+	INTERNAL CHANNELS
+	CACHE
+
+KLI -- SELECT PAGE TABLE [FILE,BOTH,0,1]?
+KLI>BOTH
+KLI -- PAGE TABLE SELECTED: BOTH
+KLI -- RELOAD MICROCODE [YES,VERIFY,FIX,NO]?
+KLI>YES
+KLI -- MICROCODE VERSION 1.0[357] LOADED
+KLI -- RECONFIGURE CACHE [FILE,ALL,REVERSE,YES,NO]?
+KLI>ALL
+KLI -- ALL CACHE ENABLED
+KLI -- CONFIGURE KL MEMORY [FILE,ALL,REVERSE,YES,NO]?
+KLI>ALL
+
+LOGICAL MEMORY CONFIGURATION.
+  ADDRESS  SIZE  INT  TYPE CONTROLLER
+ 00000000  768K   4   MF20  10
+
+KLI -- LOAD KL BOOTSTRAP [FILE,YES,NO,FILENAME]?
+KLI>
+KLI -- WRITE CONFIGURATION FILE [YES,NO]?
+KLI>
+KLI -- CONFIGURATION FILE WRITTEN
+KLI -- BOOTSTRAP LOADED AND STARTED
+
+BOOT V10.0(152)
+
+BOOT>
+
+
+
+
+
+3) TEMPORARY PATCHES FOR AUTOBAUD PROBLEM
+
+We have changed the autobaud algorithm which appeared in version 14-45 of 
+RSX-20F to include support for speeds up to 9600 baud.  Unfortunately, in 
+so doing we have found that in some instances the front end will incorrectly
+determine the speed of an autobaud line.  Rather than hold up the release of
+version 15-15 of RSX-20F, we have decided to ship 15-15 unpatched, and list
+here two patches which should help to alleviate the problem.  These patches
+need only be applied if your users experience autobaud problems.  Moreover,
+already built into version 15-15 is a new feature whereby if a user does get
+set to the wrong speed (indicated by garbage appearing on the screen), he/she
+can type two consecutive break characters in order to reenter autobaud detect.
+We are continuing to investigate this problem, and when a final resolution is
+determined, the following patches will become unsupported.  Also, please note
+that patch B has the side effect of dropping autobaud support for devices at 
+150 baud. If you need support for autobaud at 150 baud, do not apply patch B.
+
+
+
+The following patch is edit A to RSX20F V15-15.
+
+To apply this patch do the following:
+
+1) Shut down the system by typing the following:
+
+^\		! Control-\ to invoke the PARSER
+
+PAR>SHUT	! Causes TOPS-10/20 to stop running
+
+2) Now reboot the Console Front End by setting the switches on
+
+   the PDP-11 to 203 (switches 0,1, and 7 up, others down) and
+
+   pressing the ENABLE and SWITCHES load switches on the KL10
+
+   front panel.
+
+3) Type ^\ (Control-\) to invoke the PARSER
+
+4) In response to the PAR> prompt type the following (text 
+   beginning with an exclamation mark or semicolon is a comment
+   and need not be typed on the console terminal):
+
+SET CONSOLE MAINTENANCE 
+
+SET MEMORY ELEVEN
+
+
+!	.PAT2.:	MOV	STSW0(R5),-(SP)		; FETCH CURRENT SPEED
+DEPOSIT 120=16546
+DEPOSIT NEXT=4
+
+!		BIC	#S0.MSK,(SP)		; DROP FLAGS
+DEPOSIT NEXT=42716
+DEPOSIT NEXT=140000
+
+!		CMP	R3,(SP)+		; DO SPEEDS MATCH?
+DEPOSIT NEXT=20326
+
+!		BEQ	10$			; YES -- GO ON
+DEPOSIT NEXT=1407
+
+!		BIC	#^C<S0.MSK>,STSW0(R5)	; NO -- FLUSH OLD SPEED
+DEPOSIT NEXT=42765
+DEPOSIT NEXT=37777
+DEPOSIT NEXT=4
+
+!		BIS	R3,STSW0(R5)		; SAVE NEW SPEED
+DEPOSIT NEXT=50365
+DEPOSIT NEXT=4
+
+!		JMP	TTINPB			; DISMISS AND WAIT FOR MORE
+DEPOSIT NEXT=137
+DEPOSIT NEXT=37060
+
+!	10$:	BIC	#TT.ABW,STSW1(R5)	; TERMINATE AUTO BAUD WAIT
+DEPOSIT NEXT=42765
+DEPOSIT NEXT=10
+DEPOSIT NEXT=6
+
+!		CALL	.DHSPD			; SET SPEED
+DEPOSIT NEXT=4737
+DEPOSIT NEXT=40334
+
+!		JMP	$DHINP+310		; RETURN FROM PATCH
+DEPOSIT NEXT=137
+DEPOSIT NEXT=36330
+
+!
+!		BIC	#TT.IGN,STSW1(R5)	; NEXT CHAR OK
+DEPOSIT 36272=10000
+
+!		JMP	.PAT2.			; ENTER PATCH
+DEPOSIT 36324=137
+DEPOSIT NEXT=120
+
+!		.ASCII	/5A/			; CALL THIS EDIT A
+DEPOSIT 1044=40465
+
+
+SET CONSOLE OPERATOR
+
+5) Now type "MCR SAV<CR>"
+
+6) In response to the prompt SAV> type "SY0:/WB<CR>"
+
+This will save the patched RSX20F system image on the front-end
+file system.
+
+
+
+
+
+
+
+The following patch is edit B to RSX20F V15-15.
+
+To apply this patch do the following:
+
+1) Shut down the system by typing the following:
+
+^\		! Control-\ to invoke the PARSER
+
+PAR>SHUT	! Causes TOPS-10/20 to stop running
+
+2) Now reboot the Console Front End by setting the switches on
+
+   the PDP-11 to 203 (switches 0,1, and 7 up, others down) and
+
+   pressing the ENABLE and SWITCHES load switches on the KL10
+
+   front panel.
+
+3) Type ^\ (Control-\) to invoke the PARSER
+
+4) In response to the PAR> prompt type the following (text 
+   beginning with an exclamation mark is a comment and need
+   not be typed on the console terminal):
+
+SET CONSOLE MAINTENANCE 
+
+SET MEMORY ELEVEN
+
+
+!	LSPTAB::
+!		.BYTE	174			; 110 BAUD ^C
+!		.BYTE	015			; 300 BAUD CR
+DEPOSIT 32610=6574
+
+!		.BYTE	215			; 300 BAUD CR
+!		.BYTE	003			; 300 BAUD ^C
+DEPOSIT NEXT=1615
+
+
+!		.BYTE	203			; 300 BAUD ^C
+!	HSPTAB::
+!		.BYTE	200			; 300 BAUD CR OR ^C
+DEPOSIT NEXT=100203
+
+!	LSPSPD::
+!		.BYTE	00			; 110 BAUD ^C
+!		.BYTE	02			; 300 BAUD CR
+DEPOSIT 32632=1000
+
+!		.BYTE	02			; 300 BAUD CR
+!		.BYTE	02			; 300 BAUD ^C
+DEPOSIT NEXT=1002
+
+!		.BYTE	02			; 300 BAUD ^C
+!	HSPSPD::
+!		.BYTE	LSP.IG!02		; 300 BAUD CR OR ^C
+DEPOSIT NEXT=101002
+
+!		.ASCII	/5B/			; CALL THIS EDIT B
+DEPOSIT 1044=41065
+
+SET CONSOLE OPERATOR
+
+5) Now type "MCR SAV<CR>"
+
+6) In response to the prompt SAV> type "SY0:/WB<CR>"
+
+This will save the patched RSX20F system image on the front-end
+file system.
+
+
+
+
+
+
+4)  TOPS-20 XON/XOFF HANDLING
+
+The front end now handles XON/XOFF without need of intervention from the
+monitor.  A patch to TOPS-20 is required in order to bring it in line with
+this new "protocol".  This patch should only be installed if you install
+version 15-15 of RSX-20F, with expections noted below.  In addition to
+appearing here, it will also be on Autopatch tape 9 for TOPS-20, as a separate
+REL file; and should be on Autopatch tape 10, incorporated in the usual manner.
+(TOPS-10 already has the appropriate changes in version 7.02 of the monitor.)
+
+
+
+                        **********
+
+
+[SYMPTOM]
+ 
+ 
+     Terminal lines appear to lose  an  occasional  XON  and  possibly
+XOFFs as well.  This edit replaces edit 2906.
+ 
+ 
+[DIAGNOSIS]
+ 
+     When RSX20F receives an XOFF, it  stops  output  immediately  and
+passes  the  XOFF  through  to  TOPS20 so that TOPS20 can stop sending
+characters.  TOPS20 will turn around and tell the  front-end  to  stop
+output  which  is redundant as it forces RSX20F to go through the same
+code it executed when it first received the XOFF.
+ 
+     When RSX20F receives an XON, it does nothing other than pass  the
+character  through  to  TOPS20.  TOPS20 will then see the XON and tell
+RSX20F to start output again.
+ 
+     It is unclear exactly how it happens, but it  appears  that  this
+scenario  produces  a race condition which can make 20F appear to lose
+the XON in rare circumstances.
+ 
+ 
+[CURE]
+ 
+     Eliminate any possibility of race conditions.   Allow  RSX20F  to
+control both the starting and stopping of output, rather than just the
+stopping.  Create a bit in TTSTAT (TT%XFF) that allows TOPS20 to force
+the front-end to set/clear the XOFFed state.  This has to be done when
+the monitor needs to specifically overide XON/XOFF.  These places  are
+at  .STPAR+25  (where  TT%PGM  mode  is  turned off,) TTYDE4+31 (where
+terminal lines are reset,) and at TTCBF7+1 (where output  buffers  are
+flushed.)  A  new  routine  TTXONF  has  been  created to perform this
+overide task.  It will need to set TT%XFF only if an XOFF state exists
+(i.e.  TT%RXF is set.)
+ 
+     This edit requires  a  version  of  RSX-20F  that  uses  the  new
+protocol  for  XON  and  XOFF.  Versions 15-06 or greater may be used.
+Version 14-45 may be used only  if  edit  A  is  applied.   Note  that
+version  14-45G  does  not  contain  edit A, it must be patched.  When
+installing edit A (using 20-RSX20F-31), do NOT  install  MONITOR  edit
+2906 which is included in 20-RSX20F-31.  Use this edit instead.
+
+
+
+PCO Log Report
+[EDIT]
+@
+@; EDIT 3176 - FIXES XON/XOFF RACES
+@
+@; THIS EDIT CHANGES THE PROTOCOL FOR HANDLING XON/XOFF
+@; IT MUST BE USED WITH VERSION 15-06 OF RSX20F OR GREATER
+@; IT MAY ALSO BE USED WITH VERSION 14-45 IF EDIT A IS APPLIED
+@; NOTE THAT VERSION 14-45G WAS NOT RELEASED WITH EDIT A. IT
+@; MUST BE PATCHED.
+@
+$ENABLE (CAPABILITIES)
+$GET SYSTEM:MONITR.EXE
+$START (PROGRAM) 140
+DDT
+TTXON1+2/   MOVEI T1,21   JRST FFF	
+FFF/   0   MOVEI CX,100000
+FFF+1/   0   TDNN CX,0(T2)
+FFF+2/   0   RET
+FFF+3/   0   ANDCAM CX,0(T2)
+FFF+4/   0   MOVEI A,.DFXON
+FFF+5/   0   JRST TTXON1+3
+FFF+6/   0   FFF:
+ 
+TTCHI3+1/   HRRZ T2,T1(T2)   JRST FFF	
+FFF/   0   MOVEI CX,100000
+FFF+1/   0   TDNN CX,0(T2)
+FFF+2/   0   RET
+FFF+3/   0   ANDCAM CX,0(T2)
+FFF+4/   0   HRRZ T2,1(T2)
+FFF+5/   0   JRST TTCHI3+2
+FFF+6/   0   FFF:
+ 
+FFF/   0   TTXONF:   MOVE CX,0(T2)
+TTXONF+1/   0   TLNN CX,4
+TTXONF+2/   0   JRST TTXONA
+TTXONF+3/   0   MOVEI CX,100000
+TTXONF+4/   0   IORM CX,0(T2)
+TTXONF+5/   0   JRST TTXONA
+TTXONF+6/   0   FFF:
+ 
+TTCBF7+1/   CALL TTXONA   CALL TTXONF
+TTYDE4+30/   CALL TTXONA   CALL TTXONF
+.STPAR+25/   CALL TTXONA   CALL TTXONF
+^Z
+$SAVE SYSTEM:MONITR
+ <SYSTEM>MONITR.EXE.2 SAVED
+$

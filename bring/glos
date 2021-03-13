@@ -1,0 +1,1765 @@
+.page frame 66 high 70 wide
+.turn on ""
+.turn on "#"
+.turn on "_"
+.nojust
+.indent 8,13
+.single space
+.every heading (########APRIL 21 1986,########MCDONNELL DOUGLAS FSC,GLOSSARY)
+.every footing (,,PAGE#{page})
+DUMMY PAGE
+.next page
+_########MCDONNELL DOUGLAS FIELD SERVICE COMPANY - GLOSSARY
+.skip 2
+.indent 8,8
+This glossary defines a set of terms used at Field Service Company
+(FSC).
+.indent 8,8
+This glossary brings the terms 
+and acronyms of CSC Field Service, Tymshare CSS, 
+and Tymnet NFE together
+in one place and defines them for reference use by all FSC employees.
+.indent 8,8
+The types of terms defined in this glossary are:
+.indent 13,18
+-####Names of hardware and software
+.indent 13,18
+.preface 0
+-####Names of departments
+.indent 13,18
+-####Names of forms
+.indent 13,18
+-####Business terms
+.indent 13,18
+-####Standard industry terms
+.preface 1
+.indent 8,8
+If you have comments or suggestions, please let me know.
+.skip 1
+.begin nofill
+     Bruce Ring
+     McDonnell Douglas Field Service Company
+     39100 Liberty Street
+     Fremont, California  94538
+.skip 1
+     OnTyme ID: FSC.B/RING
+     Telephone: (415) 794-2448
+.end
+.indent 8,8
+This is the third edition of this glossary.
+It replaces the first edition dated November 11, 1985
+and the second edition dated January 6, 1986.
+New or changed terms in this edition are marked with an asterisk (*).
+.indent 8,8
+A reader's comments form is included on the last page.
+If you have terms that you feel should be added to this glossary,
+or if you find errors, please use this form.
+.indent 8,8
+Arrangement of Entries
+.indent 8,8
+The terms are arranged as follows: only the letters of the alphabet are
+used to determine sequence; special characters and spaces between words 
+are ignored; numbers come before letters.
+.next page
+.every footing (######* NEW DEFINITION,,PAGE#{page})
+.indent 6,8
+*#ABS FRAME
+.indent 13,13
+On Reality systems, software is loaded onto disk in 512-byte
+frames known as ABS frames (derived from ABSolute location).
+.indent 6,8
+*#ABSMAP
+.indent 13,13
+On Reality systems, this is the buffer of main 
+memory where ABS frames are "locked."
+.indent 6,8
+*#ACCOUNT
+.indent 13,13
+A collection of logically related files associated with one user
+or one function on a Reality system.
+.indent 6,8
+*#ACLC - Asynchronous Communications Line Controller
+.indent 13,13
+In the CSC 9000 product line, a front-end controller providing up to eight 
+RS232
+serial interface channels or 16 RS422 multidrop interface channels.
+The ACLC can be downloaded with firmware and is used for 
+various interfaces.
+The ACLC talks to external devices in an asynchronous manner.
+.indent 6,8
+*#AF
+.indent 13,13
+On Reality systems, ABS and file restore from tape (complete restore).
+.indent 8,8
+ALL - Application Language Liberator
+.indent 13,13
+Software tool that provides for the easy creation and modification
+of applications on Reality/Sequel systems.
+.indent 6,8
+*#AMC - Attribute Mark Count
+.indent 13,13
+On Reality systems, the number of an attribute within a data item.
+.indent 6,8
+*#APSS - Automatic Port Switching System
+.indent 13,13
+An optional component that provides automatic backup
+of a Tymnet engine in the event of a hardware or software failure.
+The software used in APSS is called ISRM (ISIS System Recovery Module)
+and it switches to a backup engine when a fault is detected.
+The hardware used is called PSM (Port Switch Module) and it electronically 
+transfers a line between engines in case of failure.
+.next page
+.indent 6,8
+*#ASCII - American Standard Code for Information Interchange
+.indent 13,13
+The standard and predominant seven-bit (eight bit with parity) character
+code used for data communication and data processing on non-IBM
+equipment.
+ASCII provides up to 128 different letters, numbers, and special characters.
+Pronounced "asky."
+.indent 6,8
+*#ASSEMBLY DEBUGGER
+.indent 13,13
+A debugger on Sequel systems that provides a means for monitoring and 
+controling program execution.
+The assembly debugger is also called the interactive debugger or the
+software debugger (SWDB).
+.indent 6,8
+*#ATC - Asynchronous Terminal Concentrator
+.indent 13,13
+A device that provides access to Tymnet for up to 
+eight remote or clustered asynchronous
+terminals.
+The ATC converts data from the terminals to Tymnet's synchronous, internodal
+protocol and concentrates it on one network line.
+.indent 6,8
+*#ATP - Acceptance Test Procedure
+.indent 13,13
+A software account available on CSC 4000, 6000, and 9000
+series systems used to test various system components.
+.indent 6,8
+*#ATTRIBUTE
+.indent 13,13
+On Reality systems, a specific piece of data which, along with other 
+attributes, makes up an item or record; synonym for field.
+.indent 6,8
+*#BACKPLANE
+.indent 13,13
+The circuitry and mechanical elements used to connect the boards of a system.
+Also called motherboard.
+.indent 8,8
+BACKPRESSURE
+.indent 13,13
+The process by which data flow in one direction on a circuit
+is temporarily stopped on Tymnet.
+.indent 8,8
+BASE
+.indent 13,13
+One type of 
+interface between a host computer and Tymnet.
+Similar to Tymcom, but provides the ability to feed data 
+directly into the host computer memory through DMA (direct memory access).
+.next page
+.indent 8,8
+BILLABLE REPAIRS
+.indent 13,13
+When a service call is made
+and the device repaired is not under contract, then the call is billable
+at an hourly rate (including travel time) plus materials.
+.indent 8,8
+BIN LOCATION
+.indent 13,13
+For CSS and NFE, the specific location at an FSC field office
+where a part is stocked.
+(No longer used--parts are now arranged alphanumerically in 
+part number sequence.)
+.indent 6,8
+*#BPS - Bits Per Second
+.indent 13,13
+The measure of the speed at which data is transmitted over
+a data communication line.
+Same as bits/s.
+.indent 6,8
+*#BUS
+.indent 13,13
+A channel or path for data or power.
+A bus structure consists of many bus channels that carry several different
+signals.
+The bus differs from other cables in that many devices are attached to it
+in parallel and they all share it.
+A bus may be used to connect multiple memory or I/O devices to the CPU.
+Sometimes spelled buss.
+.indent 6,8
+*#CAR - Capital Appropriation Report
+.indent 13,13
+A form previously used by Microdata that requests the purchase of 
+capital equipment.
+.indent 8,8
+CARRIER
+.indent 13,13
+A freight shipper.
+.indent 8,8
+CE - Customer Engineer
+.indent 13,13
+See FE - Field Engineer.
+.indent 6,8
+*#CEHB - Customer Engineer Handbook
+.indent 13,13
+A handbook used by FEs as a guide to servicing CSC equipment.
+.indent 8,13
+CID NUMBER - Contract Identification Number
+.indent 13,13
+A number used to identify
+a specific contract for a customer.
+A customer may have more than one contract.
+.next page
+.indent 8,8
+CIMS - Computer Inventory Management System
+.indent 13,13
+An inventory control system running on a CSC 9000 system that tracks 
+part transfers between field offices, tracks defective parts, and that provides
+automatic replenishment of field inventories.
+Pronounced "sims."
+Also called "woodstock."
+.indent 8,8
+CIRCUIT
+.indent 13,13
+A virtual path through the network along which a user's data travels in both
+directions (between a terminal and a host computer).
+.indent 6,8
+*#CONSAT - CONsolidated TymSAT
+.indent 13,13
+Another name for a tymsat.
+.indent 8,8
+CORRECTIVE MAINTENANCE
+.indent 13,13
+Detecting, isolating, and correcting failures after occurrence.
+Contrast with preventive maintenance.
+.indent 6,8
+*#CROSSOVER
+.indent 13,13
+An RS232 cable in which the pin connections at both ends are converted
+so that two DTEs (data terminal equipment) may be connected.
+Each DTE looks like a DCE (data circuit terminating equipment) to the
+equipment on the other end.
+Also called a modem eliminator or null modem cable.
+.indent 8,8
+CROSS-REFERENCE PARTS
+.indent 13,13
+See subs.
+.indent 8,8
+CSC - Computer Systems Company
+.indent 13,13
+Manufacturer of minicomputers and software.
+The field service operation is now a part of Field Service Company.
+Also called MDCSC.
+Formerly called Microdata.
+.indent 8,8
+CSR - Customer Service Representative
+.indent 13,13
+In the dispatch function, someone who receives calls from customers
+reporting problems, assigns calls to FEs,
+and notifies FEs of service requests.
+.indent 8,14
+CSS - Computer Support Services or Computer Systems and Support
+.indent 13,13
+Tymshare's computer maintenance organization before the merger;
+now a part of Field Service Company.
+.indent 8,8
+CUSTOMER NUMBER
+.indent 13,13
+A number used to uniquely identify a customer.
+.indent 8,8
+CUSTOMER-OWNED PART
+.indent 13,13
+When a defective part is removed from a customer's
+machine for repair and the same physical
+part must be repaired and reinstalled.
+.indent 8,8
+DATA/BASIC
+.indent 13,13
+The primary programming language used on
+Reality/Sequel systems.
+Commonly referred to as BASIC (Beginner's All-purpose
+Symbolic Instruction Code).
+.indent 6,8
+*#DCB - Debug Control Block
+.indent 13,13
+Each process on a Sequel system has a DCB associated with it that is
+used by the debug processor.
+Also called tertiary control block.
+.indent 6,8
+*#DDT - Dynamic Debugging Tool
+.indent 13,13
+An ISIS function that is used to view, debug, and modify memory
+in a slot on an engine, and to perform diagnostic functions.
+.indent 6,8
+*#DEC - Digital Equipment Company
+.indent 13,13
+Manufacturer of computing equipment.
+.indent 6,8
+*#DECSYSTEM-10, DECSYSTEM-20
+.indent 13,13
+A line of computer systems manufactured by DEC (Digital Equipment
+Corporation).
+The systems use PDP-10 processors (KA10, KI10, KL10, KS10)
+and the TOPS-10 and TOPS-20 operating systems.
+.indent 8,8
+DEFECTIVE PART
+.indent 13,13
+A part which is not functioning properly.
+.indent 8,8
+DEPOT/REPAIR CENTER
+.indent 13,13
+An FSC location where spare parts are stocked and defective parts,
+assemblies, peripheral units, terminals, PCs, and so on are repaired.
+.next page
+.indent 6,8
+*#DIRECTORY
+.indent 13,13
+A set of files "owned" by a username on a computer system.
+The files are acessible when logged in under that username
+and access to the files by other users can be restricted.
+.indent 8,8
+DISPATCH
+.indent 13,13
+The area of Field Service Company that receives calls from customers
+reporting problems and that dispatches field engineers.
+The computer system used is sometimes referred to as CHAD (Call
+Handling and Dispatch).
+.indent 6,8
+*#DISPATCHER
+.indent 13,13
+The part of the ISIS operating system that controls communication
+between node code and the other slots and that controls communication
+between slots.
+.indent 6,8
+*#DMA - Direct Memory Access
+.indent 13,13
+In general,
+an internal mode of system data transfer where data flows
+directly to and from main memory
+without interrupting the central processor.
+When applied to a Tymnet base, the transfer of data between the
+engine and the host occurs via one
+synchronous line to the host's bus.
+.indent 6,8
+*#DMP - Diagnostic Maintenance Processor
+.indent 13,13
+On Sequel systems, a board used to perform various diagnostic tasks
+and used for booting the system.
+.indent 8,8
+DMT - Defective Material Tag
+.indent 13,13
+A tag that is attached to a part found to be defective.
+Each DMT has a unique number.
+.indent 8,8
+DOA PART - "Dead On Arrival"
+.indent 13,13
+A part taken from stock that is assumed
+to be functioning properly, but that is found to be defective.
+.indent 6,8
+*#DOWNTIME
+.indent 13,13
+The period of time which a computer is malfunctioning or is not
+operable.
+Downtime can be scheduled or unscheduled.
+.next page
+.indent 8,8
+DPT - Defective Part Tag
+.indent 13,13
+A tag formerly used by CSS and NFE that is attached to a 
+part found to be defective.
+Each DPT has a unique number.
+.indent 6,8
+*#DSR - Data Set Ready
+.indent 13,13
+A handshaking flow control signal used in the RS232 communications
+recommendation; used to tell the terminal that the modem ("data set")
+is connected, powered-up, and ready.
+.indent 6,8
+*#DTR - Data Terminal Ready
+.indent 13,13
+A handshaking flow control signal used in the RS232 communications
+recommendation; used to tell the modem that the terminal is connected,
+powered-up, and ready.
+.indent 6,8
+*#DTS - Digital Termination System
+.indent 13,13
+The name for a facility used to transmit and receive microwave radio signals
+using the DEMS (Digital Electronic Message System) frequencies
+of 10.55-10.68 gigahertz 
+with point-to-multipoint transmissions in urban regional areas.
+Tymnet has a pilot DTS system using TDM/TDMA transmission
+that is also connected to the Tymnet terrestial network.
+.indent 6,8
+*#EAR - Equipment Activity Report
+.indent 13,13
+A form filled-out whenever CSC systems or equipment in the field
+are installed, deinstalled, moved, and so on.
+.indent 6,8
+*#EARTH STATION
+.indent 13,13
+An assemblage of communications equipment (including signal generator,
+transmitter, receiver, and antenna) that transmits and receives signals
+to and from a communications satellite.
+.indent 6,8
+*#EBCDIC - Extended Binary Coded Decimal Interchange Code
+.indent 13,13
+An eight-bit code widely-used on IBM equipment to represent 256
+different letters, numbers, and special characters.
+.indent 6,8
+*#ECL - English Command Language
+.indent 13,13
+The interface between the terminal user and the CSC 7000 operating system.
+.next page
+.indent 6,8
+*#EMSFSC
+.indent 13,13
+OnTyme account for the Field Service Company.
+.indent 8,8
+ENGINE
+.indent 13,13
+A 32-bit computer that is a node and that runs network communication 
+software such 
+as node code.
+There are three types of engines: engine, mini-engine, and micro-engine.
+.indent 8,8
+ENGLISH
+.indent 13,13
+A user-oriented data retrieval/report generator language for Reality/Sequel
+systems.
+.indent 6,8
+*#ENTRY POINT
+.indent 13,13
+On Sequel systems, point of entry into the monitor, due to a frame 
+fault, an interrupt, or an MCAL instruction.
+.indent 6,8
+*#EO - Engineering Order
+.indent 13,13
+Used to document changes to CSC products.
+.indent 6,8
+*#EPOF - Expendable Parts Order Form
+.indent 13,13
+A form used by field offices to order expendable parts for CSC equipment.
+.indent 8,8
+ESCALATION
+.indent 13,13
+In the handling of a service call from a customer, escalation
+is the steps followed if the primary FE
+is not available ("page escalation"), 
+or the steps followed if the machine is not repaired
+within a certain amount of time ("incident escalation").
+.indent 6,8
+*#ESCN - Employee Status Change Notice
+.indent 13,13
+A form used to record changes in employee information such as 
+name changes, transfers, promotions, changes in supervisors, and so on.
+.indent 8,8
+EXPENDABLE PART
+.indent 13,13
+A part which is discarded when defective; repair is not
+attempted.
+Examples are ribbons, bulbs, belts, or those parts that cost more to repair
+than their net worth.
+.indent 6,8
+*#FCN - Field Change Notice
+.indent 13,13
+A form filled out by CSC Technical Support for engineering changes
+that the field should know about.
+.indent 8,8
+FE - Field Engineer
+.indent 13,13
+Someone who goes to customer sites and services 
+equipment.
+.indent 6,8
+*#FID - Frame Identifier
+.indent 13,13
+On Reality systems, a number that tells where a particular frame
+is located on disk.
+.indent 8,8
+FIELD OPERATIONS
+.indent 13,13
+The area of Field Service Company that services customers' hardware.
+.indent 6,8
+*#FIELD SERVICE SHIPPER
+.indent 13,13
+A form used by the depot/repair centers to send replenishment shipments to the
+field offices.
+.indent 6,8
+*#FIELD SERVICE TRANSFER/RETURNED GOODS SHIPPER
+.indent 13,13
+A form used by field offices to send parts to other field offices
+and to send defective parts to the depot/repair center.
+.indent 6,8
+*#FIRMWARE
+.indent 13,13
+A set of instructions permanently or semi-permanently set into
+a read-only memory (ROM).
+.indent 6,8
+*#FIRMWARE DEBUGGER - FWDB
+.indent 13,13
+A debugger on Sequel systems used to test and diagnose the firmware.
+.indent 6,8
+*#FRAME
+.indent 13,13
+On Reality systems, a frame is the basic disk storage unit used for data
+and software.
+A frame is located with the FID and is 512 bytes in length.
+.indent 8,8
+FSC - Field Service Company
+.indent 13,13
+See MDFSC.
+.indent 8,8
+FSR - Field Service Report
+.indent 13,13
+A form (signed by the customer) that documents 
+the work done on a
+customer's machine and that reports the parts used.
+See also MAR - Maintenance Action Report.
+.next page
+.indent 6,8
+*#FTU - File Transfer Utility
+.indent 13,13
+A software package used to transfer files between CSC systems.
+.indent 8,8
+GATEWAY
+.indent 13,13
+An interface between two computer networks.
+.indent 6,8
+*#GB - GigaByte
+.indent 13,13
+A measure of computer storage; approximately one billion bytes or 
+precisely 1,073,741,824 bytes.
+.indent 6,8
+*#GFE - Group Format Error
+.indent 13,13
+On Reality systems, a condition indicating that there
+are errors in the format of a virtual storage frame of a file.
+.indent 6,8
+*#GROUP
+.indent 13,13
+The name given to a series of items stored on a Reality system;
+it can logically represent many frames in a linked format.
+The number of groups in a file is indicated by the modulo of the file.
+.indent 6,8
+*#HANDSHAKE
+.indent 13,13
+In communications, a predefined exchange of signals or control characters
+between two devices that sets up the conditions for data transfer
+or transmission.
+.indent 8,8
+HARDWIRED
+.indent 13,13
+A direct connection between a terminal and a node (without a modem).
+.indent 6,8
+*#HASHING
+.indent 13,13
+The process of passing an item-id through an algorithm or mathematical
+formula for determining the group of an item before placing the item
+into a file or retrieving the item from a file.
+.indent 8,8
+HOST COMPUTER
+.indent 13,13
+A mainframe or minicomputer used for general purpose
+computing; connected to Tymnet through a base or tymcom.
+.indent 8,8
+INCENSE
+.indent 13,13
+A user account on CIMS that contains data on the installed customer base
+anated provisioning data.
+.indent 8,8
+INCIDENT
+.indent 13,13
+A customer reporting a problem and the activity taken to resolve
+the problem, such as a field engineer visiting the 
+customer site, doing any necessary 
+repair work, ordering needed parts, and so on.
+.indent 8,8
+INITIAL SPARES
+.indent 13,13
+The action of an FSC field office
+stocking up on parts needed for future service 
+when a new contract is made with a customer or when a 
+new product is introduced.
+.indent 8,8
+INSHOP
+.indent 13,13
+A user account on CIMS that contains data on repair history related to DMTs.
+.indent 8,8
+INSIGHT
+.indent 13,13
+A user account on CIMS that contains data on parts movement, order entry,
+and shipping.
+.indent 6,8
+*#INTERCHANGEABLE PARTS
+.indent 13,13
+See subs.
+.indent 8,8
+INTERNAL SUPPORT SERVICES (In-House Maintenance)
+.indent 13,13
+Installation, repair, and maintenance services offered to McDonnell Douglas
+business units on company-owned or company-leased equipment.
+.indent 6,8
+*#IOBUSY
+.indent 13,13
+On Reality systems, a bit in the PSYM (permanent symbol) 
+table where an I/O is in progress
+for a particular buffer.
+.indent 6,8
+*#IONB
+.indent 13,13
+On Reality systems, the I/O instruction not setting the I/O BUSY
+bit in BSAFT.
+.indent 8,8
+ISG CUSTOMER SUPPORT SERVICES
+.indent 13,13
+Installation, repair, and maintenance services for customers using
+equipment made or sold by ISG companies.
+For example, Field Service Company services Tymnet equipment
+and CSC equipment.
+.next page
+.indent 8,8
+ISIS - Internally Switched Interface System
+.indent 13,13
+A multitasking
+operating system that manages the hardware and software
+of a Tymnet engine.
+The parts of ISIS are the kernel, the dispatcher, and the slots.
+ISIS divides the engine's memory into partitions or slots, each of which
+contains the software to perform a specific function.
+ISIS allows a node to contain node code plus any of the following
+code: tymsat, tymcom, supervisor, gateway, and others.
+.indent 6,8
+*#ITEM
+.indent 13,13
+On Reality systems, a collection of logically related attributes;
+synonym for record.
+Items are stored in groups; a set of logically related groups constitutes
+a Reality file.
+.indent 6,8
+*#ITEM-ID - Item Identifier
+.indent 13,13
+On Reality systems, the key to an item in a file.
+.indent 6,8
+*#KA10, KI10, KL10, KS10
+.indent 13,13
+Different models of the 
+PDP-10 36-bit computer processor manufactured by DEC
+(Digital Equipment Corporation) and used in the DECSystem-10 and DECSystem-20.
+.indent 6,8
+*#KB - KILOBYTE
+.indent 13,13
+A measure of computer storage;
+approximately 1,000 bytes or precisely 1,024 bytes.
+.indent 6,8
+*#KBITS/S - Kilobits per Second
+.indent 13,13
+A measure of communications line speed; 1,000 bits per second.
+Same as kbps.
+Note: when referring to data communications line speed, "K" means 
+exactly 1,000.
+.indent 6,8
+*#KERNEL
+.indent 13,13
+The part of the ISIS operating system that creates job slots, 
+partitions memory, allocates and schedules CPU time, controls hardware
+interfaces, and handles interrupts.
+.indent 6,8
+*#KERNEL HOST
+.indent 13,13
+Every node has a kernel host number (different from the node number)
+which can be used to build a circuit to that node.
+.next page
+.indent 6,8
+*#LEP - Lepruchaun
+.indent 13,13
+The process in the node code by which each node talks to the supervisor.
+All messages from the supervisor to a node (and vice-versa) go through 
+LEP.
+.indent 6,8
+*#LICENSE
+.indent 13,13
+On a Tymcom-X system, a user is normally restricted to only running certain
+programs and accessing certain files.
+License overrides these restrictions.
+.indent 6,8
+*#LICENSE TREE
+.indent 13,13
+On a Tymcom-X system, one person can assign someone else all of the license
+they have or a subset of the license they have.
+This leads to the concept of tree structures with a director giving
+license to his or her managers, the managers giving license to supervisors,
+and so on.
+.indent 8,8
+LINE
+.indent 13,13
+The physical connection between two nodes over which
+electrical signals representing data bits can be passed.
+.indent 8,8
+LINK
+.indent 13,13
+A logical connection between two nodes over which data travels in packets.
+It may have one or more lines attached to it.
+.indent 6,8
+*#LOADII
+.indent 13,13
+A downstream-loading program used to load software onto ISIS nodes.
+Loadii can also dump entire nodes or slots.
+Pronounced "load eye eye."
+.indent 8,8
+LOGIN/LOGOUT
+.indent 13,13
+The steps used to establish a connection with a host computer
+from a remote terminal and the steps used to end the connection.
+.indent 8,8
+LUD - Local User Directory
+.indent 13,13
+A directory (resident on a host) of all valid users of that host.
+.indent 6,8
+*#MAB - Memory Array Board
+.indent 13,13
+For the CSC 9000 product line, the main memory storage unit.
+The maximum size is a 1MB board.
+There can be a maximum of 6MB per system.
+.indent 6,8
+*#MA BILL - Maintenance Billing
+.indent 13,13
+The area of the company which handles billing of customers.
+.indent 6,8
+*#MAC - Memory Access Controller
+.indent 13,13
+A hardware component of an engine that allocates, partitions, and
+protects data in memory and that maps virtual memory addresses to absolute
+memory addresses.
+.indent 8,8
+MAR - Maintenance Action Report
+.indent 13,13
+A form previously used by CSS and NFE (signed by the customer) for
+field engineers to document the work done on a customer's machine and 
+to report the parts used.
+See also FSR - Field Service Report.
+.indent 8,8
+MATERIALS AND LOGISTICS
+.indent 13,13
+The area of the company that obtains spare parts and related supplies
+for Field Operations.
+.indent 6,8
+*#MB - MegaByte
+.indent 13,13
+A measure of computer storage;
+approximately one million bytes or precisely 1,048,576 bytes.
+.indent 6,8
+*#MBITS/S - Megabits per Second
+.indent 13,13
+A measure of communications line speed;
+one million bits per second.
+Same as mbps.
+Note: when referring to data communications line speed, "M" means 
+exactly 1,000,000.
+.indent 6,8
+*#MCB - Memory Control Board
+.indent 13,13
+For CSC products, a board that
+contains the interface logic, timing and refresh logic,
+and fault detection and correction logic for the system's main memory.
+.indent 8,8
+MDCSC - McDonnell Douglas Computer Systems Company
+.indent 13,13
+Manufacturer of minicomputers and software.
+The field service operation is now a part of Field Service Company.
+Usually called CSC.
+Formerly called Microdata.
+.next page
+.indent 8,8
+MDFSC - McDonnell Douglas Field Service Company
+.indent 13,13
+The new company formed by the merger of Tymshare CSS, Tymnet
+Network Field Engineering, and CSC Field Service.
+Usually called FSC.
+The company's lines of business are:
+.indent 18,23
+1.###ISG Customer Support Services
+.preface 0
+.indent 18,23
+2.###Internal Support Services
+.indent 18,23
+3.###Service Management
+.indent 18,23
+4.###Third Party Maintenance
+.preface 1
+.indent 13,13
+Each of these four lines of business is defined in this glossary.
+.skip 1
+.begin verbatim
+                                   Manufacturer/Supplier
+ 
+                                         Non-MDC      Non-MDC
+                                        (service     (service
+                               MDC      agreement)  competitor)
+
+                                                      Internal
+                  U   MDC      ISG                    Support
+                  s          Customer    Service      Service
+                  e          Support    Management              
+                  r   End-   Service                   Third
+                      User                             Party
+.skip 1
+.end
+.indent 8,8
+MDISG - McDonnell Douglas Information Systems Group
+.indent 13,13
+The holding company for the 10 companies offering data processing products
+and services such as computer hardware, software, computer networking, and
+field service.
+The companies are:
+.indent 13,18
+-####Heath Systems Company
+.preface 0
+.indent 13,18
+-####Manufacturing and Engineering Systems Company
+.indent 13,18
+-####Payment Systems Company
+.indent 13,18
+-####Comunications Industry Systems Company
+.indent 13,18
+-####Diversified Information Systems Company
+.indent 13,18
+-####Network Systems Company
+.indent 13,18
+-####Computer Systems Company
+.indent 13,18
+-####Field Service Company
+.indent 13,18
+-####Information Processing Company
+.indent 13,18
+-####Information Systems International Company
+.preface 1
+.indent 6,8
+*#MENTRY
+.indent 13,13
+An inventory control system formerly used by NFE to order parts, transfer
+parts, and to perform other functions.
+Also called Tymdata.
+.next page
+.indent 6,8
+*#MERLIN - MERge and Link ISIS Nodes
+.indent 13,13
+A program that binds together a combination of node code,
+the ISIS kernel, and code for slots into one binary image file
+which can then be loaded onto an engine with loadii.
+The entire engine can be loaded in one run of loadii if all files
+are bound with merlin.
+.indent 8,17
+MICOMS - McDonnell Douglas Inventory Control and Order Management System
+.indent 13,13
+Application software formerly used by CSS that tracks where parts are 
+and what they are worth.
+Also called TOPICS.
+.indent 6,8
+*#MICROCODE
+.indent 13,13
+Systems-controlling software stored in read-only memory (ROM).
+A list of small program steps.
+Combinations of these steps, performed automatically in a prescribed
+sequence, form a macro-operation such as multiply, divide, and square root.
+.indent 8,8
+MICRODATA
+.indent 13,13
+Manufacturer of minicomputers and software.
+Now called McDonnell Douglas Computer Systems Company (MDCSC).
+.indent 6,8
+*#MICROREALITY
+.indent 13,13
+An MS-DOS application program that supports the major features of the Reality
+operating system on an IBM PC/XT.
+.indent 6,8
+*#MICROSECOND
+.indent 13,13
+A measure of computer speed; one millionth of a second.
+.indent 6,8
+*#MILLISECOND - ms
+.indent 13,13
+A measure of computer speed; one thousandth of a second.
+.indent 8,8
+MIS - Management Information Systems
+.indent 13,13
+The area of the company whose purpose is to supply the 
+information
+needed to plan, organize, staff, direct, and control the operations
+of the Field Service Company.
+.indent 6,8
+*#MODULO
+.indent 13,13
+On Reality systems, the number of groups in a file.
+.next page
+.indent 8,8
+MOF - Material Order Form
+.indent 13,13
+A form used by field offices to order expendable parts (third party).
+.indent 6,8
+*#MONITOR
+.indent 13,13
+On Reality systems, the monitor controls all input, output, and process
+scheduling.
+The monitor
+initiates the transfer of information between main memory and
+virtual storage.
+.indent 8,8
+MRA - Material Return Area
+.indent 13,13
+Staging area at NDC for disposition of defective parts returned from the field.
+See also MRB - Material Review Board; SR - Stock Repair.
+.indent 8,8
+MRB - Material Review Board
+.indent 13,13
+A staging area at FSC where it is decided whether a part should
+be repaired or scrapped.
+See also MRA - Material Return Area; SR - Stock Repair.
+.indent 6,8
+*#MTBF - Mean Time Between Failure
+.indent 13,13
+A stated or published period of time for which a user may reasonably
+expect a device to operate before an incapacitating failure occurs.
+.indent 6,8
+*#MTTR - Mean Time To Repair
+.indent 13,13
+The average time required to perform corrective maintenance on a system
+to bring it back to normal service after a failure.
+.indent 8,8
+MUD - Master User Directory
+.indent 13,13
+A directory (resident on the network supervisor) of all valid 
+users of the network.
+.indent 6,8
+*#MUX
+.indent 13,13
+The MUX is a process which runs in an ISIS slot on an engine.
+The MUX allows a user to create and communicate with several circuits through
+a single (physical) terminal or circuit.
+The MUX can be used to build, interconnect, and control sets of circuits.
+.next page
+.indent 6,8
+*#MXP - Multiple eXtended Processor
+.indent 13,13
+A system which permits multiple engines to function as a single node.
+The group of engines are located in the same facility and are interconnected
+using Ethernet protocol.
+Also called MP.
+.indent 6,8
+*#NAD - Node Assembler/Debugger
+.indent 13,13
+A program which converts the instructions contained in source files
+and parameter files (initialization files and tymfiles) into a NIB
+file (node image binary).
+All the NIB files for an engine are bound using merlin and them
+loaded using loadii.
+.indent 6,8
+*#NANOSECOND - ns
+.indent 13,13
+A measure of computer speed; one billionth of a second.
+.indent 8,8
+NDC - National Distribution Center
+.indent 13,13
+An area in the company that supplies Field
+Operations (third-party) with spares and coordinates field sparing.
+.indent 6,8
+*#NEEDLE
+.indent 13,13
+A type of packet that is created by the supervisor at login time that contains 
+information about the origin and destination of a circuit, and the path 
+the circuit will take.
+.indent 6,8
+*#NEM - Network Event Monitor
+.indent 13,13
+A program that builds circuits to the supervisors' error logs
+to collect error and event messages.
+The messages may then be accessed through TMCS.
+Also called the consolidator.
+.indent 8,8
+NETWORK
+.indent 13,13
+A communication system consisting of 
+communication processors connected by leased telephone lines
+used to interconnect remote terminals with host computers.
+The network used and maintained by Field Service Company is Tymnet.
+.indent 6,8
+*#NETWORK CONTROL CENTER - NCC
+.indent 13,13
+Operators at NCC monitor the condition of the Tymnet network,
+resolve problems, and request repair service when necessary.
+.next page
+.indent 8,8
+NFE - Network Field Engineering
+.indent 13,13
+Tymnet's equipment maintenance organization before the merger; now a part
+of Field Service Company.
+.indent 6,8
+*#NIB - Node Image Binary
+.indent 13,13
+A binary copy of object code for an engine which is created by running NAD.
+Several NIB files can be combined using merlin and then loaded using
+loadii.
+.indent 8,8
+NODE
+.indent 13,13
+A computer with hardware and software designed for data communication.
+A node is a point in the network where various links come together;
+generally containing a switching element used to direct traffic.
+.indent 8,8
+NODE CODE
+.indent 13,13
+Software running on a node that contains basic instructions for switching:
+packet reception and teardown, packet building and transmission,
+routing packets, and communication with the supervisor.
+.indent 6,8
+*#NPSB - New Product Service Bulletin
+.indent 13,13
+Information for Technical Support pertaining to new CSC products.
+.indent 6,8
+*#OCL - Optically-Coupled Link
+.indent 13,13
+Coaxial cable-based communications for use with high-speed data transfer
+between nodes (memory shuffler).
+.indent 8,8
+OEM - Original Equipment Manufacturer
+.indent 13,13
+A manufacturer who buys equipment from other suppliers and integrates it
+into a single system for resale.
+.indent 8,8
+ONTYME
+.indent 13,13
+An electronic mail system used to send and receive messages through
+computer terminals.
+.indent 6,8
+*#OPCODE - Operation Code
+.indent 13,13
+Assembly language instructions and commands.
+.indent 6,8
+*#OSFE - Operating System Functional Expansion
+.indent 13,13
+A method by which functional parameters on CSC systems are defined
+(or limited) by a configuration IC chip.
+.indent 8,8
+P1 - Priority 1
+.indent 13,13
+An urgent request (needed within 24 hours)
+for a part from an FSC field office or from a vendor.
+.indent 8,8
+PACKET
+.indent 13,13
+A group of binary data arranged in a specified format,
+including data and control information, that is transmitted
+as a whole.
+The basic unit of node-to-node communication (physical record or frame).
+All data that passes between two nodes is contained in packets.
+.indent 8,8
+PASSWORD
+.indent 13,13
+A character string used to verify that a user is entitled to log into
+the system.
+.indent 6,8
+*#PCB - Primary Control Block
+.indent 13,13
+Each process on a Reality system has a PCB that defines the state of the
+process at any instant.
+.indent 6,8
+*#PCI - Programmable Communications Interface
+.indent 13,13
+Defines the character length, parity, and number of stop bits for the 
+ACLC on CSC 9000 computers.
+.indent 6,8
+*#PCLINK
+.indent 13,13
+A program that runs on an IBM PC or compatible that makes the PC emulate
+a Prism 4 terminal.
+PCLINK allows an IBM PC to connect to a CSC 9000 (Sequel), a CSC 6000
+(Spirit), or a CSC 4700 (Reality).
+Also called MTE (Microdata P4 Terminal Emulator).
+.indent 6,8
+*#PDP - Programmed Data Processor
+.indent 13,13
+The prefix for the names (PDP-10, PDP-11, and so on) of several
+computer processors manufactured by DEC 
+(Digital Equipment Corporation).
+.indent 6,8
+*#PEAK
+.indent 13,13
+A full-screen editor running under the Tymcom-X operating system.
+Similar to Vue.
+.indent 8,8
+PES - Performance Enhanced Sequel
+.indent 13,13
+Hardware added to a CSC 9000 to improve its performance
+(to run faster, and so on).
+.next page
+.indent 6,8
+*#PIB - Process Identification Block
+.indent 13,13
+Each process in a Sequel system is associated with a PIB.
+The PIB has a status: sleeping, active, roadblocked, and so on.
+A linked list of PIBs is used by the monitor to queue and select the
+virtual process to run.
+.indent 8,8
+PICK
+.indent 13,13
+A multiuser, virtual-memory operating system and relational data base
+management system.
+.indent 6,8
+*#PLUG COMPATIBLE PARTS
+.indent 13,13
+See subs.
+.indent 8,8
+PM - Preventive Maintenance
+.indent 13,13
+Attempting to keep equipment in continuous operating condition
+by detecting, isolating, and correcting failures before occurrence.
+Contrast with corrective maintenance.
+.indent 6,8
+*#PORT
+.indent 13,13
+A point of access into a computer, a network, or other electronic device;
+the physical or electrical interface through which one gains access;
+the physical or logical channel through which data passes.
+.indent 8,8
+PRIVATE NETWORK
+.indent 13,13
+A network owned by a private organization or
+corporation for users within that organization or corporation.
+In Tymnet, a private network has its own supervisor.
+.indent 6,8
+*#PROBE
+.indent 13,13
+PROBE is a network access and control program that runs under the active
+supervisor that is used to actively monitor all conditions in a Tymnet
+network as they occur.
+The conditions include: network usage, node status, host status,
+and line status.
+PROBE can also be used to alter the status of network components
+to maintain the quality of data transmission.
+.indent 6,8
+*#PROC
+.indent 13,13
+Used to store a sequence of operations on a Reality system which
+can be invoked by a single command.
+.next page
+.indent 8,8
+PROVISIONING PART
+.indent 13,13
+For related subs, one of the parts is the provisioning part
+and the other subs "point" to the provisioning part.
+Provisioning parts
+are usually manufactured by the vendor of the model or system.
+Also called target part.
+See subs.
+.indent 8,8
+PUBLIC NETWORK
+.indent 13,13
+A network established and operated by a communications common carrier
+(such as Tymnet) for users in the general public.
+.indent 8,8
+PURCHASE ORDER - PO
+.indent 13,13
+A form used when ordering supplies or materials 
+from a vendor.
+.indent 6,8
+*#PVC - Permanent Virtual Circuit
+.indent 13,13
+A data communications connection which is always available
+to the user and requires no user login procedure to build the circuit.
+.indent 6,8
+*#RAM - Random Access Memory
+.indent 13,13
+A memory in which the user can read data or write data.
+RAM is the "working memory" of a computer into which programs are loaded
+and then executed.
+.indent 6,8
+*#RAM - Raw Accounting Merger
+.indent 13,13
+A program that runs under ISIS and collects raw accouting data for
+interpretation and analysis.
+The accounting data can be used for user billing, cost accounting, capacity
+planning, and network monitoring.
+.indent 8,8
+RC - Repair Center
+.indent 13,13
+FSC site where defective parts are repaired.
+.indent 8,8
+RCR - Repair Center Report
+.indent 13,13
+A form used by test technicians to record the physical location
+of the failing component on a printed circuit board or other assembly.
+.next page
+.indent 8,8
+REALITY
+.indent 13,18
+1.###The CSC 4000 and 6000 series computers.
+.indent 13,18
+2.###An operating system with a
+relational data base management system for CSC 4000, 6000,
+and 9000 series computers.
+.indent 8,8
+REPAIRABLE PART
+.indent 13,13
+A part which can be repaired when it is defective.
+.indent 8,8
+REPLENISHMENT
+.indent 13,13
+The action of an FSC field office receiving parts to bring their
+stock level back up to an acceptable quantity.
+.indent 8,8
+REQUISITION - REQ
+.indent 13,13
+A form used when requesting supplies or materials.
+Also, a form used to request additional personnel.
+.indent 6,8
+*#ROM - Read Only Memory
+.indent 13,13
+A solid-state storage chip that is programmed at the time of manufacture
+and cannot be reprogrammed by the computer user.
+Also called firmware since this implies software which is "firmly"
+in place on a chip.
+A variation is PROM (Programmable Read Only Memory) which is programmed
+by electrical pulses from a special device.
+Once programmmed, it can be read only.
+Another variation is EPROM (Erasable Programmable Read Only Memory)
+which is a PROM that can be erased under high intensity ultra-violet light
+and then reprogrammed.
+.indent 8,8
+RPO - Repair Order
+.indent 13,13
+In CSS, the assignment of a
+defective part for shipment
+to an outside vendor or to NDC for repair (no longer used).
+.indent 6,8
+*#RS232
+.indent 13,13
+RS232 is a widely-used EIA (Electronic Industries Association)
+recommendation that specifies
+the physical interface between a modem (DCE - data 
+circuit-terminating equipment) and a terminal (DTE - data terminal equipment).
+It is used for serial transmission over limited distance at low speed
+(up to 19.2 Kbits/s).
+The recommendation specifies the use of each of the 25 pins in the terminal
+plug and the corresponding socket in the modem.
+The pins are used for data, timing, and ground signals.
+The recommendation also covers the flow control signals
+("handshaking" - see DSR, DTR, and RTS),
+and the electrical signals that distinguish a one and a zero.
+Similar to CCITT recommendation V.24
+.indent 6,8
+*#RS422
+.indent 13,13
+RS422 is an EIA recommendation for a communications interface.
+It uses a 9 pin connection and includes a bidirectional differential
+data channel, a clock channel, and a common ground line.
+.indent 6,8
+*#RTS - Request To Send
+.indent 13,13
+A handshaking flow control signal used by the RS232 communications
+recommendation; used to tell the modem that the terminal wants to send data.
+.indent 8,8
+SA - Shipping Authorization
+.indent 13,13
+A form previously used by CSS when shipping an order to another 
+FSC field office; used as a packing list and mailing label ("shipper").
+.indent 8,8
+SCRAP
+.indent 13,13
+Discarding a defective part that cannot be repaired or that is not
+worth repairing.
+.indent 6,8
+*#SCREENPRO
+.indent 13,13
+Software that allows the creation and processing of screens on Reality 
+systems.
+.indent 6,8
+*#SEPARATION
+.indent 13,13
+On Reality systems, the number of frames per group; normally
+1, since the system links as many frames together
+as necessary to hold the group.
+.indent 8,8
+SEQUEL
+.indent 13,13
+CSC 9000 series computers; called Sequoia in Europe.
+.indent 8,8
+SERVICE MANAGEMENT
+.indent 13,13
+Installation, repair, and maintenance services offered to 
+end-users on behalf of or in agreement with equipment
+manufacturers (outside of MDISG) for their customer's equipment.
+For example, Field Service Company has a service management agreement
+with Ibis, a manufacturer of disk drives whereby Field Service Company
+is an authorized service company providing disk maintenance service to
+end-users of Ibis disk drives.
+.indent 6,8
+*#SHIPPER
+.indent 13,13
+A Field Service Transfer/Returned Goods Shipper form,
+a Field Service Shipper form, or a Shipping Authorization (SA) form.
+.indent 8,8
+SHOTGUN
+.indent 13,13
+Describes the situation where several parts in a customer's machine were
+changed and the machine now functions properly, but the field engineer
+is not sure which part was defective.
+.indent 6,8
+*#SIO - Serial Input/Output Board
+.indent 13,13
+A board used on an engine to connect high-speed communications
+lines to the engine's memory through DMA (direct memory access)
+and to translate commands from the processor into control signals
+for the line interface boards.
+.indent 8,8
+SLEEPING
+.indent 13,13
+On Tymnet, a sleeping network supervisor does not have control 
+of the network but is running
+in a limited loop that periodically checks for sleeping pills or other
+messages that might affect its sleeping status.
+A sleeping supervisor does not have to be initialized before it can take over
+the network.
+.indent 8,8
+SLEEPING PILL
+.indent 13,13
+On Tymnet, a sleeping pill is a message sent by the active network
+supervisor to the dormant
+supervisors.
+The message is repeatedly sent to keep the other supervisors dormant.
+If a sleeping supervisor does not receive a sleeping pill in a predefined
+time, it awakens and attempts to take over the network.
+.indent 8,8
+SLOT
+.indent 13,13
+In general, a physical space used to hold boards in a chassis.
+.indent 13,13
+In Tymnet, slots are part of ISIS.
+A slot is a partitioned area in main memory in which software runs.
+The software is dedicated to specific functions such as node code,
+tymsat, tymcom, and network utilities.
+The physical memory address is assigned by MAC and 
+the slot is managed by ISIS.
+.indent 8,8
+SLOT CODE
+.indent 13,13
+Code which runs in an ISIS slot on a Tymnet engine.
+.indent 6,8
+*#SOLO
+.indent 13,13
+An operating system that performs a single function for a node.
+A node running the solo operating system is called a standalone.
+.indent 6,8
+*#SOVEREIGN
+.indent 13,13
+The CSC 7000 series computers.
+.indent 6,8
+*#SPIRIT
+.indent 13,13
+The CSC 6000 series computers.
+.indent 8,8
+SPO - Spare Part Order
+.indent 13,13
+A form used by NDC when ordering a
+part for an FSC field office.
+.indent 6,8
+*#SPOOLER
+.indent 13,13
+A software process on Reality systems used to queue
+print and tape jobs.
+.indent 8,8
+SR - Stock Repair
+.indent 13,13
+A staging area where it is decided whether to send a defective
+part to a vendor for repair or to repair the part in-house.
+See also MRA - Material Return Area; MRB - Material Review Board.
+.indent 6,8
+*#STANDALONE
+.indent 13,13
+A node with just one function such as tymsat or switcher.
+A standalone's operating system is called solo.
+.indent 8,8
+STRIPPED PARTS
+.indent 13,13
+Spare parts obtained by disassembling units and saving the good parts
+("cannibalization").
+.indent 8,8
+SUBS - Substitution Parts
+.indent 13,13
+Parts made by different manufacturers that are
+interchangeable.
+The parts may be made by different maufacturers and have different
+part numbers, but are of the same form, fit, and function.
+Also referred to as plug-compatible parts or cross-reference parts.
+See provisioning parts.
+.next page
+.indent 8,8
+SUPERVISOR
+.indent 13,13
+On Tymnet, a network node that is responsible for controlling and monitoring
+the network.
+The supervisor verifies usernames at login, builds least-cost-path circuits
+that balance the load in the network, monitors the status of the network
+and intervenes when trouble arises, and collects network usage data.
+.indent 13,13
+The network may contain several supervisors, but only one supervisor
+is active at a given time.
+The inactive supervisors act as backup to the supervisor that is active.
+See sleeping and sleeping pills.
+.indent 8,8
+SWITCHER
+.indent 13,13
+A switcher is a node that performs the basic node code functions:
+packet reception and teardown, packet building and transmission,
+routing packets, and communication with the supervisor.
+.indent 6,8
+*#T1 - Terrestial 1
+.indent 13,13
+A time-division multiplexed digital transmission facility operating at an
+aggregate data rate of 1.544 Mbits/s and above.
+A T1 line usually has 24 56-Kbits/s channels after multiplexing
+and signalling.
+Tymnet is using T1 facilities for a "backbone" in the network.
+The T1 facilities are also being shared by other McDonnell Douglas
+companies.
+.indent 6,8
+*#T201
+.indent 13,13
+The name given to Tymnet's protocol used for synchronous transmission
+between nodes.
+.indent 6,8
+*#TAR - Technical Action Request
+.indent 13,13
+A form used by CSC in the field which explains a problem or makes
+a suggestion and then is processed by Technical Operations.
+.indent 8,8
+TARGET PART
+.indent 13,13
+See Provisioning Part.
+.indent 6,8
+*#TB - Technical Bulletin
+.indent 13,13
+Technical information sent out from Technical Support once a month.
+.next page
+.indent 8,8
+TCL - Terminal Command Language
+.indent 13,13
+The interface between the terminal user and the Reality operating system.
+TCL+ and TCL* are enhanced versions of TCL.
+.indent 6,8
+*#TECHNICAL OPERATIONS
+.indent 13,13
+Area of the company that provides technical support for
+maintenance, documentation, and training.
+.indent 6,8
+*#TECHNICAL SUPPORT
+.indent 13,13
+A part of Technical Operations that provides technical assistance
+for CSC hardware and software problems.
+Within the terminal maintenance group, the technical support area provides
+assistance to FEs for terminal problems.
+.indent 8,8
+TER - Travel Expense Report
+.indent 13,13
+A form used to request reimbursement for travel-related expenses.
+.Indent 8,8
+TERMINAL IDENTIFIER
+.indent 13,13
+During login, an identifier typed to tell the 
+network the type of terminal and the speed at which it operates.
+.indent 8,8
+TERMITE
+.indent 13,13
+A program that runs on a TI Pro-Lite or Professional Computer
+that makes the TI emulate an ADM-3 terminal.
+.indent 8,8
+THIRD PARTY MAINTENANCE
+.indent 13,13
+Installation, repair, and maintenance by Field Service
+Company of computer systems and peripherals
+sold to an end-user by a manufacturer outside of ISG.
+Field Service Company's speciality in third-party maintenance is service
+for DEC and DEC-compatible equipment.
+For example, Field Service Company has a contract for the maintenance 
+of the Environmental Protection Agency's (EPA) DEC equipment.
+.indent 6,8
+*#TIPH - Terminal Independent Process Handler
+.indent 13,13
+On Reality systems, a program that allows a process
+to run on a port without an associated terminal.
+Used for processes which do not require an operator response.
+.next page
+.indent 6,8
+*#TMB - Technical Marketing Bulletin
+.indent 13,13
+Technical information on CSC software sent out by Technical Support.
+.indent 6,8
+*#TMCS - Tymnet Monitoring and Control System
+.indent 13,13
+TMCS provides users selective access to the status of a 
+Tymnet network.
+TMCS maintains a list of nodes, hosts, and lines not in normal state.
+Both the current status, as well as the status at a past time
+may be displayed.
+Access can be limited to a specific network subset or limited to 
+a subset of network events.
+TMCS also provides access to PROBE for controlling the network.
+.indent 6,8
+*#TOPS-10, TOPS-20 - Time-sharing OPerating System
+.indent 13,13
+Multi-user, virtual memory operating systems for the DECSystem-10
+and DECSystem-20, respectively.
+.indent 8,8
+TR - Travel and Relocation Authority
+.indent 13,13
+A form used to request approval for travel or relocation.
+.indent 6,8
+*#TRANSFER
+.indent 13,13
+The action of shipping a part from one FSC field office to another.
+.indent 6,8
+*#TRANSORB
+.indent 13,13
+A device that "abSORBs" TRANsient energy.
+The Transorb is an operation used to protect the ACLC and the system
+against transient energy, such as static from lighting or other
+sources of electricity.
+.indent 6,8
+*#TROUBLESHOOTING
+.indent 13,13
+A term applied to the task of finding a malfunction in a hardware unit
+or a mistake in a computer program.
+.indent 6,8
+*#TROUBLE TICKET
+.indent 13,13
+A form used by the Network Control Center to report outages that 
+need immediate 
+attention.
+.indent 8,8
+TYMCOM
+.indent 13,13
+One type of interface between a host computer and Tymnet.
+A tymcom has multiple asynchronous lines running to the front-end processor
+of the host.
+See also base.
+.next page
+.indent 8,8
+TYMCOMM
+.indent 13,13
+A program that runs on an IBM PC that makes the PC
+emulate a VT100 terminal.
+.indent 8,8
+TYMCOM-X
+.indent 13,13
+A multi-user, virtual memory operating system used for timesharing 
+that runs on the DECSystem-10 and
+DECSystem-20.
+.indent 6,8
+*#TYMDATA
+.indent 13,13
+An inventory control system formerly used by NFE to order parts,
+transfer parts, and to perform other functions.
+Also called Mentry.
+.indent 6,8
+*#TYMFILE
+.indent 13,13
+A file containing a set of statements that defines the configuration of the 
+code running in an ISIS
+slot on an engine.
+.indent 8,8
+TYMNET
+.indent 13,13
+Division of McDonnell Douglas Network Systems.
+Tymnet's business is private and public networks that allow a remote terminal
+to be connected to a host computer.
+The field service operation (Network Field Engineering) 
+is now a part of Field Service 
+Company.
+.indent 6,8
+*#TYMNET I, TYMNET II
+.indent 13,13
+The names given to the two
+generations of networking technology used on the
+Tymnet networks.
+.indent 8,8
+TYMSAT
+.indent 13,13
+A Tymnet node that provides the interface between an asynchronous
+terminal and Tymnet.
+A tymsat converts data from the terminals to Tymnet's synchronous, internodal
+protocol.
+Also called consat.
+.indent 8,8
+TYMSHARE
+.indent 13,13
+One of the companies acquired by McDonnell Douglas.
+Tymshare's CSS division is now a part of Field Service Company.
+.indent 6,8
+*#TYMSTAR
+.indent 13,13
+A Tymnet service where a customer can buy or rent very small aperture
+satellite earth stations (VSAT - very small aperture terminal)
+and attached engines for the transmission of voice, data,
+and images.
+The facility can transmit up to 96 Kbits/s and receive up to 
+15 Mbits/s on the Ku band (12/14 gigahertz).
+The Tymstar equipment can be connected to the Tymnet terrestial network
+as well.
+.indent 6,8
+*#UART - Universal Asynchronous Receiver Transmitter
+.indent 13,13
+An integrated circuit that converts serial data into parallel form,
+and parallel data into serial form.
+Systems offering an RS232 port use a UART or some equivalent type of chip.
+A related chip is USART - Universal Synchronous/Asynchronous Receiver
+Transmitter.
+.indent 6,8
+*#UNIX
+.indent 13,13
+Bell Telephone Laboratories' trade name for a multi-user operating system
+with telecommunications functions.
+Unix systems usually have 32-bit processors.
+.indent 8,8
+USERNAME
+.indent 13,13
+Used to uniquely identify
+a user during login.
+.indent 8,8
+VALIDATION
+.indent 13,13
+The process of providing a user or group 
+of users the authorization to use the network.
+.indent 6,8
+*#VARIAN
+.indent 13,13
+A former manufacturer of computer systems.
+Some of the older Tymnet nodes are Varian processors.
+.indent 6,8
+*#VAX - Virtual Address Extension
+.indent 13,13
+An architecture for a
+line of 32-bit computer processors manufactured by DEC (Digital Equipment 
+Corporation).
+.indent 6,8
+*#VIRTUAL PRIVATE NETWORK (Virtual Subnet)
+.indent 13,13
+A communication facility dedicated to a group of users and attached
+to, controlled by, and backed by Tymnet's public network services.
+.indent 6,8
+*#VITALINK
+.indent 13,13
+Manufacturer of satellite earth stations.
+.indent 6,8
+*#VMS - Virtual Memory System
+.indent 13,13
+A multi-user, virtual memory operating system for VAX computers.
+.indent 6,8
+*#VUE
+.indent 13,13
+A full-screen editor running on the Tymcom-X operating system.
+Similar to Peak.
+.indent 8,8
+WEEKLY EXPENSE VOUCHER
+.indent 13,13
+A form used to request reimbursement for local travel,
+entertainment, meetings, supplies, services, and so on.
+.indent 6,8
+*#WOODSTOCK
+.indent 13,13
+Another name for CIMS (Computer Inventory Management System).
+.indent 8,8
+WORK ORDER
+.indent 13,13
+In CSS, the assignment of
+a part for repair at the local
+FSC field office (no longer used).
+.indent 6,8
+*#X.25
+.indent 13,13
+A CCITT (Comite Consultatif International Telegraphique et Telephonique)
+recommendation that specifies the interface between user data terminal
+equipment (DTE) and packet switching data circuit-terminating equipment
+(DCE).
+.indent 6,8
+*#X.75
+.indent 13,13
+A CCITT recommendation that specifies the protocol for gateway communications
+between two networks.
+.indent 6,8
+*#XON/XOFF - Transmit On/Transmit Off
+.indent 13,13
+Flow control signals used in data communications where there are not
+control lines.
+Instead, user-defined codes are sent at the beginning and end of transmission.
+XOFF instructs a computer or I/O device to suspend transmission.
+XON instructs a computer or I/O device to resume or begin transmission.
+.indent 6,8
+*#XRAY
+.indent 13,13
+A debugging and monitoring tool that runs in an ISIS slot and 
+provides information about
+conditions in the network that affect a node such as crashes, new
+neighbors, or takeovers.
+XRAY can display information about a node's configuration,
+performance, and history.
+.next page
+.indent 8,8
+ZAPPER
+.indent 13,13
+A signal that completely erases a circuit from the network.
+A circuit may be zapped by a host, by a link going down, or when
+a user logs off and disconnects from a terminal.
+.every footing (,,PAGE#{page})
+.next page
+_########READER'S COMMENTS FORM
+.indent 0,0
+.skip 1
+.begin nofill
+        Please send comments and suggestions to:
+.skip 1
+             Bruce Ring                     OnTyme ID: FSC.B/RING
+             McDonnell-Douglas/Field Service Company
+             39100 Liberty St.
+             Fremont, CA  94538
+.skip 1
+.turn off "_"
+        Was this glossary:
+.skip 1
+                                             Yes      No
+             Easy to understand?             ___     ___
+             Conveniently organized?         ___     ___
+             Complete?                       ___     ___
+             Accurate?                       ___     ___
+             Suitable for its intended
+                   audience?                 ___     ___
+.skip 2
+        If you found errors, omissions, or difficult areas in this
+        glossary, please indicate them below.  Attach a copy of the
+        page and mark the problem.
+.skip 1
+        Location in Manual            Comments/Suggestions
+.skip 1
+           ___________          ____________________________________
+.skip 1
+           ___________          ____________________________________
+.skip 1
+           ___________          ____________________________________
+.skip 1
+           ___________          ____________________________________
+.skip 1
+        List any improvements you recommend for this glossary:
+.skip 1
+        ____________________________________________________________
+.skip 1
+        ____________________________________________________________
+.skip 1
+        If you would like a reply, show your name and address:
+.skip 1
+             Name:      ____________________________________________
+.skip 1
+             Address:   ____________________________________________
+.skip 1
+                        ____________________________________________
+.skip 1
+             OnTyme ID: ____________________________________________
+.end    /U0Iå

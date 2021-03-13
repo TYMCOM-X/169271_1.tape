@@ -1,0 +1,9 @@
+:C: 1RELEASE
+                               1RELEASE
+                               --------
+
+PURPOSE: TO RELEASE THE W CHANNEL DEVICES IF HUNG UP.
+         THIS INCLUDES PRINTER, TAPE DRIVES, ETC.
+
+OPERATING INSTRUCTIONS:  A. SET OPER STATUS
+                         B.  IN THE EXEC TYPE   -1RELEASE

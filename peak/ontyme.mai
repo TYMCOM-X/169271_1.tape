@@ -1,0 +1,235 @@
+Received: from C36.Tymnet by X930.Tymnet; Fri, 11 Oct 85 14:00:43 PDT
+Return-path: <ANEWMAN@C36.Tymnet> 
+From: ANEWMAN@C36.Tymnet 
+Date: Fri, 11 Oct 85 12:57:47 PDT 
+To: kdawson 
+Subject: status reports 
+
+Ken,
+     It would be really helpful to me if you could track and report
+actual hours on the monthly status reports.  Stuart expects that kind of
+a breakdown from me -- I input everyone's hours into a spreadsheet so I
+can produce some statistics.  (I guess I need to circulate my report as
+well as the NTD reports.)  Thanks for your cooperation.
+
+--Adele
+From: Ken Dawson <Ken@X930.Tymnet> 
+Date: Fri, 11 Oct 85 16:01:28 PDT 
+To: anewman@c36 
+Subject: status reports 
+
+    Adele,
+
+    No problem; I'm sorry for my previous format.
+
+    /ken
+From: Carl A Baltrunas <Carl@X930.Tymnet> 
+Date: Fri, 25 Oct 85 11:36:47 PDT 
+To: Ken Dawson <ken@X930.Tymnet> 
+Subject: Ontyme file transfer? 
+
+I just (8-Oct) got a message from FSC.SUP saying something about file
+transfer from PDP-X to the FSC Ontyme account using a file called:
+  ACCESS.ONT  which contains
+
+  username;EMSFSC
+  ACCOUNT.FSC
+  ONTYME NAME F/LastName
+
+Do you know anything about anything that would use such a mechanism?
+/Carl
+Received: from C36.Tymnet by X930.Tymnet; Fri, 1 Nov 85 17:07:28 PST
+Received: from C39.Tymnet by C36.Tymnet; Fri, 1 Nov 85 17:07:33 PST
+Received: From EMSNTD.Ontyme.Tymnet by C39.Tymnet; Sat, 2 Nov 85 1:05:04 UT
+Return-path: <NTD.DS@Ontyme.Tymnet> 
+From: NTD.DS@Ontyme.Tymnet 
+Date: 01 NOV 85 16:03:12 
+To: NTD.K/DAWSON@Ontyme.Tymnet 
+Message-id: I70126@Ontyme.Tymnet 
+Subject: ISIS Dispatcher changes 
+
+                                M E M O
+ 
+ 
+To:       All NTD software development personnel
+ 
+From:     Dave Smith
+ 
+Date:     Nov. 1, 1985
+ 
+Subject:  ISIS Dispatcher changes
+ 
+==============================================================================
+ 
+The latest version of ISIS (version 7.00), which will be released to Baseline
+this January, contains a change in the Dispatcher interface that anyone who
+writes code under ISIS should be aware of.
+ 
+The new Dispatcher checks to make sure that slots do not try to output an
+illegal message on a port that is in login state.  Login state applies to
+normal circuits being built out and is the time between the receipt of the
+Pseudo-Needle message (type B2) and the receipt of the Login OK (type B6) or
+Login Failed message (type B5).  The only messages that can legally be sent
+during this time are Logon Char (B3), Zapper (9F), Detach (9E), Zap w/Reason
+(BE), Backpressure On (A0), and Backpressure Off (A1).  An attempt to send
+any other message will cause the slot to be crashed with a Dispatcher Crash.
+ 
+The new Dispatcher also makes the reverse check.  It will crash a slot that
+attempts to send a Logon Char message (B3) on a port that is not in logon
+state.
+ 
+This is NOT a protocol change; these rules have always been in effect, but
+the old Dispatcher did not enforce them.  There are still some slot programs
+that violate these rules, but have gotten away with it up to now.  Please
+make sure that your code follows the above rules.  You can use ISIS version
+7.00 from the Betatest directory to help.  This way we can all avoid a lot
+of pain in January.
+Received: from C36.Tymnet by X930.Tymnet; Fri, 1 Nov 85 17:07:40 PST
+Received: from C39.Tymnet by C36.Tymnet; Fri, 1 Nov 85 17:07:50 PST
+Received: From EMSNTD.Ontyme.Tymnet by C39.Tymnet; Sat, 2 Nov 85 1:05:25 UT
+Return-path: <NTD.DS@Ontyme.Tymnet> 
+From: NTD.DS@Ontyme.Tymnet 
+Date: 01 NOV 85 16:14:41 
+To: NTD.K/DAWSON@Ontyme.Tymnet 
+Message-id: I70137@Ontyme.Tymnet 
+Subject: Proposed change to segment F 
+
+To:       All NTD software development personnel
+          (the rest of NTD can ignore this)
+From:     Dave Smith
+Date:     Nov. 1, 1985
+Subject:  Proposed change to segment F
+ 
+=============================================================================
+ 
+The ISIS Development Unit would like to make a change to the local clocks
+array in segment F (pointed to by location F001C) used to time slot CPU
+usage.  If you know of any slot code other than SLURP that uses this array,
+please let me know.  I am at extension 8140 or Ontyme NTD.DS.
+Received: from C36.Tymnet by X930.Tymnet; Sun, 3 Nov 85 14:06:52 PST
+Return-path: <ANEWMAN@C36.Tymnet> 
+From: ANEWMAN@C36.Tymnet 
+Date: Sun, 3 Nov 85 14:06:47 PST 
+To: kdawson 
+Subject: status report for October 
+
+Ken,
+     I need your report ASAP -- as soon as you can get it finished.
+/Thanks, Adele
+Received: from C36.Tymnet by X930.Tymnet; Mon, 4 Nov 85 15:43:56 PST
+Return-path: <KDAWSON@C36.Tymnet> 
+From: KDAWSON@C36.Tymnet 
+Date: Mon, 4 Nov 85 15:44:07 PST 
+To: anewman 
+Subject: status 
+
+Horray! See also (kdawson)8510st.txt.
+/ken
+Received: from C36.Tymnet by X930.Tymnet; Tue, 5 Nov 85 13:23:00 PST
+Received: from C39.Tymnet by C36.Tymnet; Tue, 5 Nov 85 13:22:54 PST
+Received: From EMSNTD.Ontyme.Tymnet by C39.Tymnet; Tue, 5 Nov 85 21:04:40 UT
+Return-path: <TNAD.SUP@Ontyme.Tymnet> 
+From: TNAD.SUP@Ontyme.Tymnet 
+Date: 05 NOV 85 12:18:19 
+To: NTD.K/DAWSON@Ontyme.Tymnet 
+Message-id: A54702@Ontyme.Tymnet 
+Subject: "MCDONNELL DOUGLAS ADMINISTRATIVE"... 
+
+    MCDONNELL DOUGLAS       ADMINISTRATIVE     NO:  ISG-85-164
+INFORMATION SYSTEMS GROUP      BULLETIN        DATE: 29 Oct 85
+
+
+
+To:       ISG Lists A - E
+
+Subject:  ONTYME SYSTEMS APPOINTMENT
+
+
+
+I am pleased to announce the appointment of Richard C. Gunther 
+to the position of General Manager, Ontyme Systems, in the newly 
+formed McDonnell Douglas Electronic Messaging Systems Company 
+(MDEMS, a part of Network Systems Company).  Dick will report to 
+Terry Donaher, Vice President, MDEMS.
+
+Dick brings over 25 years of experience in the computing and 
+communications industries to MDEMS.  Over the past four years, 
+he has made many contributions to the strategic plans of Tymnet 
+and the McDonnell Douglas Information Systems Group, most 
+recently by chairing the ISG Communications Opportunities Task 
+Force and by spearheading the effort to create MDEMS.  He was 
+instrumental in the acquisition of FTC Communications, the other 
+principal component of MDEMS.
+
+During the balance of 1985, Dick will focus on developing a 1986 
+operating plan for Ontyme Systems, and organizing the business 
+unit to start the new year with increased momentum.
+
+The recent announcement of the formation of MDEMS stressed that 
+a key to ISG's success will be how well MDEMS works with all the 
+other business units to distribute its products and services.  
+Dick is making this his top priority.  Please join me in 
+welcoming him to MDEMS and give him your full support in his 
+efforts to achieve our mutual objectives.
+
+
+
+(Original signed by W. F. Prince)
+
+Warren F. Prince
+President
+Network Systems Company
+Received: from C36.Tymnet by X930.Tymnet; Wed, 6 Nov 85 21:02:02 PST
+Received: from C39.Tymnet by C36.Tymnet; Wed, 6 Nov 85 21:00:51 PST
+Received: From EMSNTD.Ontyme.Tymnet by C39.Tymnet; Thu, 7 Nov 85 4:02:10 UT
+Return-path: <NTD.S/ERDEI@Ontyme.Tymnet> 
+From: NTD.S/ERDEI@Ontyme.Tymnet 
+Date: 06 NOV 85 17:43:01 
+To: NTD.K/DAWSON@Ontyme.Tymnet 
+Message-id: I72447@Ontyme.Tymnet 
+Subject: NTD Support Schedule 
+
+                         M E M O R A N D U M
+
+                                          [] T Y M N E T, I N C
+DATE>      06 NOV 85  17:39                  Network Technology Development
+
+TO>        Distribution
+
+COPIES>    Stuart Cain
+
+FROM>      Sue Erdei
+
+
+SUBJECT>   NTD Support Schedule
+
+
+-----------------------------------------------------------------------
+
+
+
+****************************************************************
+*                                                              *
+*                Revised NTD Support Schedule                  *
+*                                                              *
+****************************************************************
+
+
+        Jenny Shen           07/29/85 - 08/25/85
+
+        Lois  Lindley        08/26/85 - 09/22/85
+
+        Cavin Song           09/23/85 - 10/20/85
+
+        Larry Dias           10/21/85 - 11/17/85
+
+        Ken   Dawson         11/18/85 - 12/15/85
+
+        Steve Schramm        12/16/85 - 01/12/86
+
+        Ted   Yeh            01/13/86 - 02/09/86
+
+        Sue   Erdei          02/10/86 - 03/09/86
+
+        Ron   Murphy         03/10/86 - 04/06/86
+

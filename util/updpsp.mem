@@ -1,0 +1,198 @@
+
+
+
+                        PROCEDURES FOR MODIFYING PSPPDP                        __________ ___ _________ ______
+
+                                 FILES NEEDED                                 _____ ______
+
+                                  PSPATO.MAC
+                                  PSPCIR.MAC
+                                  PSPEEP.MAC
+       PSPLIB.MAC
+                                  PSPPDP.MAC
+                                  PSPSLV.MAC
+
+       The above files are under the username UTIL on all TYMCOM-10'S.   Backup
+       copies are under the username FREMONTDOC on system 74.
+
+           From the EXEC, type in:
+
+               "!"MOD PSPPDP.MAC (CR)
+               "NUMBER OF CHARACTERS"
+               "*"F 'NUMTAB'=
+               "PRINT?" Y (CR)
+
+       Line number reports here everytime NUMTAB is found.  The  line  you  are
+       concerned with is the line reporting all the DEC hosts numbers.  This is
+       the line you want to ADD or REMOVE host numbers.  Once this is done, you
+       want to SAVE it.  Enter EXIT at the "*" prompt.
+
+               "*"EXIT (CR)
+
+           From the EXEC, type in:
+
+               "!"LOAD PSPPDP,PSPCIR,PSPEEP (CR)
+               "MACRO: PSPPDP"
+               "MACRO: PSPCIR"
+               "MACRO: PSPEEP"
+               "LOADING"
+               "6 PAGES CORE"
+
+               "!"SAVE PSPPDP (CR)
+               "PSPPDP saved"
+
+               "!"DEC ALL RD RUN PSPPDP.SAV (CR)
+
+
+                                         NOTE
+
+           In the PSPPDP.MAC document, there is another part  that  reports
+           system  serial number and hardware alpha character.  It is under
+           the heading of ALFACK.
+
+           The procedures on how to update this part is covered on  page  3
+           of this document.
+
+           This part is normally updated by TYMCOM-10 Software Support,  if
+           they know the CPU Serial Number.
+
+
+                                                                         Page 2
+
+
+       The next step is to set up the SLAVE program.   To  do  this,  from  the
+       EXEC, type in:
+
+               "!"LOAD PSPSLV,PSPCIR,PSPLIB (CR)
+               "MACRO: PSPSLV"
+               "MACRO: .MAIN"
+               "LOADING"
+               "4 PAGES CORE"
+
+               "!"SAVE PSPSLV (CR)
+               "PSPSLV saved"
+
+               "!"
+
+       This file must have SY and RF license assigned to it and be declared ALL
+       ALL ALL for it to run.
+
+               "!"R SETLIC (CR)
+
+               "FILE NAME:" PSPSLV.SAV,SY,RF (CR)
+
+               "EXIT"
+
+               "!"DEC ALL ALL ALL PSPSLV.SAV (CR)
+
+       If you use the program PSPATO, perform the following:
+
+           From the EXEC, type in:
+
+               "!"LOAD PSPATO (CR)
+               "MACRO: PSPATO"
+               "LOADING"
+               "2 PAGES CORE"
+
+               "!"SAVE PSPATO (CR)
+               "PSPATO saved"
+
+               "!"
+
+       At this time, you can DELETE all the *.REL files.
+
+       Store the following files from UTIL to tape and restore to UTIL  on  all
+       your TYMCOM-10'S.  It is best to do it by tape rather than telecopy.  If
+       you telecopy, the file loses LICENSE and its DECLARATION, and  you  will
+       need to log into each host and set each file up correctly.  
+
+               PSPPDP.SAV
+               PSPSLV.SAV
+               PSPATO.SAV
+                                                                         Page 3
+
+
+                    CONVERTING "DECIMAL" NUMBER TO "OCTAL"                    __________ _________ ______ __ _______
+
+       DDT is the simplest conversion method.
+
+           "!"R DDT (CR)                      ;CALL 'DDT'
+
+           ENTER LOCATION ONE:  1/            ;IGNORE ALL OUTPUT
+
+           ENTER THE DECIMAL NUMBER (CPU SERIAL NUMBER) FOR CONVERSION FOLLOWED
+           BY A (.) PERIOD.
+
+           1321. (CR)
+
+           OPEN LOCATION 'ONE' FOR OCTAL CONVERSION:
+
+           1[ (CR)
+
+           CONTROL 'C' OUT.
+
+               EXAMPLE               _______
+
+               "!"R DDT (CR)
+
+               1/   371416    1321. (CR)            ;IGNORE OUTPUT.  ENTER CPU
+                                                    ;SERIAL NUMBER FOLLOWED
+                                                    ;BY A PERIOD.
+
+               1[    2451 (CR)                      ;CONVERTED INPUT FOR CPU
+                                                    ;SERIAL NUMBER
+
+
+                                             NOTE
+
+                   This is the number (2451)  you  will  need  for  section
+                   ALFACK of the PSPPDP.MAC program.
+
+
+               ^C
+
+               "!"
+                                                                         Page 4
+
+
+                   CONVERTING "ALPHA" CHARACTERS TO "OCTAL"                   __________ _______ __________ __ _______
+
+           "!"R DDT (CR)
+
+           ENTER LOCATION ONE:   1/                ;IGNORE OUTPUT.
+
+           ENTER THE 'ALPHA' CHARACTERS (HARDWARE 'ID') FOR CONVERSION.
+
+           OPEN DOUBLE QUOTE ("), SLASH (/), ALPHA CHARACTERS (FF), SLASH (/).
+
+           "/FF/
+
+           OPEN LOCATION ONE FOR CONVERSION:
+
+           1[ (CR)
+
+           IGNORE COMMAS AND ANY OUTPUT TO THE RIGHT OF THE COMMAS.
+
+           CONTROL 'C' OUT.
+
+               EXAMPLE               _______
+
+               "!"R DDT (CR)
+
+               1/   2,,7160   "/FF/ (CR)   ;IGNORE OUTPUT, ENTER ALPHA
+                                           ;CHARACTERS (HARDWARE ID).
+
+               1[   316020,,0 (CR)         ;CONVERTED INPUT IS TO THE
+                                           ;LEFT OF THE COMMAS
+
+
+                                             NOTE
+
+                   This is the number (316020) you will  need  for  section
+                   ALFACK of the PSPPDP.MAC program.
+
+
+               ^C (CR)
+
+               "!"
+

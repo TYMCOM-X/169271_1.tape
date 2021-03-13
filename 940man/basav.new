@@ -1,0 +1,240 @@
+:C: SAVING A TYMBASE CRASH
+
+
+
+                 TYMCOM-IX BASE CRASHES AND RECOVERIES
+                  -------- ---- ------- --- ----------
+
+
+       ((INTRODUCTION))
+
+            Since the Tymbase provides network access to two  hosts,  if
+       either host crashes, the base will continue to function as a node
+       in Tymnet.  But if the base crashes, the  base  will  crash  both
+       hosts  connected  to that base;  a host without a base is cut off
+       from the outside world and cannot timeshare effectively.  A large
+       majority  of  base  crashes will be self-recovering for the base.
+       This means that the base has routines within  itself  to  dump  a
+       copy  of  it's  core image into the respective hosts for analysis
+       later on.  After the base has  dumped  itself,  it  crashes  both
+       hosts  connected  to  it  and  returns  to  it's normal operation
+       automatically.
+
+            Occasionally however, the Tymbase will hangup in a  loop  or
+       simply  stop  functioning and display the 'step' light.  In these
+       cases the operator must follow the procedures described  in  this
+       document  in  order  that  the  base crash code can be saved, the
+       hosts can be halted in an orderly fashion and  the  base  can  be
+       returned to normal functioning manually.
+
+            Always  remember  to  keep  TYMNET  NETWORK  CONTROL  CENTER
+       informed  on the status of any unusual activity that is occurring
+       on any base.
+
+
+       ((COMMAND SUMMARY))
+
+
+                                     NOTE
+
+           Full details on all  summarized  procedures  are  in  the
+           COMMAND DESCRIPTION section of this document.
+
+
+               1) ANNOUNCE THE CRASH OVER THE COMLINE SPEAKER;
+
+               2) CHECK IF THE BASE IS IN STEP. IF NOT AND THE BIT LAMPS
+                  ARE NOT FLICKERING FAINTLY THE BASE IS LOOPING.
+
+               3) FOR 620L-100 BASES TURN THE FRONT PANEL KEY TO 'ON'
+                  TO UNLOCK THE CONSOLE. IF THE BASE WAS LOOPING HIT THE
+                  'STEP' SWITCH.
+
+               4) CHECK AND RECORD THE FOLLOWING REGISTERS:
+                  ON 620 BASES         RECORD P,U,A,B AND X REGISTERS
+
+               5) CLEAR THE REGISTERS AND ATTEMPT TO RESTART FROM
+                  P LOCATION 0; THIS DUMPS BASECODE TO THE 940.
+                  AS THIS IS DONE THE 940'S WILL CRASH (IF THEY 
+                  HAVEN'T CRASHED EARLIER). THIS
+                  STEP USUALLY CORRECTS THE PROBLEM.
+
+               6) IF RESTART FROM 0 FAILS, PRESS STEP AND RELOAD
+                  THE BASE CODE;
+
+               7) IF YOU CAN'T RELOAD THE BASE CODE, CHECK AND IF
+                  NECESSARY CORRECT THE BOOTSTRAP FOR THAT BASE;
+
+               8) WAIT A FEW MINUTES, THEN LOG A NEARBY TTY INTO PROBE.
+                  CHECK THE STATUS OF THE BASE YOU JUST RESTARTED
+                  OR RELOADED WITH THE PROBE PROGRAM;
+
+               9) IF THE BASE IS RUNNING PROPERLY, BRINGUP THE HOSTS
+                  CONNECTED TO IT FOR TIMESHARING;
+
+               10) LEAVE A THOROUGH RECORD OF WHAT YOU DID WITH THE
+                  M.A.R. YOU GIVE YOUR LEAD OPERATOR AND IN THE SYSTEM
+                  LOGBOOK.
+
+
+       ((COMMAND DESCRIPTION))
+                                   1.
+
+            From time to time the automatic self-recovery of  a  Tymbase
+       crash will not occur.  Generally if portions of the base code are
+       clobbered, correcting the situation  depends  on  the  operator's
+       ability  to  perform  the appropriate procedures.  There are over
+       10,000 instructions in a base code.  These  instructions  can  be
+       reflected  in the various registers of the minicomputer.  Part of
+       this code is the BOOTSTRAP - a series of instructions  which  the
+       base  uses  to bring itself to a functioning state by loading and
+       running the rest of the code.
+
+            If any type of base crash  occurs,  both  hosts  interfacing
+       TYMNET through that base will crash.  As with any host crash, you
+       should announce the crash over the  loudspeaker.   When  you  see
+       both  hosts  on  a  base  crash you should check that base before
+       bringing up either 940.  Generally the Tymbase will have  already
+       dumped  it's code into 940 core and the hosts can be brought back
+       up.  When you load the TYMCOM-IX monitor with  'UP;G'  the  crash
+       code  will  be  saved  to  a  special  area  on disk 0.  Then the
+       2CRASHSAVE program (during OPCOM) will include it  in  the  crash
+       save files.
+
+                                   2.
+
+            If however, the base is unable to recover, then  all  logins
+       to the host will fail and the message 'HOST NOT AVAILABLE THROUGH
+       NET' will type out.  By this time, the operator should have begun
+       to  suspect  a  base problem requiring manual intervention.  When
+       the base crashes and is not able to restart  itself  the  machine
+       will  either be in 'STEP' (that is the STEP light will be lit and
+       there will be no activity in any of the register lights)  or  the
+       machine  will  be  hung up in a loop (in which case the lights on
+       the console will not be flickering).  Additional  symptoms  of  a
+       non-recovering  base  crash  can  be  obtained by using the PROBE
+       program to check the status of the base from the vantage  of  the
+       network  supervisor.   This  program  is  documented  in  another
+       section of this manual.
+
+
+                                   3.
+
+
+            The first recovery procedure is to turn the  console  enable
+       key  to  the  'ON' position to 'unlock' the 620L-100 console.  If
+       the base is not is STEP, press the 'STEP' key to stop the machine
+       from looping.
+
+                                   4.
+
+            At this point you should record the contents of  the  base's
+       registers.  To do this on the 620 L-100 type base (TYMCOM-IX) you
+       must push each of the register switches (labeled  from  right  to
+       left) 'P, U, A, B and X to the down position one at a time.  When
+       each switch is  in  the  down  position,  the  contents  of  that
+       register  will be displayed as an octal number in the data lights
+       labeled (right to left) 0 through 15.  This information should be
+       recorded in the form 'P=NNNNNN, U=NNNNNN' etc.
+
+                                   5.
+
+            Once you have recorded all of the registers one at  a  time,
+       proceed  to  clear each register.  To do this put each individual
+       register in the down position, press the BIT  RESET  button,  and
+       then  put the register key back to the up position.  When the BIT
+       RESET button is pushed the light in the data display  will  reset
+       to  0 (all lights out).  Proceed with the same procedure with the
+       next register and continue until all registers have been cleared.
+
+            Next attempt to restart the base from P location 0.   To  do
+       this press the SYSTEM RESET button twice and then the RUN button.
+       The code should now be running.  A  restart  from  P  location  0
+       dumps  the  Tymbase  into 940 core on both hosts connected to the
+       base.  If this procedure succeeds the lights in the data  display
+       will begin to flicker, and the RUN light should remain on.
+
+            It always takes at least two minutes for a restarted base to
+       be  recognized  by the network.  You should use the PROBE program
+       to verify that the base has restarted correctly.  If so,  proceed
+       to bring the hosts back up.
+
+
+                                   6.
+
+            If restarting the code from 0 fails, chances  are  the  base
+       will  go  into step.  If that happens, or if the network does not
+       acknowledge the base restart within PROBE after  3  minutes,  the
+       next corrective procedure is to reload the base code from the 940
+       disk.  By convention, the current base code will be kept on  disk
+       location  11.   An  older  backup  copy  of  base code is kept on
+       location  14,  but  this  should  never  be  used  without  clear
+       authorization  from  your  lead  or manager.  Consult the diskmap
+       posted on the 940  console  to  verify  the  disk  locations  and
+       version numbers for base code.
+
+            As mentioned, a base  provides  network  interface  for  two
+       940's.   One  host  940  is designated as host 0 and the other as
+       host 1.  The name of the hosts posted on  the  base  provides  an
+       indication  as to which host has which position on the base.  The
+       first host number indicates host 0;  thus if the label on a  base
+       is  'C5-20B'  then  C5  is host 0.  In CUPA the left hand console
+       will be host 0.  The bases contain a bootstrap  for  loading  the
+       basecode from host 0.
+
+            It is assumed here that  the  base  is  in  step,  that  the
+       registers  have  been recorded (step 4 above) and cleared (step 5
+       above).  And it is assumed that you have already tried  the  less
+       drastic  measure  of  restarting the Tymbase from P=0.  Now go to
+       the selector channel terminal and set the function select box  so
+       the terminal is interfaced with the DIM code (the setting you use
+       to bring up the host).  Type 'UP;G'.  There will be the following
+       prompter:   'HOST'  and  you  should  type  the host number which
+       corresponds with host 0;  Next the prompter 'LOC' will type  out.
+       You  should typein the disk location of the appropriate base code
+       (usually LOC 11).  Once the base code has been brought  from  the
+       disk into 940 core the message '940 LOADED' will type out.
+
+            Now go over to the base.  Put the P register  key  down  and
+       enter  an  octal 37733 into the data display.  When you have done
+       this hit the SYSTEM RESET button twice, then hit RUN.   The  base
+       should  run  for  a  bit  then stop (go into STEP) with the octal
+       number 37762 in the P register.   Hit  RUN  again  and  the  base
+       should begin to run with the reloaded code.
+
+                                   7.
+
+       If the base reload fails you may have to manually reload the base
+       bootstrap;   The procedure for this is detailed in the ERRORS AND
+       RECOVERIES section of this document.
+
+                                   8.
+
+            If this procedure was a success, the the initial evidence is
+       that  the RUN and OVFL lights stay on and the data display lights
+       (esp.   bit  10)  flicker  faintly.   Conclusive  evidence  of  a
+       successful base reload comes from checking the status of the base
+       node you just reloaded with the PROBE program.  Remember, it will
+       take  the  Network Supervisor at lease 2 minutes to recognize the
+
+
+       base again.
+
+                                   9.
+
+            If this procedure has succeeded, you can proceed to bring up
+       both 940s for timesharing.  
+
+
+                                     NOTE
+
+           ON HOST 0 YOU MUST TYPE 'UP-1;G' FOR MONITOR  LOADING  OR
+           ELSE YOU WILL OVERWRITE THE BASE CRASH YOU SAVED EARLIER.
+
+
+                                  10.
+
+            Follow up whatever steps were necessary by writing a  M.A.R.
+       outlining  the initial problem and what steps you took to correct
+       the situation.
+ 

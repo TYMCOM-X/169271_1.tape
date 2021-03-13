@@ -1,0 +1,496 @@
+!;---------------------------------------------------------------------
+!;
+!;                       Build PEAK.SAV for Tymcom-X
+!;
+!;                (SYS)PEAK.SAV has protection ALL RUN RUN.
+!;                (SYS)PEAK.SAV should have no license.
+!;
+!;                (SYS)PEAK.HLP has protection ALL RD RD.
+!;                (SYS)PEAK.HLP should have no license.
+!;
+!;                (SYSNEWS)PEAK.CHT has protection ALL RD RD.
+!;                (SYSNEWS)PEAK.KEY has protection ALL RD RD.
+!;                (SYSNEWS)PEAK.NEW has protection ALL RD RD.
+!;                (SYSNEWS)PEAK.SUM has protection ALL RD RD.
+!;                (SYSNEWS)PEAK.TUT has protection ALL RD RD.
+!;                (SYSNEWS)PEAK.TXT has protection ALL RD RD.
+!;
+!;       Note that in succeeding releases, the name of the FDM file
+!;       will change.
+!;
+!;---------------------------------------------------------------------
+!
+!
+!daytime
+24-SEP-1986 14:06:35 PDT
+
+!delete *.rel
+
+NO FILES SATISFYING REQUEST
+
+!
+!ctest setp sail=(sys)sail
+
+!
+!com ded,comand,auxwin,xbuff,xfile,window,redisp,search,util
+SAIL: DED.SAI 1
+  DED.DEF 1
+    HOST.DEF 1
+   2 3 4 5 6
+ 2 3
+COMAND.SAI 1
+  DED.DEF 1
+    HOST.DEF 1
+   2 3 4 5 6
+ 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18
+  COMSUB.REQ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41
+  COMM1.REQ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54
+  COMM2.REQ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
+  COMM3.REQ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29
+  COMM4.REQ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17
+  COMM5.REQ 1 2 3 4 5
+  COMM6.REQ 1 2 3 4 5 6 7
+  COMM7.REQ 1 2 3
+  COMM8.REQ 1 2 3
+  COMM9.REQ 1 2 3 4 5 6 7 8 9 10 11
+  COMM10.REQ 1
+    SEARCH.DEF 1
+   2 3 4 5 6 7 8 9 10 11 12 13
+ 19 20 21 22 23 24 25 26 [Expanding Command Tables]
+ 27 28 [Expanding Variable Tables]
+ 29 30 31 32 33 34 35 36
+AUXWIN.SAI 1
+  DED.DEF 1
+    HOST.DEF 1
+   2 3 4 5 6
+ 2 3 4 5 6 7 8 9 10 11
+XBUFF.SAI 1
+  DED.DEF 1
+    HOST.DEF 1
+   2 3 4 5 6
+ 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59
+XFILE.SAI 1
+  DED.DEF 1
+    HOST.DEF 1
+   2 3 4 5 6
+ 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
+WINDOW.SAI 1
+  DED.DEF 1
+    HOST.DEF 1
+   2 3 4 5 6
+ 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
+REDISP.SAI 1
+  DED.DEF 1
+    HOST.DEF 1
+   2 3 4 5 6
+ 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32
+SEARCH.SAI 1
+  DED.DEF 1
+    HOST.DEF 1
+   2 3 4 5 6
+  SEARCH.DEF 1
+ 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19
+UTIL.SAI 1
+  DED.DEF 1
+    HOST.DEF 1
+   2 3 4 5 6
+ 2 3 4 5 6 7 8 9 10 11 12 13
+
+
+EXIT
+
+!
+!r link
+*ded,comand,xbuff,xfile,window,redisp,util,auxwin,search
+*[sys]libsaa/s
+*peak/save/u/g
+[LNKUGS	No undefined global symbols]
+
+EXIT
+
+!
+!declare all run run peak.sav
+
+
+!declare all rd rd peak.cht, peak.hlp, peak.key, peak.sum, peak.tut, peak.txt
+
+
+!declare all rd rd peak.new
+
+
+!
+!dir /ext/alph/prot/lic/time/author/words
+
+COMAND  BAK      29  27-AUG-86 1512.34 ALL RD  NO     13999           (PEAK)
+COMM1   BAK      12  15-JUL-86 1528.23 ALL RD  NO      5330           (PEAK)
+COMM10  BAK       3  24-AUG-86 1203.42 ALL RD  NO       656           (PEAK)
+COMM2   BAK      11   3-AUG-86 1855.04 ALL RD  NO      4685           (PEAK)
+COMM4   BAK       6   7-AUG-84 1255.23 ALL RD  NO      2358           (PEAK)
+COMM9   BAK       6  15-JUL-86 1339.27 ALL RD  NO      2083           (PEAK)
+COMSUB  BAK      10   3-AUG-86 1855.06 ALL RD  NO      4476           (PEAK)
+DEBLNK  BAK       2  28-MAR-84 1132.10 ALL RD  NO        31           (PEAK)
+DED     BAK      15   2-SEP-86 1732.53 ALL RD  NO      7102           (PEAK)
+LNK     BAK       2  20-APR-84  749.44 ALL RD  NO        21           (PEAK)
+PEABLD  BAK       2  25-AUG-86 1608.16 ALL RD  NO       403           (PEAK)
+QCK     BAK       2  17-APR-84 1457.24 ALL RD  NO        28           (PEAK)
+QCKDEB  BAK       2  17-APR-84 1457.23 ALL RD  NO        22           (PEAK)
+SEARCH  BAK      13   2-SEP-86 1239.17 ALL RD  NO      5657           (PEAK)
+TMP     BAK       1  22-AUG-86 1507.45 ALL RD  NO         0           (PEAK)
+UTIL    BAK       6  15-JUL-86 1902.36 ALL RD  NO      2143           (PEAK)
+XBUFF   BAK      21   2-SEP-86 1627.56 ALL RD  NO      9773           (PEAK)
+XXBUF2  BAK      11   3-APR-84 1615.46 ALL RD  NO      4635           (PEAK)
+PEAK    BG2       5   3-AUG-84 1007.00 ALL RD  NO      1733           (PEAK)
+PEAK    BUG       9   3-AUG-84 1003.50 ALL RD  NO      3728           (PEAK)
+PEAK    CHT       7  17-APR-84 1220.37 ALL RD  RD      2610           (PEAK)
+PEACKS  CKS       2  13-APR-84 1601.03 ALL RD  NO       140           (PEAK)
+PEACKS  CMD       2  17-APR-84 1414.29 ALL RD  NO        92           (PEAK)
+PEAFDM  CMD       2  19-APR-84 1055.42 ALL RD  NO        74           (PEAK)
+003TEL  COM       2   2-SEP-86 1750.20 ALL RD  NO        15           (PEAK)
+006TEL  COM       2  17-SEP-86 1556.32 ALL RD  NO        15           (PEAK)
+BKUP    CTL       2  16-FEB-84  838.19 ALL RD  NO        37           (PEAK)
+DEBLNK  CTL       2  25-AUG-86 1608.16 ALL RD  NO        32           (PEAK)
+DIF     CTL       2   2-MAY-84 1415.55 ALL RD  NO        11           (PEAK)
+DIFBAK  CTL       2   2-MAY-84 1414.58 ALL RD  NO       209           (PEAK)
+DIFOLD  CTL       2  29-JUN-84 2253.53 ALL RD  NO       195           (PEAK)
+INSTAL  CTL       2  30-APR-86 1745.04 ALL RD  NO        50           (PEAK)
+LNK     CTL       2  25-AUG-86 1610.13 ALL RD  NO        22           (PEAK)
+PEABLD  CTL       2  27-AUG-86 1354.27 ALL RD  NO       411           (PEAK)
+QCK     CTL       2  25-AUG-86 1610.13 ALL RD  NO        29           (PEAK)
+QCKDEB  CTL       2  25-AUG-86 1610.12 ALL RD  NO        23           (PEAK)
+UNINST  CTL       2  29-MAR-83 1603.00 ALL RD  NO        14           (PEAK)
+PRUNE   DAT       2  10-AUG-84  926.20 ALL RD  NO       281           (PEAK)
+DED     DEF      15  24-SEP-86 1406.03 ALL RD  NO      7140           (PEAK)
+HOST    DEF       2   5-DEC-83 1627.07 ALL RD  NO       156           (PEAK)
+SEARCH  DEF       2  27-AUG-86 1349.59 ALL RD  NO       107           (PEAK)
+MACRO   DSC       4  23-JAN-84  158.50 ALL RD  NO      1105           (CARL)
+PEAK    HLP       5  17-JUL-86 1723.52 ALL RD  RD      1671           [11334,56073]
+LOWER   KEY       2  18-JAN-84 1602.28 ALL RD  NO         6           (CARL)
+PEAK    KEY       7  17-JUL-86 1723.18 ALL RD  RD      2826           (LINDLEY)
+REBIND  KEY       2  18-JAN-84 1656.09 ALL RD  NO       213           (CARL)
+REPLAC  KEY       2  18-JAN-84 1603.06 ALL RD  NO       126           (CARL)
+COMM10  LOG       2  10-AUG-86 2328.52 ALL RD  NO        26           (PEAK)
+DED     LOG       2  10-JUL-86 1830.21 ALL RD  NO        37           (PEAK)
+DIFOLD  LOG      19  18-JUL-84 1203.41 ALL RD  NO      8961           (PEAK)
+PEABLD  LOG       1   2-SEP-86 1733.00 ALL RD  NO      2560           (PEAK)
+WARPLD  MAC       3  15-JUN-84 2303.22 ALL RD  NO       675           (SAILIB)
+PEAK    MEM       2   6-APR-83 1229.00 ALL RD  NO       313           [3,367732]
+ACCESS  MSG       2  16-MAR-83 1054.00 ALL RD  NO         2           (PEAK)
+PEAK    NEW       3  30-APR-84 1514.39 ALL RD  RD       691           (PEAK)
+TRMDEF  OCT      20  30-MAR-84  509.17 ALL RD  NO      9429           (PEAK)
+003TEL  OUT       2   2-SEP-86 1750.23 ALL RD  NO        26           (PEAK)
+006TEL  OUT       2  17-SEP-86 1556.34 ALL RD  NO        16           (PEAK)
+AUXWIN  REL       4  24-SEP-86 1414.18 ALL RD  NO      1348           (PEAK)
+COMAND  REL      51  24-SEP-86 1406.58 ALL RD  NO     25121           (PEAK)
+DED     REL       2  24-SEP-86 1406.44 ALL RD  NO       326           (PEAK)
+REDISP  REL      11  24-SEP-86 1415.37 ALL RD  NO      4735           (PEAK)
+SEARCH  REL      11  24-SEP-86 1416.15 ALL RD  NO      5085           (PEAK)
+UTIL    REL       2  24-SEP-86 1416.40 ALL RD  NO       359           (PEAK)
+WINDOW  REL       9  24-SEP-86 1415.20 ALL RD  NO      3736           (PEAK)
+XBUFF   REL      12  24-SEP-86 1414.28 ALL RD  NO      5358           (PEAK)
+XFILE   REL      15  24-SEP-86 1414.53 ALL RD  NO      6934           (PEAK)
+COMM1   REQ      12   5-AUG-86 1732.53 ALL RD  NO      5346           (PEAK)
+COMM10  REQ       3  27-AUG-86 1349.59 ALL RD  NO       565           (PEAK)
+COMM2   REQ      10  11-AUG-86  156.23 ALL RD  NO      4205           (PEAK)
+COMM3   REQ      10  24-JAN-84 1459.55 ALL RD  NO      4344           (PEAK)
+COMM4   REQ       6  15-JUL-86 1149.01 ALL RD  NO      2317           (PEAK)
+COMM5   REQ       2  29-MAR-84 1435.27 ALL RD  NO       299           (PEAK)
+COMM6   REQ       2   9-APR-83 1531.00 ALL RD  NO       365           (PEAK)
+COMM7   REQ       3  14-MAR-84 1442.21 ALL RD  NO       851           (PEAK)
+COMM8   REQ       2  19-APR-84 1620.37 ALL RD  NO       445           (PEAK)
+COMM9   REQ       6   5-AUG-86 1046.37 ALL RD  NO      2094           (PEAK)
+COMSUB  REQ      10  25-AUG-86 1220.56 ALL RD  NO      4482           (PEAK)
+XXBUF1  REQ      28  13-APR-84 1446.52 ALL RD  NO     13653           (PEAK)
+XXBUF2  REQ      11  15-JUL-86 1206.08 ALL RD  NO      4656           (PEAK)
+AUXWIN  SAI       8   5-JUL-84 1346.40 ALL RD  NO      3401           (PEAK)
+COMAND  SAI      29   2-SEP-86 1236.50 ALL RD  NO     13999           (PEAK)
+DED     SAI       4  18-JUL-84   35.54 ALL RD  NO      1419           (PEAK)
+REDISP  SAI      17  14-AUG-85 1531.25 ALL RD  NO      7899           (PEAK)
+SEARCH  SAI      13  24-SEP-86 1406.08 ALL RD  NO      5665           (PEAK)
+UTIL    SAI       6  16-JUL-86 1711.22 ALL RD  NO      2151           (PEAK)
+WINDOW  SAI      11   3-APR-84 1526.56 ALL RD  NO      5100           (PEAK)
+XBUFF   SAI      21   2-SEP-86 1732.56 ALL RD  NO      9775           (PEAK)
+XFILE   SAI      14  23-JUN-86 1645.01 ALL RD  NO      6178           (PEAK)
+XXBUFF  SAI      13   2-MAY-84  732.28 ALL RD  NO      5830           (PEAK)
+XXFILE  SAI      11   2-APR-84 1531.53 ALL RD  NO      4773           (PEAK)
+PEAK    SAV      69  24-SEP-86 1417.25 ALL RUN RUN    34339           (PEAK)
+WARPLD  SAV       2  17-JUL-84 1500.36 ALL RD  NO        95           (PEAK)
+PEAK    SUM       5  17-JUL-86 1723.38 ALL RD  RD      1677           [11334,56073]
+PEAK    TAP       6  17-AUG-84 1119.14 ALL RD  NO      2519           (PEAK)
+PEAK    TUT      10   4-APR-84 1320.00 ALL RD  RD      4606           [3,367732]
+PEAK    TXT      17  17-JUL-86 1722.08 ALL RD  RD      7844           (LINDLEY)
+PEAK    WSH       2  10-MAY-83 2318.13 ALL RD  NO       385           (PEAK)
+X       Y         6  29-AUG-86 1438.26 ALL RD  NO      2094           (PEAK)
+RTN               2  19-MAR-84 1224.48 ALL RD  NO        15           (PEAK)
+PEAKF   000     351   2-SEP-86 1603.01 ALL RD  NO    179049           (PEAK)
+PEAKF   352     339  25-AUG-86 1603.53 ALL RD  NO    172770           (PEAK)
+PEAKF   360     351   1-SEP-86 1409.25 ALL RD  NO    178855           (PEAK)
+PEAKF   363     351   2-SEP-86 1744.35 ALL RD  NO    179103           (PEAK)
+
+TOTAL PAGES 2188 FILES 104
+
+!
+!do cksum
+INPUT: *.rel
+VUTGUX DED.REL
+BURCIL COMAND.REL
+RITMUP AUXWIN.REL
+CILZIL REDISP.REL
+NEQFOW XFILE.REL
+CIXZAG WINDOW.REL
+NEJYAM SEARCH.REL
+QIZKEQ UTIL.REL
+KUZHUD XBUFF.REL
+INPUT: 
+
+!del *.rel
+
+Files "deleted":
+AUXWIN  REL       4  24-SEP-86 1414.18 ALL RD  NO      1348           (PEAK)
+COMAND  REL      51  24-SEP-86 1406.58 ALL RD  NO     25121           (PEAK)
+DED     REL       2  24-SEP-86 1406.44 ALL RD  NO       326           (PEAK)
+REDISP  REL      11  24-SEP-86 1415.37 ALL RD  NO      4735           (PEAK)
+SEARCH  REL      11  24-SEP-86 1416.15 ALL RD  NO      5085           (PEAK)
+UTIL    REL       2  24-SEP-86 1416.40 ALL RD  NO       359           (PEAK)
+WINDOW  REL       9  24-SEP-86 1415.20 ALL RD  NO      3736           (PEAK)
+XBUFF   REL      12  24-SEP-86 1414.28 ALL RD  NO      5358           (PEAK)
+XFILE   REL      15  24-SEP-86 1414.53 ALL RD  NO      6934           (PEAK)
+
+!
+!del peakf.000
+
+
+!do fdm
+
+[FDM File Utility %0.1]
+
+FDM> o peakf.000
+[New file: PEAKF.000]
+0 files, 0 words in master file.
+
+FDM> r peak.bug
+
+Reading files:
+PEAK   BUG        3728    ZIVDAZ [ok]
+
+FDM> r peak.cht
+
+Reading files:
+PEAK   CHT        2610    BANMUB [ok]
+
+FDM> r peafdm.cmd
+
+Reading files:
+PEAFDM CMD          74    LOWHEW [ok]
+
+FDM> r peabld.ctl
+
+Reading files:
+PEABLD CTL         411    BAQXOZ [ok]
+
+FDM> r ded.def
+
+Reading files:
+DED    DEF        7140    KIYTEX [ok]
+
+FDM> r host.def
+
+Reading files:
+HOST   DEF         156    BANFUM [ok]
+
+FDM> r search.def
+
+Reading files:
+SEARCH DEF         107    PIXSEJ [ok]
+
+FDM> r peak.hlp
+
+Reading files:
+PEAK   HLP        1671    MOTHUM [ok]
+
+FDM> r peak.key
+
+Reading files:
+PEAK   KEY        2826    SUVKON [ok]
+
+FDM> r warpld.mac
+
+Reading files:
+WARPLD MAC         675    MECREB [ok]
+
+FDM> r peak.new
+
+Reading files:
+PEAK   NEW         691    PATZUB [ok]
+
+FDM> r comm1.req
+
+Reading files:
+COMM1  REQ        5346    NERSEL [ok]
+
+FDM> r comm2.req
+
+Reading files:
+COMM2  REQ        4205    PIJQEV [ok]
+
+FDM> r comm3.req
+
+Reading files:
+COMM3  REQ        4344    SADNOP [ok]
+
+FDM> r comm4.req
+
+Reading files:
+COMM4  REQ        2317    ZOMVUP [ok]
+
+FDM> r comm5.req
+
+Reading files:
+COMM5  REQ         299    XEFQIQ [ok]
+
+FDM> r comm6.req
+
+Reading files:
+COMM6  REQ         365    NIFYEW [ok]
+
+FDM> r comm7.req
+
+Reading files:
+COMM7  REQ         851    WIKDAB [ok]
+
+FDM> r comm8.req
+
+Reading files:
+COMM8  REQ         445    FIDGAY [ok]
+
+FDM> r comm9.req
+
+Reading files:
+COMM9  REQ        2094    DUVXOM [ok]
+
+FDM> r comm10.req
+
+Reading files:
+COMM10 REQ         565    ZUXBAF [ok]
+
+FDM> r xxbuf1.req
+
+Reading files:
+XXBUF1 REQ       13653    BOGZOD [ok]
+
+FDM> r xxbuf2.req
+
+Reading files:
+XXBUF2 REQ        4656    ZUSHAK [ok]
+
+FDM> r comsub.req
+
+Reading files:
+COMSUB REQ        4482    VAKBAN [ok]
+
+FDM> r auxwin.sai
+
+Reading files:
+AUXWIN SAI        3401    SAZJUB [ok]
+
+FDM> r comand.sai
+
+Reading files:
+COMAND SAI       13999    ZUJMUW [ok]
+
+FDM> r ded.sai
+
+Reading files:
+DED    SAI        1419    RIHHUW [ok]
+
+FDM> r redisp.sai
+
+Reading files:
+REDISP SAI        7899    BUKBEB [ok]
+
+FDM> r search.sai
+
+Reading files:
+SEARCH SAI        5665    RIRYIQ [ok]
+
+FDM> r util.sai
+
+Reading files:
+UTIL   SAI        2151    SASXIL [ok]
+
+FDM> r window.sai
+
+Reading files:
+WINDOW SAI        5100    QEYKUP [ok]
+
+FDM> r xbuff.sai
+
+Reading files:
+XBUFF  SAI        9775    ROQTEJ [ok]
+
+FDM> r xfile.sai
+
+Reading files:
+XFILE  SAI        6178    KEHQIW [ok]
+
+FDM> r xxbuff.sai
+
+Reading files:
+XXBUFF SAI        5830    VELXOG [ok]
+
+FDM> r xxfile.sai
+
+Reading files:
+XXFILE SAI        4773    YOZMER [ok]
+
+FDM> r peak.sav
+
+Reading files:
+PEAK   SAV       34339    LAMKIZ [ok]
+
+FDM> r peak.sum
+
+Reading files:
+PEAK   SUM        1677    PINWIB [ok]
+
+FDM> r peak.tut
+
+Reading files:
+PEAK   TUT        4606    TIVHAY [ok]
+
+FDM> r peak.txt
+
+Reading files:
+PEAK   TXT        7844    WOGZAN [ok]
+
+FDM> r peak.wsh
+
+Reading files:
+PEAK   WSH         385    CEWMAF [ok]
+
+FDM> q
+
+[Master file PEAKF.000 closed.]
+40 files, 179152 words in master file.
+
+End of FDM execution.
+
+!
+!daytime
+24-SEP-1986 14:20:52 PDT
+
+!
+!
+!;---------------------------------------------------------------------
+!SEND PEAK
+TYPE LETTER:
+; PCOM v1.63 - processed: (MYPEAK)PEABLD.LOG = (MYPEAK)PEABLD.CTL
+; Options: DETACH  LOG NOAPPEND SUPERSEDE LICENSE 
+; Limits: TIME:60 TRULIMIT:0 
+; Status: completed.
+; Output recorded in file (MYPEAK)PEABLD.LOG.
+
+mail waiting
+!LOGOUT
+277.89 tru
+terminal time: 0:14:29
+    

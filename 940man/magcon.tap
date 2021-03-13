@@ -1,0 +1,293 @@
+:C: MAGCON (TAPE CONV.)
+                               MAG TAPE CONVERSION- (UTIL)MAGCON
+                               ---------------------------------
+
+
+I.     CAPABILITIES
+
+       A. TAPES WRITTEN IN THE FOLLOWING CHARACTER CODES MAY BE
+       CONVERTED:
+
+       1. EBCDIC       (INCLUDING SIGMA 7 PACKED BINARY)
+       2.  BCD         (MANY I.B.M. TAPES)
+       3.  1108        (UNIVAC)
+       4.  HONEYWELL 200 SERIES
+       5.  GENERAL ELECTRIC
+       6.  IBM 370   TRTCH ET
+       7.  GET A FORMAT FROM A FILE
+       8.  IBM 370   TRTCH E
+
+
+       B.   USING VARIOUS COMBINATIONS OF THE SEVERAL OPTIONS
+AVAILABLE,TAPES OF DIFFERENT FORMATS MAY BE CONVERTED.
+
+
+II.    OPERATING INSTRUCTIONS
+
+       MOUNT TAPE ON UNIT 0.
+
+(NOTE):  IF ANY OF THE FOLLOWING OPTIONS ARE TERMINATED WITH A
+       CARRIAGE RETURN, THE PROGRAM WILL BRANCH TO SECTION L
+       (OUTPUT TO:)BELOW.
+       IF TERMINATED WITH A LINE FEED, THE PROGRAM WILL PROCEED TO
+THE NEXT OPTION. IF THE RESPONSE TO AN OPTION
+IS A LINE FEED ONLY, THE PROGRAM PROCEEDS TO THE NEXT OPTION.
+
+
+
+A.     PROGRAM TYPES:  CODE:
+                       -----
+
+       PROPER RESPONSES:
+
+       N  CR/LF    WHERE N IS THE CONVERSION CODE ACCORDING TO
+                   THE FOLLOWING TABLE:
+
+                 CODE                  DESCRIPTION
+                 ----                  -----------
+
+                 0               NO CONVERSION (A BINARY DUMP)
+                 1             EBCDIC (SIGMA PACKED BINARY)
+                 2             BCD  (MANY I.B/M. TAPES)
+                 3             1108 (UNIVAC)
+                 4             HONEYWELL 200 SERIES
+                 5               GENERAL ELECTRIC
+                 6               IBM 370  TRTCH ET
+                 7               GET INFORMATION FROM FILE
+                 8               IBM 370 TRTCH E
+                Q              REWIND, RELEASE, & RETURN TO THE EXEC.
+                ?              TYPES A LIST OF THE CODES
+
+NOTE:  IF CODE ZERO IS CHOSEN THE DATA IS OUTPUT USING BRS 36
+      IF THE OUTPUT FILE IS SYMBOLIC. IF THE OUTPUT FILE IS BINARY
+       THEN WIO IS USED. THE OUTPUT FROM A TAPE USING CODE
+       ZERO AND A SYMBOLIC OUTPUT FILE MAY BE BLOCKED AS DESIRED.
+
+
+B.     PROGRAM TYPES:   LABEL:
+                        -----
+
+       PROPER RESPONSES:
+       NL  CR/LF               WHERE L IS, EITHER THE LETTER "R" FOR
+                               RECORDS OR THE LETTER "F" FOR FILES.
+                               N IS THE NUMBER OF FILES/RECORDS IN THE
+                               TAPE LABEL OR HEADER. THE LABEL WILL BE
+                               SKIPPED; IT WILL NOT BE CONVERTED.
+
+
+C.     PROGRAM TYPES:  BLOCK:
+                       -----
+
+       PROPER RESPONSES:
+       N CR/LF                 WHERE N IS THE NUMBER OF CHARCTERS
+                               PER BLOCK . THE PROGRAM WILL OUTPUT A
+                               CARRIAGE RETURN AFTER EACH BLOCK.
+
+E.     PROGRAM TYPES:   RETURN:
+                        ------
+
+       PROPER RESPONSES:
+       L CR/LF                 WHERE L IS EITHER "Y" OR "N". IF "Y"
+                               THE PROGRAM WILL OUTPUT A CARRIAGE RETURN
+                               AFTER EACH RECORD.
+
+
+F.     PROGRAM TYPES:  SUBSTITUTIONS?
+                       -------------
+
+       PROPER RESPONCES:
+       L CR/LF                 WHERE L IS EITHER "Y" OR "N".
+                               IF "Y" THE PROGRAM WILL TYPE
+                               MAKE SUBSTITUTIONS: AFTER THE OUTPUT TO:
+                               MESSAGE IS TYPED AND YOU HAVE SPECIFIED
+                               AN OUTPUT FILE. SEE BELOW.
+
+
+G.     PROGRAM TYPES:  TRAIL?
+                         -----
+
+       PROPER RESPONSES:
+       L CR/LF                 WHERE L IS EITHER "Y" OR "N".
+                               THIS WILL DELETE TRAILING BLANKS
+                               WHICH SOMETIMES RESULT WHEN TRANSFERING
+                               CARD FILES FROM THE SIGMA
+
+H.     PROGRAM TYPES:   RECORD:
+                        ------
+
+       PROPER RESPONSES:
+       I CR/LF                 WHERE I IS AN INTEGER NUMBER INDICATING
+                               THE NUMBER OF CHARACTERS PER RECORD TO
+                               BE CONVERTED. NORMALLY ALL CHARACTERS WILL
+                               BE CONVERTED BUT SOMETIMES THE END OF A
+                               RECORD WILL FALL WITHIN A 940 WORD
+                               BOUNDARY WHICH WILL RESULT IN ONE
+                               OR TWO EXTRA SPACES AT THE END OF EACH
+                               RECORD. COUNT THE NUMBER OF CHARACTERS
+                               UP TO BUT NOT INCLUDING THE FIRST
+                               EXTRA SPACE. THEN ENTER THIS NUMBER AFTER
+                               THE PROGRAM TYPES "RECORD:".
+
+I.     PROGRAM TYPES:  CHAR:
+                      ----
+
+       PROPER RESPONSES:
+       I CR/LF                 WHERE I IS IN INTEGER NUMBER. SOMETIMES
+                               THE TAPE LABEL REFFERED TO ABOVE IN THE
+                               LABEL OPTION IS WITHIN THE FIRST RECORD.
+                               THIS OPTION WILL CAUSE THE PROGRAM TO
+                               IGNORE THE FIRST I CHARACTERS OF THE FIRST
+                               RECORD.
+
+I.1    PROGRAM TYPES:  ODD PARITY?
+                       --- ------
+
+       PROPER RESPONSES:
+
+       L CR/LF                 WHERE L IS EITHER "Y" OR "NO". IF "Y"
+                               THE TAPE IS READ IN BINARY (ODD PARITY).
+                               IF "N" THE TAPE IS READ IN BCD (EVEV PA-
+                               RITY). IF THIS OPTION IS NOT TAKEN,
+                               THE TAPE WILL BE READ AS FOLLOWS:
+
+
+               CODE            PARITY
+               ----            ------
+               0            ODD (BINARY)
+               1            ODD (BINARY)
+               2            EVEV (BCD)
+               3            EVEN (BCD)
+               4            EVEN
+               5            ODD
+               6            EVEN
+               7            DEPENDS ON WHAT IS CHOSEN IN FILE
+               8            EVEN
+
+
+J.     PROGRAM TYPES:   TRUNCATE?
+                        --------
+
+       PROPER RESPONSES:
+       L CR/LF                 WHERE L IS EITHER "Y" OR "N". IF "Y",
+                               ONLY THE FIRST BLOCK OF EACH RECORD
+                               WILL BE CONVERTED. THE REMAINDER OF THE
+                               RECORD WILL BE IGNORED.
+
+
+K.     PROGRAM TYPES:  COMPRESS?
+                       --------
+
+       PROPER RESPONSES:
+       L CR/LF                 WHERE L IS "Y" OR "N". IF "Y"
+                               MULTIPLE BLANKS (TWO OR MORE
+                               BLANKS TOGETHER) WILL BE COM-
+                               PRESSED IF THE OUTPUT FILE IS SYMBOLIC.
+                               IF "N" MULTIPLE BLANKS WILL NOT BE
+                               COMPRESSED. IF THE OPTION IS NOT TAKEN
+                               AND THE OUTPUT FILE IS SYMBOLIC THE
+                               MULTIPLE BLANKS WILL BE COMPRESSED.
+
+L.     PROGRAM TYPES:   OUTPUT TO:
+                        ------ --
+
+       PROPER RESPONSES:
+       F CR/LF                 WHERE F IS THE OUTPUT FILE NAME. IF
+                               FOLLOWED BY A CARRIAGE RETURN THE
+                               THE FILE WILL BE SYMBOLIC; IF FOLLOWED
+                               BY A LINE FEED, THE FILE WILL BE BINARY.
+
+
+
+M.     OTHER MESSAGES REQUIRING OPERATOR ACTION:
+       1. PROGRAM TYPES: CHANNEL 0 HAS TAPE DRIVE 0 ASSIGNED
+
+       PROPER RESPONSES:
+
+       THE PROGRAM MUST BE RESTARTED WHEN THE DEVICE DESIRED
+       IS AVAILABLE.
+
+       2. PROGRAM TYPES: MAX FILE SIZE EXCEEDED - OPEN ANOTHER FILE
+          MAX FILE SIZE IS 3,000,000 CHARATERS. IF THIS SIZE IS REACHED
+       THE ABOVE MESSAGE WILL BE TYPED FOLLOWED BY THE OUTPUT TO:
+       MESSAGE. AS IN SECTION L.
+
+       THE SYSTEM WILL ALLOW A MAX SIZE FILE TO BE BUILT ONLY IF
+       THERE ENOUGH DBITS. MAX FILE SIZE IS 390,000 CHARACTERS PLUS
+       ONE HALF THE REMAING DBITS.
+N.     SAMPLE RUN
+
+       TO READ A PACKED BINARY UNLABELED TAPE FROM THE SIGMA 7:
+
+-GO (OPER)MAGCON  (CALLING THE PROGRAM)
+ 800 BPI   (PROGRAM RESOPNSES)
+CODE: 1 C/R    (NEED NO OTHER OPTIONS)
+
+
+OUTPUT TO:  /FILE/
+NEW FILE
+
+END FILE
+
+
+OUTPUT TO: E    (TYPE "E" TO INDICATE YOU ARE FINISHED)
+
+
+CODE:Q
+-
+
+TAPE IS REWOUND, DEVICE IS RELEASED, AND CONTROL RETURNED TO  EXEC.
+
+O.     SAMPLE RUN
+
+- GO (OPER)MAGCON
+
+VERSION F1.09
+
+800 BPI
+
+CODE: 2 L/F    (READ TAPE IN BCD)
+LABEL: 2R L/F  (SKIP TAPE LABEL OF TWO RECORDS)
+BLOCK: 72 L/F  (MAKE EACH PHYSICAL LINE 72 CHARACTERS LONG)
+RETURN? Y L/F  (OUTPUT A CARRIAGE RETURN AFTER EACH RECORD)
+ODD PARITY Y L/F   (READ TAPE IN ODD PARITY)
+SUBSTITUTIONS? Y  L/F (MAKE SOME CHARACTER SUBSTITUTIONS)
+TRAIL? Y L/F      (DELETE TRAILING BLANKS)
+RECORD: 456 L/F   (CONVERT ONLY THE FIRST 456 CHARACTERS OF EACH RECORD)
+CHAR: L/F      (SKIP THIS OPTION)
+COMPRESS? N C/R                (DO NOT COMPRESS MULTIPLE BLANKS)
+
+OUTPUT TO: /FILE NAME/        (OUTPUT FILE NAME)
+ NEW FILE
+
+MAKE SUBSTITUTIONS:
+( FOR < L/F
+= FOR ; C/R
+
+END FILE
+
+OUTPUT TO: E
+
+P. SAMPLE RUN USING CODE 7
+
+-GO (UTIL)MAGCON
+
+VERSION 2.00
+
+800 BPI
+
+CODE: 7 C/R    (USE SPECIAL MODE FROM FILE)
+
+FROM FILE: BCD      (FILE WITH TRANSLATION TABLE CREATED BY MAKETRANS)
+
+OUTPUT TO: /FILE/
+ NEW FILE
+
+END FILE
+
+OUTPUT TO: E
+
+CODE: Q
+
+-
+
+ 

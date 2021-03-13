@@ -1,0 +1,55 @@
+define !  = "comment", !! = "comment";
+!! title Program UName ;
+! *************************************************************************
+*************************************+*************************************
+*                                                                         *
+*                                                                         *
+*                        UName - Display Username                         *
+*                                                                         *
+*                                                                         *
+*************************************+*************************************
+
+        Give a PPN specification, display the username that it
+        corresponds to.
+
+**************************************************************************;
+
+
+begin "UName"
+  require "(KLib)Sail.Hdr"   source!file;
+  require "(Klib)Cmdlin.Req" source!file;
+  require "(KLib)Sys.Req"    source!file;
+
+
+! ************************************************************************;
+!! title Mainline Code;
+! ***********************************+*************************************
+*                                                                         *
+*                                                                         *
+*			       Mainline Code				  *
+*                                                                         *
+*                                                                         *
+*************************************+************************************;
+
+
+  begin "Mainline Code"
+    if (ArgC > 1) then
+    begin
+      integer
+        PPN;
+
+      PPN _ Cv.UFDStr(ArgV[1] & "," & ArgV[2]);
+
+      if (PPN) then
+        print(Cv.PPN(PPN));
+    end
+    else
+      print("Usage: ""uname [gan,uun]""");
+
+    exit;
+  end "Mainline Code";
+end "UName";
+
+
+! ***********************************+*************************************
+**************************************************************************;

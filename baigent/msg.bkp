@@ -1,0 +1,1768 @@
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Fri, 26 Apr 85 2:04:51 UT
+From: IOD.BEDELL@Ontyme.Tymnet
+Date: 25 APR 85 17:28:45  
+To: TXS.D/BAIGENT@Ontyme.Tymnet
+Cc: CT.TECHSERV@Ontyme.Tymnet, TXS.D/BAIGENT@Ontyme.Tymnet, IOD.HQ@Ontyme.Tymnet, MIS.MAIL@Ontyme.Tymnet, CT.TECHSERV@Ontyme.Tymnet, CT.TECHSERV@Ontyme.Tymnet, CPC.G/PEREZ@Ontyme.Tymnet, CT.TECHSERV@Ontyme.Tymnet, IOD.HQ@Ontyme.Tymnet, TXS.@Ontyme.Tymnet
+Message-id: A06732@Ontyme.Tymnet
+Subject: "McDonnell Douglas IOD.HQ Cupertino"...
+
+           McDonnell Douglas                      IOD.HQ   Cupertino   VG1-A01
+           Information Systems International
+                                                  Tel. [-1] (408) 446-6473
+ 
+DATE>      1985-04-25  17:23 PST                  Telex 334489
+ 
+TO>        Peter Stratman (CT.TECHSERV)
+ 
+COPIES>    Dan Baigent (TXS.D/BAIGENT)       Peter Haas (IOD.HQ)
+           Jim Buelna (MIS.MAIL)             Eric Ja"y (CT.TECHSERV)
+           Richard Dumas (CT.TECHSERV)       Gary Perez (CPC.G/PEREZ)
+           Jean-Fran,cois Guillou (CT.TECHSERV)
+ 
+FROM>      Ken BeDell (IOD.HQ)
+ 
+SUBJECT>   Host P90 accounting and PERP
+ 
+REFERENCE> A04612 from Peter Stratman - April 24th
+           A05205 from Ken BeDell - April 24th
+           A06415 from Dan Baigent - April 25th
+ 
+ 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+ 
+     I have talked with Gary Perez (Operations Manager in Cupertino) about
+     the base for host C14.  The base changed from 145 to 232 some months
+     ago.  It seems the bases in Cupertino will change from time to time
+     because hosts must be moved back and forth when serious hardware
+     problems are present.  This means the base can and will change if
+     this move occurs.
+ 
+     I believe the problem you are experiencing with accounting is related
+     to the time zone assigned to the base; node 145 was assigned time
+     zone 17 in the past, although I note it is mis-assigned at present
+     (more later on this).  Node 232 is assigned time zone 8 now (pacific
+     coast of U.S.).
+ 
+     By copy of this memo I am asking Jim Buelna to change the time zone
+     of node 232 to 17 (Central European Summer Time) as soon as possible.
+     Jim, please let me know exactly what day this takes place so we can
+     verify in the April accounting, once available.  Also, it appears
+     node 145 is mis-assigned (bad format) in the (UAS)NDRPT.FIL.  Consid-
+     ering the above it should now be assigned time zone 8.
+ 
+     Also, Gary has assured us he will notify me if the base to host C14
+     changes in the future.  I'll then notify Jim Buelna of the change so
+     the time zone can be changed immediately (I think this will avoid
+
+ 
+Host P90 accounting and PERP                                        Page 2
+ 
+ 
+     accounting problems, if we can make the necessary changes the same
+     day, since accounting is run once a day).
+ 
+     Peter, I really believe the time-zone assignment is reason for the
+     P90 problem, and it is likely the same thing occurred on other hosts.
+     I do not have specific information indicating when the latest change
+     occurred.  The April accounting will likely be incorrect until the
+     time zone is changed for this node, which will hopefully be tomorrow.
+ 
+     Peter, thank you very much for bringing this to my attention; I'm
+     sure it has caused CT much frustration and inconvenience.  I hope the
+     above change will clear up the issue.  I'll let you know what day the
+     change takes place so you can verify in the April accounting.
+ 
+     Best regards. Ken
+From: BAIGENT@C930.Tymnet
+Date: Wed, 15 May 85 14:54:56 PDT
+To: CARL
+Subject: ONTYMES
+
+CARL,
+I HAVE'NT GOTTEN ANY ONTYMES ON 930 (OR TXS) FOR A LONG TIME.
+IS THERE SOME KIND OF HOLDUP OR IS IT JUST THAT NO ONE WANTS
+TO TALK TO ME?
+...DAN
+
+P.S.  CAN I CHANGE MY LOGIN KEY ON TXS YET?
+From: BAIGENT@C930.Tymnet
+Date: Fri, 17 May 85 9:34:45 PDT
+To: CARL
+Subject: JOB QUEUE SPECIFICATIONS.
+
+Carl,
+The file (BAIGENT:930)PRPFIL.FRM contains the specifications of the current
+PERP job list as well as a list of those items that will be needed for the
+PERP replacement program's job queue.  Please take some time to review this
+file, add any fields you feel should be included and make comments on the
+size (format) of each of these fields (i.e. how many words for date and time
+etc...).
+Thanks...Dan
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Fri, 17 May 85 21:08:13 UT
+From: CPC.T/MARCONI@Ontyme.Tymnet
+Date: 17 MAY 85 13:43:33
+To: TXS.D/BAIGENT@Ontyme.Tymnet
+Message-id: A27296@Ontyme.Tymnet
+Subject: "Dan, we need a change in the MUR"...
+
+Dan, we need a change in the MUR database to accept systems 43 and 72 here
+in Dallas. System 43 was moved to Dallas 5/04/85 so, stop TYMSHARING as of
+5/03/85 at 2400. System 72 was moved to Dallas 5/11/85, stop TYMSHARING as
+of 5/10/85 at 2400. Any input that needs deleted from the database, please do
+so and send mail (ontyme) when complete.. thks Tom
+From: Carl A Baltrunas  <Carl@X930.Tymnet>
+Date: Sat, 18 May 85 1:44:14 PDT
+To: sysmaint
+Cc: Dennis Coffey    <dencoff@X930.Tymnet>,Dan Baigent <baigent@C930.Tymnet>,tsucoop
+Subject: UNDELE.MAC
+
+Good luck finding it....
+
+  PLEASE ASK (when you're not sure of something)!!!!!
+
+UNDELETE was originally written by Todd Corenson, and later modified
+by Greg Matoka.  It is written in SAIL and is completely in-compatible
+with DIRIT as far as file specification scanning, etc.
+
+If you are looking for a MACRO-10 source, i.e. UNDELE.MAC, you no doubt
+will never find one that does what you're looking for.  I'm not sure
+where the current sources are, but if they can't be found quickly on
+system 930, [I'll check if you ask me to look], then the best thing to
+do is to get them from archive.
+
+I killed your TALS job, 'cause it was a waste of cpu time & tymnet
+circuit traffic.  PS: Anyone with systat license can look at your job
+and see what file it is reading, so putting your OPER password or
+any OPER password into a file is a "no no".
+
+PPS.  It is possible that you will not find UNDELE.SAI either, it was
+originally called UNDEL.SAI and the command was UNDEL until too many
+people complained to Todd that "UNDELETE file-spec" didn't work!!!!!!
+
+/Carl
+From: Carl A Baltrunas  <Carl@X930.Tymnet>
+Date: Mon, 20 May 85 2:08:33 PDT
+To: Craig Fletcher <fletcherc@C930.Tymnet>,Joe Smith <jms@C930.Tymnet>,Osman Guven <osman@C930.Tymnet>,Dan Baigent <baigent@C930.Tymnet>
+Subject: Monday - schedule!
+
+I shall be working from home today.  If you need me for anything, please
+give me a call at home, 408-945-4314.  I am keyless, as in we lost the
+original, my duplicate and Cherie's copy of the key to one of our cars.
+All of them are someplace in the house... so I will be at home, most
+certainly.
+
+Will see you all on Tuesday one way or another... send mail or call if
+you have any questions.
+
+/Carl
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Wed, 22 May 85 18:03:17 UT
+From: CPC.T/MARCONI@Ontyme.Tymnet
+Date: 22 MAY 85 10:32:54
+To: TXS.D/BAIGENT@Ontyme.Tymnet
+Message-id: A31036@Ontyme.Tymnet
+Subject: "HELLO DAN, WE HAVE NOTICED AN"...
+
+HELLO DAN, WE HAVE NOTICED AN ERROR ON THE 'MUR' SYSTEMS FOR DALLAS.
+SYSTEM 72 IS A PDP HARDWARE NOT A 370. PLEASE CHANGE THIS. ALSO, PLEASE
+REMOVE SYSTEM 46 ALL TOGETHER. ELSE WISE HOWS THINGS??. KEEPING BUSY DOWN HERE.
+ 
+THANKS DAN....TOM MARCONI
+Received: from C39.Tymnet by C930.Tymnet; Sat, 25 May 85 21:05:37 PDT
+Received: from C930.Tymnet by C39.Tymnet; Sat, 25 May 85 21:03:26 PDT
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Wed, 17 Apr 85 22:53:16 UT
+Return-path: <MKTGCOM.SUP@Ontyme.Tymnet
+From: MKTGCOM.SUP@Ontyme.Tymnet
+Date: 17 APR 85 22:45:47
+To: TXS.SUP@Ontyme.Tymnet
+Message-id: A99078@Ontyme.Tymnet
+Subject: "M A R K E T I N G C O M M U N"...
+Resent-From: TXSSUP@X20.Tymnet
+Resent-Date: Sat, 20 Apr 85 1:21:07 PST
+Resent-To: Dan Baigent <baigent@C930.Tymnet>,Jon Mosser <mosserj@C930.Tymnet>,Craig Fletcher <fletcherc@C930.Tymnet>,Joe Smith <jms@C930.Tymnet>,Bruce Ring <bring@C930.Tyment>
+
+           M A R K E T I N G    C O M M U N I C A T I O N S
+
+                          M E M O R A N D U M
+
+DATE>      17 APR 85  13:53
+
+TO>        ALL ISG BLUE SECTOR
+
+COPIES>    
+
+FROM>      RICHARD A. CALVERT
+           VICE PRESIDENT
+           MD-DISCO
+
+
+SUBJECT>   MANAGEMENT CHANGE
+
+
+-----------------------------------------------------------------------
+
+
+I am pleased to announce that effective immediately, Erv Oberndorfer
+will assume responsibility for General Industries reporting to me.
+
+In this position Erv will be responsible for maximizing our effectiveness
+in marketing to the General Industries.  Erv will be replacing Karen
+Gedera who has recently accepted a new position reporting to Otis
+Brinkley.
+
+Please lend your support to Erv in the performance of his new
+responsibilities.
+From: Dennis Coffey <DENCOFF@930.Tymnet>
+Date: Fri, 31 May 85 13:19:01 PDT
+To: baigent
+Subject: have mike call me
+
+sorry about losing it, while we were having our 'dailogue':  lost my
+connection to the network.  I'll try to send this msg to Mike, but h'es
+not on 930, right now.  I need a call from him, about the CEGI stuff
+with CHKPNT.  He can reach me at (408) 251-8787.  Tell him I'll be in
+and out, for a while.
+Thanks!
+Dennis
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Tue, 28 May 85 18:05:16 UT
+From: ISGHQ.SUP@Ontyme.Tymnet
+Date: 28 MAY 85 18:06:13
+To: TXS.SUP@Ontyme.Tymnet
+Message-id: J98217@Ontyme.Tymnet
+Subject: Some Ontyme I.D. Changes, Effective 31 May 1985
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Fri, 31 May 85 15:54:22 PDT
+Resent-To: Joe Smith <jms@X930.Tymnet>,Jon Mosser <mosserj@X930.Tymnet>,Craig Fletcher <fletcherc@X930.Tymnet>,Dennis Coffey <dencoff@X930.Tyment>,Dan Baigent <baigent@X930.Tymnet>
+
+                  ***  INFORMATION SYSTEMS GROUP  ***
+
+
+                          M E M O R A N D U M
+
+
+DATE>      28 MAY 85  12:04
+
+TO>        All McDonnell Douglas Ontyme Users
+
+COPIES>    
+
+FROM>      Kathleen A. Waddell
+
+
+SUBJECT>   Some Ontyme I.D. Changes, Effective 31 May 1985
+
+
+-----------------------------------------------------------------------
+
+
+The McDonnell Douglas Information Systems Group has experienced many 
+organizational changes in the past few months.  To reflect these 
+changes, some Ontyme Accounts and ID's have changed.  The following 
+list shows the old Ontyme ID and the new Ontyme ID's that will be 
+effective May 31, 1985.
+
+           OLD ONTYME ID              NEW ONTYME ID
+
+         ISGSL.JF/MCDONNELL         ISGHQ.JOHN/MCDONNELL
+         ISGSL.D/GENZEL             ISGHQ.D/GENZEL
+         IS.J/CLANCY                ISGHQ.J/CLANCY
+         IS.C/DIGNAN                ISGHQ.C/DIGNAN
+         MDCHQ.D/BROWN              ISGHQ.D/BROWN
+
+In the near future, additional Ontyme ID's will be changed.  You will 
+be notified as they occur.
+
+Kathleen Waddell
+ISG User Support Center - St. Louis
+L089/306/2W/ (314) 233-5116
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Thu, 30 May 85 15:03:50 UT
+From: FIN.SUP@Ontyme.Tymnet
+Date: 30 MAY 85 15:45:43
+To: TXS.SUP@Ontyme.Tymnet
+Message-id: A36854@Ontyme.Tymnet
+Subject: Month-End Accrual
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Fri, 31 May 85 15:54:28 PDT
+Resent-To: Joe Smith <jms@X930.Tymnet>,Jon Mosser <mosserj@X930.Tymnet>,Craig Fletcher <fletcherc@X930.Tymnet>,Dennis Coffey <dencoff@X930.Tyment>,Dan Baigent <baigent@X930.Tymnet>
+
+.mt0
+.cw10
+.op
+ 
+ 
+TO:        The World
+ 
+FROM:      Clark Moses
+ 
+SUBJECT:   Month-End Accrual
+ 
+ 
+ 
+ 
+ 
+     All   Tymnet field locations outside of California  are 
+required  to   Ontyme Clark  Moses with a list  showing  any 
+goods  or  services received in the current month that  have 
+been  received and an invoice has not already been forwarded 
+to A/P for processing.    This list will have cost  centers, 
+account class,  type of document  (Invoice,   Packing  List,  
+etc.),  Invoice  numbers if  applicable  and amount.    This  
+list   is   for those items received  over   1,000   dollars  
+only.   Please  forward  your list via Ontyme no later  than 
+Monday,  June 3rd.   My Ontyme name is Fin.C/Moses.   If you 
+have  any  questions call Clark Moses at (408)  446-6427  or  
+Marsha Olson Ford at (408) 446-6421.    Your cooperation  is  
+greatly appreciated.
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Fri, 31 May 85 17:05:46 UT
+From: ISGHQ.POLICY@Ontyme.Tymnet
+Date: 31 MAY 85 17:05:21
+To: TXS.SUP@Ontyme.Tymnet
+Message-id: J98902@Ontyme.Tymnet
+Subject: ISG EXECUTIVE BOARD DECISION ON THE FIELD FACILITIES
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Fri, 31 May 85 15:54:32 PDT
+Resent-To: Joe Smith <jms@X930.Tymnet>,Jon Mosser <mosserj@X930.Tymnet>,Craig Fletcher <fletcherc@X930.Tymnet>,Dennis Coffey <dencoff@X930.Tyment>,Dan Baigent <baigent@X930.Tymnet>
+
+     MCDONNELL DOUGLAS      ADMINISTRATIVE      No:   ISG-85-72
+INFORMATION SYSTEMS GROUP      BULLETIN         Date: 20 May 85
+
+
+
+To:           ISG Lists A-E (excluding MDAIS)
+
+Subject:      ISG EXECUTIVE BOARD DECISION ON THE FIELD FACILITIES 
+              CONSOLIDATION PROGRAM
+
+
+
+The Executive Board has approved moving forward with Phase I of 
+the recommended plan for consolidation of selected field office 
+locations into shared ISG Business Centers.
+
+The initial metropolitan areas to be addressed in the plan include 
+New York City, Los Angeles, Washington, D.C., San Francisco, 
+Chicago, Denver, Houston and Dallas.  These eight areas represent 
+over 50% of the annual ISG real estate lease expense and personnel 
+in field locations.
+
+A task force of real estate management representatives from five 
+ISG business organizations will team with Dick Miskell, Director - 
+ISG Field Facilities, to develop a specific detailed 
+implementation plan and schedule for each metropolitan area.  The 
+actual consolidation process will be implemented over a three year 
+period and will involve other metropolitan areas.
+
+An executive level Steering Committee comprised of representatives 
+from six ISG organizations will be utilized to review and 
+recommend policy needs.  These policy recommendations will support 
+the implementation and remote office administration needs of the 
+shared ISG Business Centers.  Specific areas to be addressed 
+include the remote office administrative organization structures, 
+office standards and the tenant cost allocation process for real 
+estate lease expenses as well as common office services and 
+equipment in the shared environment.
+
+These new ISG Business Centers will increase McDonnell Douglas 
+visibility in the ISG major market places, optimize office 
+services through the larger shared office environment and obtain 
+maximum leverage in lease negotiations to reduce long-term real 
+estate lease expense.  Please give your support to the task force 
+over the next few months to expedite completion of this task 
+assignment by the Executive Board.
+
+
+
+(Original signed by Paul W. Wiedenmann)
+
+Paul W. Wiedenmann
+Corporate Vice President - ISG Finance
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Fri, 31 May 85 17:06:08 UT
+From: ISGHQ.POLICY@Ontyme.Tymnet
+Date: 31 MAY 85 17:09:49
+To: TXS.SUP@Ontyme.Tymnet
+Message-id: J98906@Ontyme.Tymnet
+Subject: ORANGE COUNTY (CALIFORNIA) HOTEL ACCOMMODATIONS
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Fri, 31 May 85 15:54:36 PDT
+Resent-To: Joe Smith <jms@X930.Tymnet>,Jon Mosser <mosserj@X930.Tymnet>,Craig Fletcher <fletcherc@X930.Tymnet>,Dennis Coffey <dencoff@X930.Tyment>,Dan Baigent <baigent@X930.Tymnet>
+
+     MCDONNELL DOUGLAS       ADMINISTRATIVE      No:   ISG-85-73
+INFORMATION SYSTEMS GROUP       BULLETIN         Date: 22 May 85
+
+
+
+
+To:           ISG Lists A-E (including MDAIS)
+
+Subject:      ORANGE COUNTY (CALIFORNIA) HOTEL ACCOMMODATIONS
+
+
+
+McDonnell Douglas Computer Systems Company has signed a one year 
+contract with the Irvine Marriott Hotel to provide employees and 
+guests of the McDonnell Douglas family of companies with 
+accommodations at the special rate of SIXTY TWO NO/100 ($62.00) 
+per night.  This agreement is effective beginning June 10, 1985.
+
+The special room rate is available only when the reservation is 
+                                   ____
+placed in advance by our ninth floor receptionist at the Towers.  
+Please contact Julie Smith on (714) 250-1000 (Ext. 2062) to make 
+your reservation.
+
+If a meeting room is also required during your stay you will 
+coordinate the space required for such meeting with Gwen Alleman.  
+Please contact Gwen on ext. 2046.  There will be NO charge for 
+meeting room(s) space is reserved by Gwen.
+
+Shuttle bus service will be provided as part of this agreement to 
+and from the John Wayne airport, as well as any other Company 
+location in the Irvine area to the hotel.  Local newspaper will be 
+provided at no charge, but breakfast will no longer be free.
+
+This agreement provides substantial savings to the Company in one 
+of the newest hotels in the airport area offering excellent 
+facilities and service.  However, if you find any kind of problems 
+with the service you receive while staying at the hotel, a call to 
+Joan Mulry on Ext. 7318 - Facilities Department - will be all that 
+is required for us to follow up with the hotel administration.
+
+We expect all ISG organizations' personnel to take full advantage 
+of this offer while in the Irvine area.
+
+This AB replaces AB-85-010 issued on March 27, 1985, by McDonnell 
+Douglas Computer Systems Company.
+
+
+
+(Original signed by Ralph L. Harmon)
+
+Ralph L. Harmon
+McDonnell Douglas
+Computer Systems Company
+Director, Facilities
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Fri, 31 May 85 17:06:25 UT
+From: ISGHQ.POLICY@Ontyme.Tymnet
+Date: 31 MAY 85 17:11:49
+To: TXS.SUP@Ontyme.Tymnet
+Message-id: J98909@Ontyme.Tymnet
+Subject: RELOCATION OF MDHS MILWAUKEE, WISCONSIN O
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Fri, 31 May 85 15:54:40 PDT
+Resent-To: Joe Smith <jms@X930.Tymnet>,Jon Mosser <mosserj@X930.Tymnet>,Craig Fletcher <fletcherc@X930.Tymnet>,Dennis Coffey <dencoff@X930.Tyment>,Dan Baigent <baigent@X930.Tymnet>
+
+      MCDONNELL DOUGLAS      ADMINISTRATIVE      NO:   ISG-85-74
+INFORMATION SYSTEMS GROUP       BULLETIN         DATE: 23 May 85
+
+
+
+
+To:           ISG LISTS A THROUGH E (Includes MDAIS)
+
+Subject:      RELOCATION OF MDHS MILWAUKEE, WISCONSIN OFFICE
+
+
+
+1.  Effective 10 May 1985, the MDHS office in Milwaukee, Wisconsin 
+    will be located at the following address:
+
+              McDonnell Douglas Health Services
+              Suite 150
+              250 North Sunnyslope Road
+              Milwaukee, Wisconsin  53005
+
+    The telephone number will remain the same.
+
+2.  Please notify all those who normally correspond with the 
+    Milwaukee office of its relocation.
+
+
+(Original signed by M. J. Daniels)
+
+M. J. Daniels, Manager
+Plant Engineering and Administration
+
+
+Concurrence:
+
+
+
+(Original signed by R. L. Curtiss)
+
+R. L. Curtiss
+Director - Facilities
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Fri, 31 May 85 17:07:02 UT
+From: ISGHQ.POLICY@Ontyme.Tymnet
+Date: 31 MAY 85 17:17:58
+To: TXS.SUP@Ontyme.Tymnet
+Message-id: J98914@Ontyme.Tymnet
+Subject: ORGANIZATION OF THE MANUFACTURING & ENGINEERING
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Fri, 31 May 85 15:54:43 PDT
+Resent-To: Joe Smith <jms@X930.Tymnet>,Jon Mosser <mosserj@X930.Tymnet>,Craig Fletcher <fletcherc@X930.Tymnet>,Dennis Coffey <dencoff@X930.Tyment>,Dan Baigent <baigent@X930.Tymnet>
+
+     MCDONNELL DOUGLAS        ADMINISTRATIVE     NO:   ISG-85-75
+INFORMATION SYSTEMS GROUP        BULLETIN        DATE: 28 MAY 85
+
+
+
+
+TO:           All McDonnell Douglas Manufacturing & Engineering 
+              Systems Company Employees, ISG Lists A-D (Includes 
+              MDAIS)
+
+SUBJECT:      ORGANIZATION OF THE MANUFACTURING & ENGINEERING 
+              SYSTEMS COMPANY
+
+REFERENCE:    AB ISG-85-60, Dated 3 May 85 -- Formation of 
+              McDonnell Douglas Manufacturing & Engineering 
+              Systems Company
+
+
+
+The reference AB announced the formation of the Manufacturing & 
+Engineering Systems Company.  This AB presents the new 
+organization which will be effective 01 July 1985.  The 
+Manufacturing & Engineering Systems Company will operate as two 
+business units:  The Manufacturing Industry Systems Company and 
+the Architectural, Engineering & Construction Systems Company.
+
+o   G. G. (Gary) Alexander is promoted to Senior Vice President 
+    and General Manager - Architectural, Engineering & 
+    Construction Systems Company.  He was most recently Vice 
+    President of Sales for the Diversified Information Systems 
+    Company.  He brings nineteen years of general business 
+    experience to this position.  Gary will report to me.  
+    Reporting to Gary are:
+
+    -    J. A. (John) Puricelli is promoted to Vice President - 
+         AEC Operations.  John will be responsible for the current 
+         AEC unit as well as our new acquisition, Applied Research 
+         of Cambridge (UK).  John was most recently Director of 
+         AEC Industries.  John joined MDC in 1956 and has held a 
+         variety of management positions for us.
+
+    -    J. P. (John) Valentino is promoted to Vice President-AEC 
+         Sales and will be responsible for the domestic AEC sales 
+         force.  John was most recently Director Sales of the 
+         Eastern Region and has had eighteen years of sales and 
+         sales management experience.  John will relocate to 
+         St. Louis for this assignment.
+
+
+
+
+Also reporting to me at the Manufacturing & Engineering Systems 
+Company level are:
+
+o   G. F. (George) Meister remains as Senior Vice President and 
+    General Manager - Manufacturing Industry Systems Company.  
+    George's direct reports remain:
+
+    -    A. R. (Art) Francis - Vice President-Marketing
+
+    -    P. (Phil) Kreter - Vice President-Operations
+
+    -    G. T. (Guy) Rose - Vice President-Sales
+
+         -    E. V. (Ed) Hamilton who had been Director-Special 
+              Projects reporting to R. A. Fischer is appointed 
+              Director-National Programs reporting to Guy Rose.  
+              Ed replaces Jim Welch who has been promoted to Vice 
+              President-Sales, Diversified Information Systems 
+              Company.  We wish Jim all the best in his new job.
+
+o   D. J. (Dennis) Frey is promoted to Vice President-Controller 
+    for the Manufacturing & Engineering Systems Company.  Dennis 
+    was most recently Controller of the Manufacturing Information 
+    Systems Company.  He brings thirteen years of fiscal 
+    management experience to this position.
+
+o   P. D. (Paul) Scholten is promoted to Vice President-Strategic 
+    Planning and Technology for the Manufacturing & Engineering 
+    Systems Company.  Paul had been the Director of Computer Aided 
+    Technology for Douglas Aircraft Company.  He led the strategic 
+    studies for the Manufacturing Industry and is finishing up the 
+    strategic study for the Communications Industry.  Paul will 
+    relocate to St. Louis for this assignment.
+
+o   Staff personnel are:
+
+    -    H. A. (Herman) Rubin - Manager-Administration responsible 
+         for sales training, sales recruiting and special 
+         projects.
+
+    -    D. J. (Don) Schmid - Manager-Administration responsible 
+         for interface to ISG-Blue Sector Personnel
+
+
+
+(Original signed by J. J. Clancy)
+
+J. J. Clancy
+President
+Manufacturing & Engineering Systems Company
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Fri, 31 May 85 17:07:39 UT
+From: ISGHQ.POLICY@Ontyme.Tymnet
+Date: 31 MAY 85 17:19:29
+To: TXS.SUP@Ontyme.Tymnet
+Message-id: J98915@Ontyme.Tymnet
+Subject: PROMOTION OF JAMES C. WELCH
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Fri, 31 May 85 15:54:49 PDT
+Resent-To: Joe Smith <jms@X930.Tymnet>,Jon Mosser <mosserj@X930.Tymnet>,Craig Fletcher <fletcherc@X930.Tymnet>,Dennis Coffey <dencoff@X930.Tyment>,Dan Baigent <baigent@X930.Tymnet>
+
+          MCDONNELL DOUGLAS      ADMINISTRATIVE      NO:   ISG-85-76
+     INFORMATION SYSTEMS GROUP      BULLETIN         DATE: 28 MAY 85
+
+
+
+     To:           ISG Lists A-E (Includes MDAIS)
+
+     Subject:      PROMOTION OF JAMES C. WELCH
+
+
+
+     It is my pleasure to announce the promotion of James C. Welch to 
+     the position of Vice President - Sales - McDonnell Douglas 
+     Diversified Information Systems Company effective 1 July 1985.
+
+     In his new capacity, Jim will be responsible for the sale of ISG 
+     products to those companies that are the responsibility of the 
+     Diversified Information Systems Company and will report directly 
+     to me.
+
+     Jim joined McDonnell Douglas in 1969 and has held a variety of 
+     management positions in our sales organizations.  In 1978 he was 
+     promoted to Regional Sales Director and in 1984 became Director, 
+     National Programs for Manufacturing Industry Systems Company 
+     (MISCO).  In this role Jim was responsible for actively supporting 
+     the sale of non-MISCO products into the MISCO marketplace.
+
+     Please join me in wishing Jim success in his new position.
+
+
+
+     (Original signed by Richard A. Calvert)
+
+     Richard A. Calvert
+     Senior Vice President & General Manager
+     MD-DISCO
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Fri, 31 May 85 17:08:19 UT
+From: ISGHQ.POLICY@Ontyme.Tymnet
+Date: 31 MAY 85 17:21:12
+To: TXS.SUP@Ontyme.Tymnet
+Message-id: J98917@Ontyme.Tymnet
+Subject: ISG FISCAL MANAGEMENT - CUSTOMER SERVICES PROMOTIONS
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Fri, 31 May 85 15:54:52 PDT
+Resent-To: Joe Smith <jms@X930.Tymnet>,Jon Mosser <mosserj@X930.Tymnet>,Craig Fletcher <fletcherc@X930.Tymnet>,Dennis Coffey <dencoff@X930.Tyment>,Dan Baigent <baigent@X930.Tymnet>
+
+          MCDONNELL DOUGLAS        ADMINISTRATIVE     NO:   ISG-85-77
+     INFORMATION SYSTEMS GROUP        BULLETIN        DATE: 29 MAY 85
+
+
+
+     To:           ISG Blue Sector Lists A-E (Includes MDAIS)
+
+     Subject:      ISG FISCAL MANAGEMENT - CUSTOMER SERVICES PROMOTIONS
+
+
+
+
+     It is a pleasure to announce the promotion of Will Bowers and 
+     George Foelsch to Managers in the Customer Services organization 
+     effective 6 May 1985.
+
+     Will joined McAuto in 1975 and has held a variety of positions in 
+     the Credit and Collection/Accounts Receivable area where he 
+     recently was responsible for the selection and implementation of 
+     ISG-Blue Sector's new Accounts Receivable system.  He continues as 
+     Credit Manager and will be Manager of the Blue Sector Accounts 
+     Receivable Accounting.
+
+     George, with McAuto since 1968, has been in Programming, System 
+     Design and since 1977, in Fiscal Management.  He will be Manager - 
+     Customer Services - Invoicing and continue to coordinate the 
+     migration of Blue Sector Invoicing from Cupertino to St. Louis.
+
+     I sincerely appreciate the dedication these gentlemen have 
+     displayed during trying times and solicit your support and 
+     cooperation as they continue to provide responsive support to 
+     ISG's Business Unit community.
+
+
+
+     (Original signed by J. M. Godwin) 
+
+     J. M. Godwin 
+     Manager
+     Contracts & Customer Services
+
+
+     CONCURRENCE:
+
+
+
+     (Original signed by R. A. Mundloch)
+
+     R. A. Mundloch
+From: Dennis Coffey <DENCOFF@930.Tymnet> 
+Date: Thu, 6 Jun 85 8:48:59 PDT 
+To: sysmaint, baigent 
+Subject: Packaging change (simplification) 
+
+	First item:
+Craig agrees that we do the following to save unnecessary redundancy,
+especially when transmitting software to the domestic, customer 2020's.
+
+We check the current copy of the executable binary file of the program
+on the "production location hosts" (as they are called on the
+transmittal form) to determine if they are identical with the executable
+binary file created by our reconstruction of the file from the archived
+source files.  This checking is done in this way:
+	1.)  Determine the version number of the file built from the
+sources and of the files on the production hosts.
+	2.)  Determine the checksum of the file built from the sources
+and of the files on the production hosts.
+	3.)  If the production host's file has the same version number
+and checksum as the file built from sources, telecopy this executable
+binary file from the production host to another file name on the host
+with the executable binary file rebuilt from sources.  Check for any
+differences between the two files with the 'differences' command (which
+runs the FILCOM program).
+
+If the executable binary file from the production host is identical to
+the executable binary file built from sources, transmittal of the
+executable binary file to the production host is unnecessary.  This
+transmittal should definitely NOT be done if the host is a customer host
+(such as a domestic 2020).
+
+	Second item:
+The names of the packages that Craig suggested for the transmittal data
+base, TRABAS, (and thus for everyone's access to the packages in
+archives) is a 6 character mnemonic name, such as the filename part of
+the file-id in the .DOC file in the archive FDM file, with ".PKG" as the
+last four of the 10 characters allowed in the TRABAS and ARCHIV data
+bases.  E.g.: the COMMAND package will be called "COMMAN.PKG" on the
+"Software name" line of the transmittal form.
+
+Since this name will be the name by which the package will be known
+henceforth, we should be careful about what we choose for the first six
+characters.  Coordination of this naming is recommended if you have any
+questions.
+
+	Third item:
+
+Re. retransmittals of previously released packages:  If the package has
+been transmitted, the "production" hosts' software has been installed,
+and no changes to these installed files are to be made, then the new
+transmittal should be marked "Archive only".
+
+Every package transmitted should be re-transmitted with the following
+changes, and these changes should be implemented for every new package
+transmitted.:
+	1.)  Package name should follow the new convention of
+"<6-character name>.PKG".
+	2.)  Version number(s) for packages should reflect the new
+convention, including the manner in which the FDM file's name is
+affected by the version numbering scheme.  Package file name format:
+
+	"<4-char pkg name abbrev.>n[A|T].mmm"
+(where:  n = digit 0 thru 9, reflecting the host class;
+	 "A" or "T" = code reflecting Archive or Transmittal file; and
+	 mmm = package version number, starting with 001.)
+
+	3.)  The transmittals should include the following additional
+information about EACH included program and instructions to Software
+Distribution to enter this information into the TRABAS data base:  
+	    a.)  System number:  packaging host number;
+	    b.)  Program name:  name of individual program, as in last
+transmittal of individual program;
+	    c.)  Transmittal number:  (numbering method to be
+determined); 
+	    d.)  Version number:  version number of the individual
+program;
+	    e.)  Programmer name:  name of programmer who wrote the
+current version of the individual program;
+	    f.)  File name:  name of the package's current archive FDM
+file; 
+	    g.)  File extension:  extension of the package's current
+archive FDM file.
+
+If you have any questions, please ask,
+Dennis
+From: Dennis Coffey <DENCOFF@930.Tymnet> 
+Date: Fri, 7 Jun 85 14:19:41 PDT 
+To: BAIGENT, SYSMAINT 
+Cc: fletcherc 
+Subject: PACKAGE NAMES 
+
+To allow access through the TRABAS data base, package names must be
+restricted to 10 characters, max.  Craig and I have decided upon a
+convention for package naming, based upon this restriction.
+
+The package names, for the "Software name" line of the transmittal form,
+and for further abbreviation into the file names for the package FDM
+files will have this format:
+
+	nnnnnn.PKG
+(where:  "nnnnnn" = 6-character abbreviation of the package name.)
+
+For creating the FDM file names, the first four characters of this
+6-character abbreviation will be used.  The following "software names"
+will be used for the package names:
+
+PACKAGE NAME			'SOFTWARE' NAME
+------------			---------------
+operating system		OPRSYS.PKG
+monitor invoked procedures	MONPRC.PKG
+load complex			LDCPLX.PKG
+startup				STARTU.PKG
+session				SESSIO.PKG
+accounting			ACCTNG.PKG
+access				ACCESS.PKG
+license				LICENS.PKG
+master license			MSTRLC.PKG
+disk/tape			DSKTAP.PKG
+operator tools			OPRTLS.PKG
+information			INFORM.PKG
+commands			COMMAN.PKG
+file operations			FILOPS.PKG
+
+
+Thanks!
+Dennis
+From: Dennis Coffey <DENCOFF@930.Tymnet> 
+Date: Fri, 7 Jun 85 15:06:56 PDT 
+To: baigent, sysmaint 
+Cc: fletcherc 
+Subject: Pkging: 2020s 
+
+In the first round, we will not create any packages for any of the 2020
+hosts, unless the the software on the 2020s won't require updating, or
+the updating the software in the packages won't require updating any
+software in any other packages.  In the first round, in most cases the
+package to create will be the package for the PDP-10's.  We will create
+a zero level (universal) package only if that will be the final
+configuration:  only if the software on the 2020's is exactly the same
+as the software on the PDP-10's.  If there is to be a "2" level package
+(for the 2020's only), it will not be assembled until after the packages
+for all the Tymshare PDP-10s are completed.
+
+Dennis
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Sun, 2 Jun 85 23:04:18 UT
+From: FIN.SUP@Ontyme.Tymnet 
+Date: 02 JUN 85 23:21:48 
+To: TXS.SUP@Ontyme.Tymnet 
+Message-id: A39469@Ontyme.Tymnet 
+Subject: Meeting on compliance with the New 
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Mon, 10 Jun 85 14:31:53 PDT
+Resent-To: Dennis Coffey <dencoff@X930.Tyment>, Bruce Ring <bring@X930.Tyment>,
+	Dan Baigent <baigent@X930.Tymnet>, Helge Mortensen
+	<helgem@X930.Tymnet>, Carl A Baltrunas <carl@X930.Tymnet>
+
+                             MCDONNELL DOUGLAS
+                    BUSINESS & NETWORK SYSTEMS COMPANY
+
+
+                            M E M O R A N D U M
+
+
+
+
+TO:      All Individuals Involved with            COPIES: 
+         International Sales Transactions                
+                                                         
+FROM:    David A. Jacot                                  
+                                                         
+DATE:    May 30, 1985                                    
+                                                         
+SUBJECT: Meeting on compliance with the New  
+          Foriegn Sales Corporation (FSC) Rules
+
+======================================================================
+
+       On Thursday June 6, from 9AM to 12PM in the training room at 
+       VG2, a presentation will be made on the new IRS Rules 
+       pertaining to the Sales of Products and Service to 
+       International Customers.
+
+       If by chance you are involved in the Sales, Shipping, and/or 
+       Marketing of Products to the International Market Place. Your
+       attendance at this meeting would be highly suggested. I would 
+       also like to incourage attendance by individuals involved with 
+       the recording of accounting transactions for International 
+       Corporations.
+
+       If you have any questions please do not hesitate to give me a 
+       call at Ext. 6718.
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Mon, 3 Jun 85 22:04:18 UT
+From: NTD.J/SARGENT@Ontyme.Tymnet 
+Date: 03 JUN 85 23:00:42 
+To: TXS.SUP@Ontyme.Tymnet 
+Message-id: I94747@Ontyme.Tymnet 
+Subject: LIBRARY OPEN HOUSE 
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Mon, 10 Jun 85 14:31:56 PDT
+Resent-To: Dennis Coffey <dencoff@X930.Tyment>, Bruce Ring <bring@X930.Tyment>,
+	Dan Baigent <baigent@X930.Tymnet>, Helge Mortensen
+	<helgem@X930.Tymnet>, Carl A Baltrunas <carl@X930.Tymnet>
+
+                         M E M O R A N D U M
+
+                                          [] T Y M N E T, I N C
+DATE>      03 JUN 85  15:00                  Network Technology Development
+
+TO>        Supervisors
+
+COPIES>    
+
+FROM>      Dorothy Sands
+
+
+SUBJECT>   LIBRARY OPEN HOUSE
+
+
+-----------------------------------------------------------------------
+
+
+You are invited to an Open House on Tuesday, June 11,
+from 4PM-6PM.  It will be held in the NTD Technical
+Library in Building D at 10261 Bubb Road.  Please
+notify everyone in your group.  Refreshments will be
+served.  We are looking forward to seeing you at our
+new location.  
+
+Dorothy Sands
+Mary Proffitt
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Tue, 4 Jun 85 22:43:19 UT
+From: ISGHQ.POLICY@Ontyme.Tymnet 
+Date: 04 JUN 85 21:44:58 
+To: TXS.SUP@Ontyme.Tymnet 
+Message-id: J99604@Ontyme.Tymnet 
+Subject: ORGANIZATION OF MCDONNELL DOUGLAS FIELD SERVICE 
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Mon, 10 Jun 85 14:31:59 PDT
+Resent-To: Dennis Coffey <dencoff@X930.Tyment>, Bruce Ring <bring@X930.Tyment>,
+	Dan Baigent <baigent@X930.Tymnet>, Helge Mortensen
+	<helgem@X930.Tymnet>, Carl A Baltrunas <carl@X930.Tymnet>
+
+           MCDONNELL DOUGLAS        ADMINISTRATIVE    NO:   ISG-85-78
+     INFORMATION SYSTEMS GROUP        BULLETIN        DATE: 30 MAY 85
+
+
+
+     To:           ISG LIST A - E (Including MDAIS)
+
+     Subject:      ORGANIZATION OF MCDONNELL DOUGLAS FIELD SERVICE 
+                   COMPANY
+
+     Recently, the ISG Executive Board approved integration of three 
+     (3) large field service organizations.  They were:
+
+         .    The former Microdata North American Field Service 
+              Division;
+
+         .    The former Tymshare Computer Systems & Support Division;
+
+         .    The former Tymnet Network Field Engineering Division.
+
+     This new resource group, McDonnell Douglas Field Service Company, 
+     has a synergistic purpose.  It will:
+
+         .    Enable improved ISG customer and business unit 
+              satisfaction from a more effective post-sale support 
+              function.
+
+         .    Better use its considerable aggregate of geographical 
+              distribution, service capability and managerial talent.
+
+         .    Contribute to a stronger partnership with ISG 
+              Engineering, Manufacturing and Sales to better ensure 
+              shared success.
+
+     Following a very carefully developed set of operating principles, 
+     an architectural structure and management staff have been selected 
+     for the Field Service Company.
+
+     By utilizing participative management methods, there is an 
+     exciting potential for growth and success for the Field Service 
+     organization.
+
+     The following appointments have been made and are effective 
+     immediately:
+
+     WARREN CAGGIANO - Director of Sales
+                       _________________
+
+         Warren was the former Manager of Sales & Marketing of Computer 
+         Support Services Division.  He has been with Tymshare MDC for 
+         eight (8) years, during which time he has played an 
+         instrumental role in the growth of Tymshare's third party 
+         maintenance organization (CSS).
+
+     VERN HART - Vice President of Technical Operations (Acting)
+                 _______________________________________________
+
+         Interviews are scheduled; we expect to fill this position in 
+         the very near future.
+
+
+     HANS KINTSCH - Controller and Director of Financial Administration
+                    ___________________________________________________
+
+         Prior to joining MDFSC, Hans was the Vice President of Finance 
+         for the Braegen Corporation.  Previously Hans held a number of 
+         posts with Cal Comp.  He received both his B.S. degree and his 
+         Masters in Business Administration from the University of 
+         California, Irvine.
+
+     JOHN LORTS - Director of Material and Logistics
+                  __________________________________
+
+         John came to McDonnell Douglas in September, 1984, from Texas 
+         Instruments.  At Texas Instruments, he spend thirteen (13) 
+         years in various Field Service Management positions.  These 
+         positions included teaching, managing Technical Support, 
+         Regional Field Management, Marketing/Merchandising and Program 
+         Management.
+
+     BOB MARTINEZ - Director of Planning and Marketing
+                    __________________________________
+
+         Bob was the former Director of Staff Resources and Security 
+         for Tymshare.  He also held positions of Facility Manager, 
+         Marketing & Customer Support on behalf of Stanford Research 
+         Institute and was National Director for Computer Management 
+         Services.  At Computer Management Services, Bob was 
+         responsible for Video, Computer Based, Human Resource & 
+         Management Development Training.
+
+     CURT MILLER - Vice President of Field Operations
+                   __________________________________
+
+         Curt was the former Vice President of Network Field 
+         Engineering.  He has been in the Field Service business for 
+         twenty-five (25 years).  Before working with Tymshare, he 
+         worked for IBM, Burroughs, G. E. and NCR.
+
+     JOHN SWARBRICK - Vice President - Quality
+                      ________________________
+
+         John joined Tymshare in January, 1973, as Manager of Computer 
+         Maintenance.  He has held positions as Sales Manager, Depot 
+         Manager and General Manager of Computer Systems & Support.  
+         His most recent position was that of Vice President of 
+         Computer Support Services (CSS).
+
+     Within the next few weeks, there will be further realigning of the 
+     respective organizations to ensure that the McDonnell Douglas 
+     Field Service Company can perform its mission of:
+
+              Providing quality, end-to-end, cost effective support for 
+              MDC customers and business units with growth and profit 
+              ability consistent with user satisfaction.
+
+
+
+     (Original signed by Vern H. Hart)
+
+     Vern H. Hart
+     President
+     MCDONNELL DOUGLAS FIELD SERVICE COMPANY
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Tue, 4 Jun 85 22:43:50 UT
+From: ISGHQ.POLICY@Ontyme.Tymnet 
+Date: 04 JUN 85 21:46:06 
+To: TXS.SUP@Ontyme.Tymnet 
+Message-id: J99605@Ontyme.Tymnet 
+Subject: ISG Top Management Appointments 
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Mon, 10 Jun 85 14:32:03 PDT
+Resent-To: Dennis Coffey <dencoff@X930.Tyment>, Bruce Ring <bring@X930.Tyment>,
+	Dan Baigent <baigent@X930.Tymnet>, Helge Mortensen
+	<helgem@X930.Tymnet>, Carl A Baltrunas <carl@X930.Tymnet>
+
+          MCDONNELL DOUGLAS        ADMINISTRATIVE     NO:   85-79
+     INFORMATION SYSTEMS GROUP       BULLETIN         DATE: 3 June 85
+
+
+
+     To:           MDC-HQ and Corporate Office Lists A-D
+                   MDC Plant Lists A-C
+                   ISG Lists A-H (Includes MDAIS)
+
+     Subject:      ISG Top Management Appointments
+
+
+
+     1.  I am very pleased to announce effective immediately the 
+         appointments of Bob Fischer and Gary Liebl as the Information 
+         Systems Group Executive Officer and the Group Operating 
+         Officer, respectively.  As such they will constitute the 
+         headquarters of ISG and will have all business units and group 
+         staffs reporting to them.  They will operate as a team with 
+         Bob performing the chief executive duties, such as strategic 
+         planning, policy formulation and coordination, 
+         acquisitions/divestitures, corporate interface, group 
+         organizational matters, and supervision of the group staff.  
+         Reporting to Bob, Gary will perform the chief operating 
+         duties, including overseeing the operation of all the business 
+         units, operating plans, productivity programs, and business 
+         unit organizational matters.  Both Bob and Gary will continue 
+         as MDC officers with the title of Corporate Vice President.
+
+     2.  The breadth and depth of the capabilities spread across our 
+         business units offers ISG a unique opportunity.  Bob and Gary 
+         will share responsibility for fostering intercomponent 
+         relationships to maximize the benefits of this strength.  
+         Strategy implementation and strategic and operating results 
+         will also be shared responsibilities.
+
+     3.  Temporarily continuing to report to Bob will be McDonnell 
+         Douglas Financial Transaction Systems, McDonnell Douglas 
+         Information Processing, Dynatax, Unitax and MSGI.  Most of 
+         these should be transitioned to Gary by the end of this year.
+
+     4.  I am very enthusiastic about the new ISG headquarters 
+         structure and especially about the two new executives who 
+         constitute the headquarters team.  Both are seasoned 
+         executives with outstanding records, both are highly 
+         action-oriented, both know the business intimately, both have 
+         strong marketing backgrounds, both are strong advocates of our 
+         new culture, both have contributed greatly to the ISG vision 
+         and organizational structure as it has evolved, both are team 
+         builders, both are outstanding, demanding leaders.   They also 
+         represent a good balance in that Bob has extensive large 
+         company experience, will continue to be located in St. Louis, 
+         and is especially strong in strategic vision and in broad 
+         communications/team building.  Gary on the other hand has 
+         extensive smaller company experience, will continue to be 
+         located in Southern California, and is especially strong in 
+         tight operating control and in executive team building.
+
+
+     5.  Needless to say, the Blue and Gold Sectors are hereby 
+         dissolved, as promised.  With essentially all the business 
+         units reporting to Gary, ISG will now be run as one integrated 
+         group.
+
+     6.  For now there will be a centralized finance support center in 
+         St. Louis to provide financial support for those business 
+         units which do not yet have fully functional financial 
+         organizations.  The goal will be to achieve business unit 
+         independence and have the people in this organization placed 
+         within those business units no later than the end of 1986.  In 
+         addition, decisions on how business units will continue to 
+         obtain human resources and law support will be announced soon.
+
+     7.  Concurrent with Bob's and Gary's promotions, Rich Calvert, 
+         Jerry Causley, and Vern Smith are promoted to the positions of 
+         President of McDonnell Douglas Diversified Information 
+         Systems, McDonnell Douglas Information Systems International, 
+         and McDonnell Douglas Computer Systems, respectively.
+
+     8.  With these actions the top level organizational structure of 
+         ISG is complete with the one exception of the communications 
+         industry business unit.  That awaits the completion of the 
+         study by the communications industry strategic task force.  
+         That should be accomplished by the end of June.
+
+     9.  With the implementation of this organizational structure my 
+         active role in ISG will be complete, and I shall return to my 
+         other role as President of MDC.  I can do that with great 
+         peace of mind and confidence that ISG is in the hands of an 
+         outstanding leadership team.
+
+
+
+     (Original signed by John F.McDonnell)
+
+     John F. McDonnell
+     Chairman
+     ISG Executive Board
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Fri, 7 Jun 85 2:05:21 UT
+From: MFG.V/NICHOLS@Ontyme.Tymnet 
+Date: 07 JUN 85 00:02:42 
+To: TXS.SUP@Ontyme.Tymnet 
+Message-id: M31257@Ontyme.Tymnet 
+Subject: "MANUFACTURING Employee Phone Listing"... 
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Mon, 10 Jun 85 14:32:09 PDT
+Resent-To: Dennis Coffey <dencoff@X930.Tyment>, Bruce Ring <bring@X930.Tyment>,
+	Dan Baigent <baigent@X930.Tymnet>, Helge Mortensen
+	<helgem@X930.Tymnet>, Carl A Baltrunas <carl@X930.Tymnet>
+
+ 
+                             MANUFACTURING
+ 
+                        Employee Phone Listing
+ 
+PHONE NUMBER     NAME IS             N. FIRST STREET #      COST CENTER
+ 
+             (open)                  435-7613                  2003
+             (open)                  435-7619                  2003
+             (open)                  435-7627                  2003
+446-7896     ADEYEMI, Thomas         435-0200                  2070
+446-7896     AIYEGBUSI, Olatunji     435-0200                  2070
+446-7896     ALGER, Teresita         435-0200                  2070
+446-6199     ASHAOLU, Peter          435-7641+                 2013
+446-7896     BANH, An                435-0200                  2070
+446-                                 435-0200
+446-                                 435-0200
+446-                                 435-0200
+446-                                 435-0200
+446-                                 435-0200
+446-                                 435-0200
+446-7688     BALIOLA, Denise         435-7615                  2003
+446-7968     BOARD TEST                None                    2071
+446-7550     BOHN, Ger               435-7633                  2003
+446-6263     CLAUS, Chris            435-7610                  2003
+446-6720     COMPUTER AREA (Dial-in) 435-????                  2003
+446-7899     CONFERENCE ROOM         435-7626+                 2003
+             CONFERENCE ROOM         435-7628                  2003
+446-7660     COOLIDGE, Bob           435-7629                  2003
+446-7084     DATA ENTRY                None                    2003
+446-6100     DATA TEST/NELSON        435-????                  2071
+             DOOLITTLE, Cynthia      435-7637+                 2070
+446-6220     DOWNEY, Mike            435-7605+                 2071
+446-7771     EARLS, E. Phil          435-7624                  2003
+             FARLEY, Anita           435-7603                  2003
+446-6135     GALLAWAY, Nenette       435-7609                  2003
+446-6916     GIUSTI, Jeff            435-7616                  2071
+446-7751     GUM, Scott              435-7608                  2003
+446-6823     HAYMES, John            435-7643+                 2003
+446-6418*    KADANI, Harry           435-7639+                 2013
+446-6268     KELLEY, Thom            435-7602                  2003
+446-6912     KEOHANE, Susan          435-7604+                 2003
+             KITCHEN                 435-7648 Nite Bell Only   2003
+446-7904     KLEMASH, Patty          435-7623                  2003
+446-6361*    LANG, Sarah             435-7635+                 2070
+             LE, Khuong              435-7617                  2071
+446-7900     LUNCH ROOM                None                    2003
+446-7897     MAIN NUMBER             435-0200+                 2003
+446-7419     McFARLIN, Jim           435-7645+                 2071
+446-6215     McGEE, Don              435-7630                  2003
+446-7278     McINTYRE, Terry         435-7614                  2003
+             MFG Area                435-7646+                 2003
+             MFG Area                435-7647+                 2003
+446-7799     MINTON, Carol           435-7622                  2003
+446-7976     NELSON, Phil            435-7620                  2071
+             NICHOLS, Vikkee         435-7650                  2003
+446-6384     PATIL, Shekhar          435-7618                  2071
+446-6638     PERRY, Dave             435-7611                  2003
+446-7902     PLANT CLEARANCE           None                    2013
+446-8019**   POULAIN, Lou            435-7634+                 2003
+446-7896**   PRODUCTION ROOM         435-7632                  2070
+446-7657     PURCHASING              435-7612                  2003
+446-6418     QA - Receiving          435-7640+                 2013
+             QA - Receiving Insp     435-7642+                 2013
+446-7895     RECEPTION               435-7601+                 2003
+             SHEPPARD, Bill          435-7625                  2071
+446-7529     SHIPPING                435-7644+                 2003
+             STURGEON, Sue           435-7607                  2003
+446-7898     SYLVESTER, Bobbi        435-7638                  2013
+446-7382     TEST                      None                    2071
+446-7551     TEST                      None                    2071
+446-6860**   TIMMONS, Janet          435-7636+                 2070
+446-6270     TIPTON, Mike            435-7606+                 2003
+446-7661     TRAPP, Bryan            435-7631                  2003
+446-6260*    WAREHOUSE               435-7644 Nite Bell        2003
+446-8018**   WAREHOUSE               435-7644+                 2003
+446-6917     WEBSTER, Bill           435-7621                  2071
+ 
+ + Operational
+ * Disconnect and refer to new number.
+** Disconnect and reassign.
+PLS ISSUE THIS LIST TO EVERYONE IN YOUR DEPARTMENT.
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Mon, 10 Jun 85 19:15:36 UT
+From: MCAUTO.J/GODWIN@Ontyme.Tymnet 
+Date: 07 JUN 85 20:13:43 
+To: TXS.SUP@Ontyme.Tymnet 
+Message-id: A45235@Ontyme.Tymnet 
+Subject: "THE FOLLOWING LIST CONTAINS REVISED"... 
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Mon, 10 Jun 85 14:32:14 PDT
+Resent-To: Dennis Coffey <dencoff@X930.Tyment>, Bruce Ring <bring@X930.Tyment>,
+	Dan Baigent <baigent@X930.Tymnet>, Helge Mortensen
+	<helgem@X930.Tymnet>, Carl A Baltrunas <carl@X930.Tymnet>
+
+THE FOLLOWING LIST CONTAINS REVISED TELEPHONE NO.S EFFECTIVE
+10 JUNE 1985 FOR CUSTOMER SERVICES - ST. LOUIS:
+
+MANAGER:
+JOE GODWIN                 232-3462/62947  ISGFM.J/GODWIN
+BARB BYASSEE               233-3050/62946
+
+ACCOUNTS RECEIVABLE/CREDIT & COLLECTION:
+WILL BOWERS                232-8916
+GLENN BREMER                234-6896
+KATHY CONWAY               234-6885
+DONNA DELANEY              232-7911
+DONNA MEYER                234-6895
+STEVE PETLANSKY            234-6894
+SANDRA PORTER              233-0209
+JAN PRATZKI               232-3105
+
+COMMISSIONS:
+JIM CROWDUS               234-6880
+PAULA DICKERSON            233-3052
+JACK SHEMWELL              232-6384
+NANCY TODD                 232-6383
+
+CONTRACTS:
+JOHN ANDRZEJEWSKI          233-6102
+AARON BAESE                233-6109
+EDWARD BOSLER              233-6108
+RICHARD HATZ               232-6850
+THOMAS HODEL               232-5109
+VICTORIA KRAMER            232-5452
+JAMES MCDANIEL             233-6103
+JOAN MILLER                232-6727
+SHERRY MURPHY              233-6100
+WILL POWERS                233-3053
+GERALD SALE                233-6104
+GLEN STICKNEY              233-6101
+LLOYD WADE                 233-6112
+JERRY WELSH                233-6106
+
+INVOICING:
+MICHAELEE AMMON            234-6884
+KATHY BELL                 234-6883
+BETTY COOPER               234-6888
+PAM DONLEY                 234-6890
+BRAD DOUGLAS      234-6892
+FRANKIE FITZGERALD         234-6882
+GEORGE FOELSCH             232-3057
+LINDA GREATHOUSE           234-6889
+ROD KIRKLAND               232-8460
+ROSE SHIELDS               234-6893
+JUDY SKINNER               232-3059
+SALLY TEAL                 234-6886
+GARY VENTURELLA            232-3058
+NANCY WOOD                 234-6887
+
+
+
+ONTYME ADDRESSES:
+
+WILL BOWERS               ISGFM.W/BOWERS
+GLENN BREMER              ISGFM.A/REC
+DONNA DELANEY             ISGFM.A/REC
+STEVE PETLANDKY           ISGFM.A/REC
+SANDRA PORTER              ISGFM.A/REC
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Mon, 10 Jun 85 19:16:12 UT
+From: CPC.L/MORRIS@Ontyme.Tymnet 
+Date: 08 JUN 85 00:31:18 
+To: TXS.SUP@Ontyme.Tymnet 
+Message-id: A45626@Ontyme.Tymnet 
+Subject: VALLEY FORGE SHUTDOWN UPDATE 
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Mon, 10 Jun 85 14:32:17 PDT
+Resent-To: Dennis Coffey <dencoff@X930.Tyment>, Bruce Ring <bring@X930.Tyment>,
+	Dan Baigent <baigent@X930.Tymnet>, Helge Mortensen
+	<helgem@X930.Tymnet>, Carl A Baltrunas <carl@X930.Tymnet>
+
+     
+                        M E M O R A N D U M  
+     
+     
+     DATE:  JUNE 7, 1985 
+     
+     ATTN:  ALL CONCERNED
+     
+     FROM:  LANDA MORRIS 
+            RESOURCE PLANNING & MANAGEMENT   
+     
+     SUBJ:  VALLEY FORGE SHUTDOWN UPDATE
+     
+-------------------------------------------------------------------------  
+     
+     THERE HAS BEEN SOME SLIPPAGE IN THE PREVIOUSLY TARGETED DATES FOR
+THE VALLEY FORGE CENTER SHUTDOWN.  BELOW IS AN UPDATE AND STATUS OF   
+TARGETED DATES FOR MAJOR MILESTONES:    
+     
+     
+        #1  FIRST 3083 INSTALLED.  V-43 USERS MOVED TO     MAY 3 - MAY 6   
+            D-43.  (COMPLETED)
+     
+        #2  MIGRATE D49 TO D43  (COMPLETED)                MAY 24 - MA 26  
+     
+        #3  MIGRATE V44 TO V48                             MAY 17 - JN 16  
+     
+        #4  MOVE V48 TO 3083 #2 (D-48)                     JUN 28 - JUL 1  
+     
+     
+PDP-10'S  
+--------  
+     
+        MOVE V22 TO CUPA C22  (COMPLETED)                  MAY 3  - MAY 6  
+     
+        MOVE V72 TO D32'S H/W (D72)  (COMPLETED)           MAY 10 - MA 13  
+     
+        MOVE V70 TO CUPA (C-70)                            JUN 15 - JU 17  
+     
+     
+370'S
+-----
+     
+        MIGRATE D52 TO D48 (CUSTOMER TO CUSTOMER)          JUL 1 - JUL 30  
+     
+        MIGRATE D85 TO D48 (CUSTOMER TO CUSTOMER)          AUG 1 - AUG 30  
+     
+     
+     IN THE EVENT THAT A MAJOR MILESTONE'S TARGET DATE SLIPS, THIS OUT-    
+LINE WILL BE UPDATED AND REISSUED.  IN THE MEANTIME, IF YOU HAVE ANY  
+QUESTIONS OR CONCERNS PLEASE CONTACT ME AT (408)446-6870 OR VIA ONTYME
+AT CPC.L/MORRIS.    
+     
+     
+THANK YOU,
+LANDA/RPM
+Received: From EMSTXS.Ontyme.Tymnet by C930.Tymnet; Mon, 10 Jun 85 19:18:08 UT
+From: TYMNFE.SUP@Ontyme.Tymnet 
+Date: 10 JUN 85 19:10:56 
+To: TXS.SUP@Ontyme.Tymnet 
+Message-id: M32155@Ontyme.Tymnet 
+Subject: ORGANIZATION OF MDFSC--FIELD OPERATIONS DIVISION 
+Resent-From: Tymcom-X Supervisor <TXSSUP@X930.Tymnet>
+Resent-Date: Mon, 10 Jun 85 14:32:22 PDT
+Resent-To: Dennis Coffey <dencoff@X930.Tyment>, Bruce Ring <bring@X930.Tyment>,
+	Dan Baigent <baigent@X930.Tymnet>, Helge Mortensen
+	<helgem@X930.Tymnet>, Carl A Baltrunas <carl@X930.Tymnet>
+
+               MCDONNELL DOUGLAS FIELD SERVICE COMPANY 
+     
+                     FIELD OPERATIONS DIVISION    
+     
+     
+     
+     
+DATE:    JUNE 8, 1985    
+     
+     
+     
+TO:    ISG MANAGEMENT LIST A-E (INCLUDING MDAIS)  
+       FIELD OPERATIONS EMPLOYEES  
+     
+FROM:  CURT MILLER, VICE PRESIDENT 
+       FIELD OPERATIONS, MDFSC
+     
+SUBJ:  ORGANIZATION OF MDFSC--FIELD OPERATIONS DIVISION
+     
+-------------------------------------------------------------------------- 
+     
+     
+FOLLOWING A SERIES OF MEETINGS WITH THE NATIONAL/REGIONAL/OPERATIONS/ 
+ADMINISTRATIVE MANAGERS OF THE THREE (3) FIELD SERVICE ORGANIZATIONS  
+OF MICRODATA, COMPUTER SYSTEMS AND SUPPORT, AND NETWORK FIELD ENGINEERING, 
+AN ORGANIZATIONAL STRUCTURE WAS FORMULATED WHICH BEST UTILIZES THE    
+TALENTS,  ENERGIES AND NEEDS OF THE FIELD OPERATIONS DIVISION.   
+     
+I AM CONFIDENT IN THE ABILITIES OF ALL OUR FIELD OPERATIONS EMPLOYEES 
+TO MAKE THIS DIVISION ONE OF THE STRONGEST ASSETS OF THE FIELD SERVICE
+COMPANY.  THERE ARE CONSIDERABLE CHALLENGES AHEAD, BUT WITH EACH 
+INDIVIDUAL CONTRIBUTING HIS/HER BEST, WE WILL NOT ONLY MEET THE OVERALL    
+COMPANY GOALS, BUT EACH INDIVIDUAL WILL BE PROVIDED WITH AN OPPORTUNITY    
+TO GROW WITH THE COMPANY.
+     
+THE NEW ORGANIZATION IS EFFECTIVE MONDAY, JUNE 10, 1985, AND IS AS    
+FOLLOWS:  
+     
+     
+EASTERN FIELD OPERATIONS------Thomas (Tom) J. Brozena, Director  
+     
+   Tom has been the Eastern Regional Manager for Tymshare   
+   Computer Systems and Support (CSS) since 1984.  Prior    
+   to that, he was a Federal Marketing Representative for   
+   Tymshare and TRW after a 22 year career in the data 
+   processing area of the United States Marine Corps.  
+   Tom will continue to be based out of the Washington, D.C. area.    
+   The new location of the Eastern Field Operations Headquarters is:  
+     
+                 EASTERN FIELD OPERATIONS    
+                 10001 GEORGE PALMER HIGHWAY 
+                 SUITE 131    
+                 LANHAM, MD 20706  
+                 (301) 459-8363    
+                 ONTYME: TCMS.SUP (request ontyme 
+                 forwarding to Tom on the THS. system) 
+     
+   As Director of Eastern Field Operations, Tom will oversee
+   the Field Service activities in the following states:    
+     
+        Maine                       Connecticut   
+        New Hampshire               Rhode Island  
+        Vermont                     Delaware 
+        New York                    Maryland 
+        Pennsylvania                West Virginia 
+        Massachusettes              Virginia 
+        North Carolina              South Carolina
+        New Jersey  
+     
+     
+     
+CENTRAL FIELD OPERATIONS------Ronald (Ron) P. Dvorsky, Director  
+     
+   Ron has been in the Field Service business for 20 years, most 
+   recently as the Eastern Region Field Operations Director for  
+   the former Microdata Corporation.  Ron will be based out of   
+   Altanta, Georgia, the new location of the Central Field Operations 
+   Headquarters:    
+     
+                 CENTRAL FIELD OPERATIONS    
+                 6195 BARFIELD ROAD, N.E.    
+                 SUITE 170    
+                 ATLANTA, GA 30328 
+                 (404) 252-8065    
+                 ONTYME: MICROD.R/DVORSKY    
+     
+   The Central Field Operations area of responsibility will be:  
+     
+        North Dakota                Missouri 
+        South Dakota                Arkansas 
+        Nebraska                    Louisiana
+        Oklahoma                    Wisconsin
+        Kansas                      Illinois 
+        Texas                       Michigan 
+        Minnesota                   Indiana  
+        Iowa                        Ohio
+        Kentucky                    Tennesse 
+        Mississippi                 Alabama  
+        Georgia                     Florida  
+        Puerto Rico 
+     
+     
+     
+WESTERN FIELD OPERATIONS------Gene R. Huffman, Director
+     
+   Gene was the former Microdata Central Region Field Operations 
+   Director and has had 26 years experience in the Field Service 
+   business.  Gene is currently residing in Oakbrook, Illinois,  
+   but will be relocating shortly to California.  Until such time
+   as the new Western Field Operations Headquarters location is  
+   finalized, Gene will direct the Western Area from his current 
+   location:   
+     
+                 WESTERN FIELD OPERATIONS    
+                 (temporary location)   
+                 2809 BUTTERFIELD ROAD  
+                 SUITE 175    
+                 OAK BROOK, IL 60521    
+                 (312) 920-8050    
+                 ONTYME: MICROD.G/HUFFMAN    
+     
+Gene will be responsible for the Field Service activities in the 
+following states:   
+     
+        Alaska                      Idaho    
+        Hawaii                      Nevada   
+        Washington                  Arizona  
+        Oregon                      Utah
+        California                  New Mexico    
+        Montana                     Wyoming  
+        Colorado    
+     
+     
+     
+FIELD SUPPORT-----------------Jerry H. McCoy, Director 
+     
+   Jerry has been with the former Tymshare organization for 6    
+   years, most recently as National Manager, Computer Systems    
+   and Support.  He has a solid background in Field Service 
+   and Management which will be utilized in a liaison role  
+   to both internal and external customers.  Jerry will also
+   be responsible for the MDC internal account, new product 
+   introduction, data center management, and overall field  
+   support.    
+     
+   Jerry will continue to be located in the Bay Area at:    
+     
+                 FIELD SUPPORT
+                 39100 LIBERTY STREET   
+                 FREMONT, CA 94538 
+                 (415) 794-2525    
+                 ONTYME: TCMS.J/MCCOY   
+     
+     
+     
+FIELD TELECOMMUNICATION SUPPORT--Patrick (Pat) A. Diamond, Manager    
+     
+   Pat has been with the former Tymnet organization for
+   approximately 5 years, most recently as the National
+   Field Manager.  He has considerable telecommunication    
+   experience and has been on the forefront of several 
+   advanced communication projects.  Pat is responsible
+   for integrating the telecommunication/network technology 
+   into the Field Operations Division.  
+     
+   Pat will be located in the Bay Area, and can be reached  
+   currently at:    
+     
+                 FIELD TELECOMMUNICATION SUPPORT  
+                 10161 BUBB ROAD   
+                 CUPERTINO, CA 95014    
+                 (408) 446-7676    
+                 ONTYME: TYMNFE.DIAMOND 
+     
+     
+     
+OPERATIONS SUPPORT-------------Marlene M. Ford, Manager
+     
+   Marlene has been with the former Microdata Field Service 
+   Group for 4 years, most recently as the Customer Service 
+   Operations Manager.  She has significantly contributed   
+   to the outstanding success of the Microdata Central 
+   Dispatch function and overall high operational quality   
+   of the Field Service group.  In addition to her current  
+   position, Marlene is also the Vice President of the 
+   North American Field Service Managers, Orange County
+   Chapter.    
+     
+   The Operations Group will be headquartered in Irvine,    
+   California, and have responsibility for central dispatch,
+   call screening, and remote operations centers.  Marlene  
+   can be reached as follows: 
+     
+                 OPERATIONS SUPPORT
+                 2361 MCGAW AVENUE 
+                 P.O. BOX 19501    
+                 IRVINE, CA 92713  
+                 (714) 250-1000, EXT. 7145   
+                 ONTYME: MICROD.M/FORD  
+     
+     
+ADMINISTRATION----------------Patti J. McDonald, Manager    
+     
+   Patti has been with the former Tymnet Field Engineering  
+   organization for the last 3 years.  She has been in 
+   administrative management positions for 8 years and 
+   brings a high degree or organizational ability to the    
+   Field Operations Division.  Patti will be responsible    
+   for coordinating all administration, training, and  
+   personnel functions, as well as providing Field inter-   
+   face to finance and computer system resources. 
+     
+   Patti will be located in the Bay Area, and currently
+   can be reached at:    
+     
+                 ADMINISTRATION    
+                 10161 BUBB ROAD   
+                 CUPERTINO, CA 95014    
+                 (408) 446-6763    
+                 ONTYME: TYMNFE.P/MCDONALD
+From: Dennis Coffey <DENCOFF@930.Tymnet> 
+Date: Tue, 11 Jun 85 15:34:57 PDT 
+To: baigent, sysmaint 
+Subject: update of update to packaging doc. 
+
+----------------------------------------------------------------
+From: Dennis Coffey <DENCOFF@930.Tymnet> 
+Date: Thu, 6 Jun 85 8:48:59 PDT 
+To: sysmaint, baigent 
+Bcc: DENCOFF@C930.Tymnet 
+Subject: Packaging change (simplification) 
+
+	First item:
+Craig agrees that we do the following to save unnecessary redundancy
+when transmitting software to the domestic, customer 2020's.
+
+We check the current copy of the executable binary file of the program
+on the "production location hosts" (as they are called on the
+transmittal form) to determine if they are identical with the executable
+binary file created by our reconstruction of the file from the archived
+source files.  This checking is done in this way:
+	1.)  Determine the size of the file built from the sources and
+of the files on the production hosts, in memory words (not just in
+memory pages).  This is done with the "DIR" command, using the "/WORDS"
+switch.
+	2.)  Determine the version number of the file built from the
+sources and of the files on the production hosts.
+	3.)  Determine the checksum of the file built from the sources
+and of the files on the production hosts.
+
+If the size (in memory words), the version number and the checksum are
+all identical, it can be assumed that the files are identical.  If the
+executable binary file from the production host is identical to the
+executable binary file built from sources, transmittal of the executable
+binary file to the customer host (such as a domestic 2020) should not be
+done.
+
+	Second item:
+The names of the packages that Craig suggested for the transmittal data
+base, TRABAS, (and thus for everyone's access to the packages in
+archives) is a 6 character mnemonic name, such as the filename part of
+the file-id in the .DOC file in the archive FDM file, with ".PKG" as the
+last four of the 10 characters allowed in the TRABAS and ARCHIV data
+bases.  E.g.: the COMMAND package will be called "COMMAN.PKG" on the
+"Software name" line of the transmittal form.
+
+Since this name will be the name by which the package will be known
+henceforth, we should be careful about what we choose for the first six
+characters.  Coordination of this naming is recommended if you have any
+questions.
+
+	Third item:
+
+Re. retransmittals of previously released packages:  If the package has
+been transmitted, the "production" hosts' software has been installed,
+and no changes to these installed files are to be made, then the new
+transmittal should be marked "Archive only".
+
+Every package transmitted should be re-transmitted with the following
+changes, and these changes should be implemented for every new package
+transmitted.:
+	1.)  Package name should follow the new convention of
+"<6-character name>.PKG".
+	2.)  Version number(s) for packages should reflect the new
+convention, including the manner in which the FDM file's name is
+affected by the version numbering scheme.  Package file name format:
+
+	"<4-char pkg name abbrev.>n[A|T].mmm"
+(where:  n = digit 0 thru 9, reflecting the host class;
+	 "A" or "T" = code reflecting Archive or Transmittal file; and
+	 mmm = package version number, starting with 001.)
+
+	3.)  The transmittal should include instructions to Software
+Distribution to enter the following information about EACH program in
+the package into the TRABAS data base.  The information marked with an
+asterisk should be included in the package's documentation file, for
+information to Software Distribution.  The instructions should indicate
+this location of this information.
+	    a.)  System number:  packaging host number;
+	    b.)  *  Program name:  name of individual program, as in
+last transmittal of individual program;
+	    c.)  *  Version number:  version number of the individual
+program;
+	    d.)  *  Programmer name:  name of programmer who wrote the
+current version of the individual program;
+	    e.)  File name:  name of the package's current archive FDM
+file; 
+	    f.)  File extension:  extension of the package's current
+archive FDM file.
+
+If you have any questions, please ask,
+Dennis
+----------------------------------------------------------------
+From: Dennis Coffey <DENCOFF@930.Tymnet> 
+Date: Tue, 11 Jun 85 15:40:35 PDT 
+To: baigent, sysmaint 
+Cc: fletcherc 
+Subject: Pkging: 2020s 
+
+In the first round, we will not create any packages for any of the 2020
+hosts, unless the the software on the 2020s won't require updating.  In
+these cases (probably very few) the package for the 2020's will be for
+"archive only".
+
+In the first round, in most cases the package to create will be the
+package for the PDP-10's.  We will create a zero level (universal)
+package only if that will be the final configuration:  only if the
+software on the 2020's is exactly the same as the software on the
+PDP-10's.  If there is to be a "2" level package (for the 2020's only)
+with any software updating, it will not be assembled until after the
+packages for all the Tymshare PDP-10s are completed.
+
+Dennis
+    MY.Å

@@ -1,0 +1,465 @@
+                        SYSTEM COMMANDS AND PROGRAMS                        SYSTEM COMMANDS AND PROGRAMS
+
+
+                                    NOTE
+
+             The page  length  is  set  by  default  for  video
+             terminals  only.  Therefore, the notation N/A (not
+             applicable) appears in the table under LENGTH  for
+             hard-copy terminals.
+
+   Formats   Formats
+
+        SET TTY arg
+
+             Sets a characteristic for your terminal.
+
+        SET TTY NO arg
+
+             Deletes a characteristic for your terminal.
+
+                  arg        Where:    arg is the characteristic that can  be  set  by  this
+                  command.  The arguments to SET TTY are listed below.
+
+                  NO                  NO  turns  off  the  bits  set  by  the  argument  it
+                  accompanies.   For example, SET TTY LC sets lowercase
+                  capability.   SET  TTY  NO  LC  turns  off  lowercase
+                  ability.
+
+                  The word SET is an optional portion  of  the  command
+                  line.
+
+        Argument                            Function        Argument                            Function
+
+        ALTMODE             Converts the ALTmode codes of 175  and  176
+                            to the ASCII standard ESCape character 033.
+                            NO   ALTMODE   restores   the    individual
+                            identities   of   the   codes   175  (right
+                            brace: }) and 176 (tilde: ~).
+
+        BLANKS              Controls the output  of  blank  lines.   NO
+                            BLANKS suppresses the output of consecutive
+                            RETURNS.   This  is  useful   for   display
+                            terminals,  because NO BLANKS will conserve
+                            space on the screen, allowing  more  output
+                            to be displayed at one time.
+
+        COPY                Controls the output of the ESCape character
+                                                                   ____                            to  a  VT5x  terminal.   Refer  to the VT52
+                            _______ ______                            Owner's Manual.
+
+        CRLF                Controls the automatic RETURN at the end of
+                            the  line.   Used  with the WIDTH argument,
+                            CRLF gives an automatic RETURN at the  edge
+                            of  the terminal screen.  This feature does
+                            not  work  at  monitor  level.    NO   CRLF
+
+
+                                   2-355
+                        SYSTEM COMMANDS AND PROGRAMS                        SYSTEM COMMANDS AND PROGRAMS
+
+
+                            suppresses the automatic RETURN at the edge
+                            of the  screen.   The  default  setting  is
+                            CRLF.
+
+        DEBREAK             Notifies the system that the terminal has a
+                            feature  that  allows  the computer to lock
+                            the keyboard.  (Model 2741 terminals.)
+
+        DEFER               Suppresses  echoing  to  a  video  terminal
+                            until  output  to the terminal is finished.
+                            This  is  used  when  you  type  characters
+                            before the output is finished.  DEFER holds
+                            the characters until the output is done; NO
+                            DEFER  allows  them  to  be  echoed on your
+                            terminal before the output is done.
+
+        DISPLAY             Notifies the system that the  terminal  you
+                            are  using is a display terminal.  Programs
+                            use this information to control  output  to
+                            the terminal.
+|  
+|       ECHO                Controls echoing on the terminal.  NO  ECHO
+|                           suppresses  echoing  of  all characters you
+|                           type.
+|  
+|       EIGHTBIT            Enables the terminal to accept and generate
+|                           eight  bit characters.  A terminal set with
+|                           the  EIGHTBIT  switch  will  be   able   to
+|                           communicate with a terminal that uses seven
+|                           bit characters.
+
+        ELEMENT nnn         Changes the typing element number for Model
+                            2741   terminals.    The   element  numbers
+                            available are:
+
+                            Element           Meaning                            Element           Meaning
+
+                              987     APL correspondence
+                              029     Standard correspondence
+                              097     Call 360 BASIC
+                              963     Extended binary
+                              938     BCD
+                              988     APL (EBCDIC)
+
+                            SET TTY ELEMENT also sets NO LC.
+
+        FILL n              Assigns filler class  n  to  the  terminal.
+                            Some  terminals  require one or more filler
+                            characters to  be  sent  following  certain
+                            control  characters  such as line feed (LF)
+|                           and horizontal tab (HT).   With  the  DN875
+|                           front-end, there will be a short time lapse
+
+
+                                   2-356
+                        SYSTEM COMMANDS AND PROGRAMS                        SYSTEM COMMANDS AND PROGRAMS
+
+
+|                           before each character is sent.
+
+                            Table 2-3 illustrates the number of fillers
+                            sent  for  each character and filler class.
+                            The    filler     characters     are     CR
+                            (carriage-return),   and   DEL  (DELETE  or
+                            RUBOUT) for all other characters.
+
+                            No fillers  are  supplied  for  image  mode
+                            output.   The  default is determined by the
+                            declared terminal type.
+
+
+   Table 2-2:  Fill Characters   Table 2-2:  Fill Characters
+
+
+        Character      Octal     Number of Fillers for Filler Class
+          Name                   0        1        2         3
+
+
+       BS              010       0        2        6         6
+       HT              011       0     1 OR 2      0     1 OR 2^1
+       LF              012       0        2        6         6
+       VT              013       0        2        6         6
+       FF              014       0       12       21        21
+     CR on output      015       0        1        3         3^2
+     automatic CR^3              0        2        4         4
+     CRLF on output    015-012   0        3        9         9^4
+       XON             021       1        1        1         1
+       TAPE            022       1        1        1         1
+       XOFF            023       1        1        1         1
+       NTAP            024       1        1        1         1
+     __________________
+     1.  1 if 0-3 spaces to tab stop; 2 if 4-7 spaces to tab stop.
+     2.  Output only; no fillers on input.
+     3.  Refer to the SET TTY CRLF command.
+     4.  Sum of the fillers output for a CR and LF.
+
+
+
+        FORM                Controls the output of line-feeds for the
+                            formfeed and vertical tab
+                            characters. NO FORM instructs the system to
+                            output the line-feeds.
+                            FORM is a declaration that the terminal has
+                            the capability of
+                            generating the line-feeds. The default is
+                            determined by the declared
+                            terminal type.
+
+        GAG                 Controls the reception of messages that
+                            were sent with the
+
+
+                                   2-357
+                        SYSTEM COMMANDS AND PROGRAMS                        SYSTEM COMMANDS AND PROGRAMS
+
+
+                            SEND command. GAG instructs the system to
+                            prevent messages
+                            from reaching the terminal when the job is
+                            at user level. NO GAG
+                            allows messages to reach the terminal at
+                            any time. The default
+                            setting is GAG.
+
+        HOLD                Controls the use of the SCROLL key on  VT5x
+                                                          ____  _______                            terminals.    Refer  to  the  VT52  Owner's
+                            ______                            Manual for instructions on the use of  this
+                            key.
+
+        LC                  Controls  the  translation   of   lowercase
+                            letters to uppercase letters.  NO LC allows
+                            all  characters   to   be   translated   to
+                            uppercase by the monitor.
+
+                            Frequently, it  is  convenient  to  have  a
+                            terminal  with both uppercase and lowercase
+                            simulate the behavior of one with uppercase
+                            only.   TTY  NO  LC  causes  the monitor to
+                            perform this  simulation.   The  echo  sent
+                            back by the monitor always matches the case
+                            of the characters  after  translation.   By
+                            looking  at  the  output, you can determine
+                            whether translation was  performed  by  the
+                            monitor.     The   default   condition   is
+                            determined by the declared terminal type.
+
+        LENGTH n            Specifies number of lines on terminal  page
+                            and  stops  output to your terminal after n
+                            lines.  You can use CTRL/S and CTRL/Q after
+                            using  this command.  Refer to Section 1.5.
+                            CTRL/S stops output; CTRL/Q continues.   If
+                            you  use SET TTY LENGTH with no argument or
+                            with the argument of 0, the system does not
+                            automatically  stop output, but you can use
+                            CTRL/S and CTRL/Q to control  output.   The
+                            default   argument  is  determined  by  the
+                            declared terminal type.
+
+                            SBELL, SSTOP, STOP, XONXOF  will  use  this
+                            value as the page length.
+
+                            This  argument  is   useful   for   display
+                            terminals  because  it prevents output from
+                            scrolling off the screen.  When  output  is
+                            stopped  by  the  system after n lines, the
+                            terminal  bell  rings.    Use   CTRL/Q   to
+                            continue output to your terminal.
+
+
+
+                                   2-358
+                        SYSTEM COMMANDS AND PROGRAMS                        SYSTEM COMMANDS AND PROGRAMS
+
+
+|       LOCAL COPY          Controls   echoing   to    the    terminal.
+|                           Local-copy    terminals   (terminals   that
+|                           automatically print each character  as  you
+|                           type  it)  do  not  require that the system
+|                           echo characters  to  the  terminal.   LOCAL
+|                           COPY  is  the  default  setting.  Use LOCAL
+|                           COPY for a local-copy terminal.   NO  LOCAL
+|                           COPY   is   not   recommended  for  use  by
+|                           non-privileged users  because  the  actions
+|                           can be reversed only by an operator [1,2].
+
+|       QUOTE               Causes a ^V (control-V)  and  character  to
+|                           behave  as  a single super-quote character.
+|                           They will not echo separately, and a single
+|                           delete erases them both.  NO QUOTE disables
+|                           this action.
+
+        REMOTE              Clears the  LOCAL  terminal  characteristic
+                            for  your  job.   Use  NOREMOTE  to set the
+                            LOCAL  characteristic.   This  argument  is
+                            used  to set the appropriate mode (LOCAL or
+                            REMOTE) for your terminal so that  you  can
+                            log  into  an  account  that requires LOCAL
+                            login.  For specific information on account
+                            characteristics,   including   LOCAL  line,
+                            refer  to  the  REACT  description  in  the
+                            _______ ________ ____________ _____                            TOPS-10 Software Installation Guide.
+
+        RTCOMPATIBILITY     Disables the CTRL/R  and  CTRL/T  features.
+                            (Refer  to Section 1.5 for a description of
+                            CTRL/R  and  CTRL/T.)  NO   RTCOMPATIBILITY
+                            turns the CTRL/R and CTRL/T features on.
+
+        SBELL               Sets the terminal to  ring  the  bell  when
+                            output  is  automatically  stopped (this is
+                            the default action).  NO  SBELL  suppresses
+                            the bell.
+
+        SLAVE               Specifies that the terminal becomes slaved,
+                            so  that  no  commands  can be typed on the
+                            terminal.  This  is  useful  for  terminals
+                            that  are  ASSIGNed  by  another job.  This
+                            command  is  not  recommended  for  use  by
+                            non-privileged  users  because  the actions
+                            can be reversed only by an operator  [1,2],
+                            using NO SLAVE.
+
+        SPEED m n           Sets the terminal transmitting speed  to  m
+                            and  the  receiving speed to n.  To set the
+                            same transmitting and receiving speed,  use
+                            the  m argument alone.  You must adjust the
+                            speed of your terminal to  match  m  and  n
+
+
+                                   2-359
+                        SYSTEM COMMANDS AND PROGRAMS                        SYSTEM COMMANDS AND PROGRAMS
+
+
+                            using switches on your terminal.
+
+                            NO SPEED is an invalid argument.
+
+                                               NOTE
+
+                                Certain hardware configurations  do
+                                not   allow  transmit  and  receive
+                                speeds to be different (also called
+                                "split speed").
+
+
+        SSTOP               Ignores  CTRL/Q  until  output  is  stopped
+                            either by the system (automatically), or by
+                            CTRL/S from user.
+
+        STOP                Stops output to the terminal  automatically
+                            after  n  lines  (where n is page length --
+                            see the LENGTH argument).   When  you  type
+                            CTRL/Q, the page length counter is reset to
+                            0.
+
+        TAB                 Specifies that this terminal  has  hardware
+                            TAB stops every eight columns.  The default
+                            is set according to the  declared  terminal
+                            type.   When  you  use  NO TAB, the monitor
+                            simulates tabs  by  sending  the  necessary
+                            number of SPACE characters.
+
+        TAPE                Controls the function of CTRL/S and CTRL/Q.
+                            TAPE  causes  CTRL/S  to function like XOFF
+                            and  CTRL/Q  to  function  like  XON   when
+                                                                _______                            reading  paper  tape.   Refer  the  TOPS-10
+                            _______  _____  ______                            Monitor  Calls  Manual.   NO  TAPE   causes
+                            CTRL/S  and  CTRL/Q  to  take  their normal
+                            function.   Refer  to  Sections  1.5.7  and
+                            1.5.8.
+
+        TERMINET            Sets   tab   spacing   identical    to    a
+                            TERMINET-300.
+
+        TIDY                Specifies (for Model 2741  terminals)  that
+                            every  character  occupy  one  print space.
+                            The terminal normally prints characters  so
+                            that  they appear the same as you type them
+                            in.  For example, [ prints as ^<.  In  TIDY
+                            mode, [ prints as <.
+
+        TYPE nnnn           Sets terminal  characteristics  defined  by
+                            the declared terminal type (nnnn).
+
+                            The following terminal types are recognized
+
+
+                                   2-360
+                        SYSTEM COMMANDS AND PROGRAMS                        SYSTEM COMMANDS AND PROGRAMS
+
+
+                            by the system:
+
+                                 2741S21  LA34  LA36
+                                 LA38   VK100  VT100 VT61
+                                 VT05   VT06   VT50  VT52
+                                 VT101  VT102  VT103 VT125
+                                 VT180  VT185  TTY33 VT131
+                                 LA30   TTY    TTY35 VT132
+
+                            TTY  is  a  generic  terminal  and  is  the
+                            default  for terminals whose types have not
+                            been declared.  The characteristics set for
+                            these types are described in Table 2-2.
+
+
+
+        Argument                            Function        Argument                            Function
+
+                            The  characteristics  that   are   set   by
+                            declaring the terminal type are:
+
+                                 LOWERCASE
+                                 TABS
+                                 FORM
+                                 WIDTH
+                                 DISPLAY
+                                 FILL
+                                 PAGE
+                                 ALTMODE
+
+                            TYPE is not  a  necessary  portion  of  the
+                            command  string.   For example, you can set
+                            your terminal type to that of an  LA120  by
+                            typing SET TTY LA120.
+
+        UC                  Equivalent to SET TTY  NO  LC.   Translates
+                            all  lowercase letters to uppercase.  NO UC
+                            is equivalent to SET TTY LC.
+
+        WIDTH n             Sets the terminal width (the length of  the
+                            line)   to   n  characters.   This  command
+                            combined with  the  SET  TTY  CRLF  command
+                            enables  you to specify the widest possible
+                            margin  for  your  terminal.   The  default
+                            setting   is  determined  by  the  declared
+                            terminal type.
+
+        XONXOF              Allows you to use CTRL/S to stop output  to
+                            the   terminal.    This   is  the  default.
+                            NOXONOF  prevents  CTRL/S   from   stopping
+                            output.
+
+
+
+                                   2-361
+                        SYSTEM COMMANDS AND PROGRAMS                        SYSTEM COMMANDS AND PROGRAMS
+
+
+   Characteristics   Characteristics
+
+        The SET TTY command:
+
+             Leaves your terminal at monitor level.
+
+             Does not require LOGIN.
+
+   Restrictions   Restrictions
+
+        The SET TTY (or TTY) command is not available to batch jobs.
+|  
+   Associated Commands|  Associated Commands
+|  
+|       INITIA     displays the TTY parameters
+
+   Example   Example
+
+        Tell the system that your terminal is a VT05.
+
+             .SET TTY VT05 <RET>
+
+        Issue the INITIA TTY command.  The  system  responds  with  the
+        terminal characteristics of a VT05 terminal.
+
+             .I TTY <RET>
+
+               RJO52A KL #1026/1042 08:24:08 TTY52 SYSTEM 1026/1042
+             CONNECTED TO NODE KL1026(26) LINE #52
+             JOB 33 USER MAROTTA,M [27,5434]
+             DSKC:  KL1026 SYSTEM DISK DSKC:
+             DSKB:  KL1026 SYSTEM DISK DSKB:
+             TYPE:VT05   NOLC     TABS          NOFORM
+             ECHO:DEFER  CRLF     WIDTH:72      NOGAG
+             DISPLA      FILL:2   NOTAPE        PAGE:20
+             NOBLANKS    NOALMOD  RCVSPEED:150  XMTSPEED:2400
+             NODEBREA    NOTIDY   NORTCOMP      NOSLAVE
+             NOHDX       REMOTE
+
+             .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                   2-362
+    &'>è

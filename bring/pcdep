@@ -1,0 +1,180 @@
+.page frame 66 high 70 wide
+.turn on ""
+.turn on "#"
+.turn on "_"
+.indent 8,8
+.nojust
+.single space
+.every heading (########APRIL 7 1986,,DEPOT REPAIR SERVICE REQUEST PROCEDURES)
+.every footing (,####{page},)
+dummy page
+.next page
+_#######CARRY-IN
+.skip 1
+.indent 8,13
+1.###Write the name of your repair depot, the date, and the time next to
+"Carry-In".
+.indent 8,13
+2.###Inventory all equipment,
+including all removable subassemblies (for example: monochrome, color,
+comm. board, AST).
+Under "Problem," write any interpretation by the customer
+of the problem of the component.
+.indent 8,13
+3.###Call dispatch and open an incident.
+Write the incident number next to "Incident."
+.indent 8,13
+4.###Fill-in the customer information:
+.indent 13,18
+A.###If service is billable:
+check the "Billable" box.
+Fill-in the "Billable Service Call" section.
+Fill-in the Purchase Order number, Tax Exempt number (if applicable), and the
+Bill-to address (left side).
+The customer must supply a hardcopy purchase order from their company.
+Fill-in the Ship-to address (right side).
+.indent 13,18
+B.###If the service is under contract, check the "Contract" box and
+fill-in the contract ID number.
+Fill-in the Ship-to address on the right side.
+.indent 8,13
+5.###If the customer wishes to be notified if the repair estimate
+exceeds a certain amount,
+enter the amount next to
+"Request Notification Above."
+.indent 8,13
+6.###Get the customer's signature and date
+in "Customer Authorization for Service."
+Point out to the customer that the authorization is subject to the
+terms and conditions on the reverse side of the form.
+.indent 8,13
+7.###Give the customer copy 5 of the form.
+.indent 8,13
+8.###Obtain authorization from the customer in-person or by telephone when
+the repair costs will exceed the authorized level.
+Fill-in what the repair costs will be, the name of the person who
+authorizes the estimate, and the date next to "Estimate."
+.indent 8,13
+9.###Repair the machine (if authorized by the customer).
+.indent 13,18
+A.###Check "Part Ordered" and fill-in the date and status if a needed part
+is not in stock.
+.indent 13,18
+B.###Record parts usage by filling in Part Number, Descritpion, Qty, and
+Lbr. Hrs.
+.indent 13,18
+C.###If the service is billable, also record Price, Rate, and Amount.
+Obtain the Price and Rate from the Contract Department.
+Total the amounts and enter.
+.indent 13,18
+D.###Under "Comments," explain the work done on the machine.
+.indent 13,18
+E.###Sign the form next to "FE" and enter your employee number.
+Close the incident on dispatch.
+.indent 8,13
+10.##Call the customer.
+Fill-in the date and time next to "Customer Called."
+Fill-in the date and time that the system was sent to the customer
+pick-up area next to "Customer Pick-Up."
+.indent 8,13
+11.##When the customer picks up the equipment, get a 
+signature and date next to 
+"Received".
+.indent 8,13
+12.##Give the customer copy 4 of the form.
+.indent 8,13
+13.##Mail copy 3 of the form to the Contract Department.
+.indent 8,13
+14.##File copy 2 of the form in the local depot.
+.indent 8,13
+15.##Send copy 1 of the form to accounting if the service is
+billable.
+If the service is not billable, file copy 1 with copy 2.
+.next page
+_########MAIL-IN
+.skip 1
+.indent 8,13
+1.###Receive the phone call from the customer.
+Confirm that a problem exists with the customer's system before proceeding.
+Write the preprinted form number in "MRA."
+.indent 13,13
+Give the customer shipping instructions.
+Tell the customer to write the MRA number on the outside of the box.
+.indent 8,13
+2.###Fill-in the customer information:
+.indent 13,18
+A.###If service is billable:
+check the "Billable" box.
+Fill-in the "Billable Service Call" section.
+Fill-in the Purchase Order number, Tax Exempt number (if applicable), and the 
+Bill-to address (left side).
+The customer must supply a hardcopy purchase order from their company.
+Fill-in the Ship-to address (right side).
+.indent 13,18
+B.###If the service is under contract, check the "Contract" box and
+fill-in the contract ID number.
+Fill-in the Ship-to address on the right side.
+.indent 8,13
+3.###If the customer wishes to be notified if the repair estimate
+exceeds a certain amount,
+enter the amount next to
+"Request Notification Above."
+.indent 8,13
+4.###File the form in the suspense file.
+If the system is not received within 30 days, call the customer.
+.indent 8,13
+5.###When the system arrives from the customer, look for the MRA number
+on the box and remove the matching form from the suspense file.
+.indent 13,13
+Fill-in the date received and the name of the carrier next to "Mail-In."
+.indent 8,13
+6.###Inventory all equipment,
+including all removable subassemblies (for example: monochrome, color,
+comm. board, AST).
+Under "Problem," write any interpretation by the customer
+of the problem of the component.
+.indent 8,13
+7.###Call dispatch and open an incident.
+Write the incident number next to "Incident."
+.indent 8,13
+8.###Mail the customer copy 5 of the form.
+.indent 8,13
+9.###Obtain authorization when
+the repair costs will exceed the authorized level.
+Fill-in what the repair costs will be, the name of the person who
+authorizes the estimate, and the date next to "Estimate."
+.next page
+.indent 8,13
+10.##Repair the machine (if authorized by the customer).
+.indent 13,18
+A.###Check "Part Ordered" and fill-in the date and status if a needed part
+is not in stock.
+.indent 13,18
+B.###Record parts usage by filling in Part Number, Descritpion, Qty, and
+Lbr. Hrs.
+.indent 13,18
+C.###If the service is billable, also record Price, Rate, and Amount.
+Obtain the Price and Rate from the Contract Department.
+Total the amounts and enter.
+.indent 13,18
+D.###Under "Comments," explain the work done on the machine.
+.indent 13,18
+E.###Sign the form next to "FE" and enter your employee number.
+Close the incident on dispatch.
+.indent 8,13
+11.##Call the customer.
+Fill-in the date and time next to "Customer Called."
+.indent 8,13
+12.##Fill-in the date and the time that the system was sent to the shipping
+department next to "Shipping."
+Pack copy 4 of the form with the shipment.
+.indent 8,13
+13.##Mail copy 3 of the form to the Contract Department.
+.indent 8,13
+14.##File copy 2 of the form in the local depot.
+.indent 8,13
+15.##Send copy 1 of the form to accounting if the service is
+billable.
+If the service is not billable, file copy 1 with copy 2.
+
+

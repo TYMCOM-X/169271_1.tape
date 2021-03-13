@@ -1,0 +1,285 @@
+
+
+
+BOOT.DOC -- TOPS-10 Level D Disk Bootstrap
+January 1984
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+COPYRIGHT (C) 1980,1981,1982,1983,1984 BY
+DIGITAL EQUIPMENT CORPORATION, MAYNARD, MASS.
+
+
+THIS SOFTWARE IS FURNISHED UNDER A LICENSE AND MAY BE USED AND  COPIED
+ONLY  IN  ACCORDANCE  WITH  THE  TERMS  OF  SUCH  LICENSE AND WITH THE
+INCLUSION OF THE ABOVE COPYRIGHT NOTICE.  THIS SOFTWARE OR  ANY  OTHER
+COPIES  THEREOF MAY NOT BE PROVIDED OR OTHERWISE MADE AVAILABLE TO ANY
+OTHER PERSON.  NO TITLE TO AND OWNERSHIP OF  THE  SOFTWARE  IS  HEREBY
+TRANSFERRED.
+
+THE INFORMATION IN THIS SOFTWARE IS SUBJECT TO CHANGE  WITHOUT  NOTICE
+AND  SHOULD  NOT  BE  CONSTRUED  AS  A COMMITMENT BY DIGITAL EQUIPMENT
+CORPORATION.
+
+DIGITAL ASSUMES NO RESPONSIBILITY FOR THE USE OR  RELIABILITY  OF  ITS
+SOFTWARE ON EQUIPMENT WHICH IS NOT SUPPLIED BY DIGITAL.
+BOOT.DOC                                                        Page 2
+
+
+BOOT.DOC -- TOPS-10 Level D Disk Bootstrap
+January 1984
+
+
+
+1.0  SUMMARY
+
+This  version  of  BOOT  includes  support  for  KL  paging  on   KL10
+processors,  full  support  for system sleep, and optional support for
+DX20/RP20 microcode.  In addition, it also includes maintenance  edits
+that  fix  several problems reported with the version shipped with the
+7.01 monitor.  Support for KI10 processors has been removed  from  the
+sources and is no longer available.
+
+This version of  BOOT  has  been  tested  under  7.02  on  KS  and  KL
+processors and supersedes all previous versions.
+
+
+
+2.0  EXTERNAL CHANGES
+
+BOOT has the same functionality and  command  syntax  as  MONBTS.   As
+such, it differs substantially from the older BOOTS.  See BOOT.MEM for
+more information on the functionality and command syntax of BOOT.
+
+The /EDDT switch has  been  added  as  the  functional  equivalent  of
+/START:401.
+
+
+
+3.0  KNOWN BUGS AND DEFICIENCIES
+
+None
+
+
+
+4.0  INSTALLATION INSTRUCTIONS
+
+BOOT searches F, S, and DTEPRM (KL only) so you tell it which kind  of
+CPU  you  have  by  the settings of the FTK?10 switches in F.  BOOT is
+loaded into memory starting  at  the  page  specified  by  the  FTPAGE
+feature test setting.  The default setting is such that BOOT is loaded
+at 256K.  The file BOOT.CTL demonstrates how to build BOOT.
+
+Note that RSXT10 3(40) or later is required to build the KL10  version
+of BOOT.  Earlier versions of RSXT10 will not correctly build the .EXB
+file.
+
+If BOOT  is  assembled  with  support  for  the  RP20  microcode,  the
+resulting  .EXE  file  must  be  run  in  user mode to read in the the
+DX20/RP20 microcode.  BOOT assumes that the microcode is in  the  file
+IN:DXMCD.ADX,  where  "IN:"  is  a logical device name for the area on
+which the microcode resides.  The file RPBOOT.CTL demonstrates how  to
+build  BOOT  with  RP20  microcode support.  Note that only RP20 sites
+receive the files necessary to build BOOT with this support.
+BOOT.DOC                                                        Page 3
+
+
+4.1  Installing BOOT On The KS10 Front-end
+
+Once the correct version  of  BOOT  is  built  for  your  system,  the
+procedure  for  installing  it  on the KS10 front-end is quite simple.
+Follow  the  instructions  in  chapter  6  of  the   TOPS-10   Monitor
+Installation  Guide  through  step [KS-34].  Replace step [KS-35] with
+the command:
+
+         SMFILE>WRITE BOOT BTSxxx.EXE[PPN]
+
+where BTSxxx.EXE[PPN] gives the filespec of the  BOOT  that  you  have
+just  built.   Continue with the rest of the procedure as indicated in
+the Installation Guide.
+
+
+
+4.2  Installing BOOT On The KL10 Front-end
+
+The procedure for installing  BOOT  on  the  KL10  front-end  is  more
+complicated because it involves transferring the .EXB file through the
+DTE onto the front-end  file  system.   On  the  -10  side,  you  need
+SYS:FE.EXE which you should already have on SYS:.
+
+To transfer BOOT to the front-end file system do the following from  a
+[1,2] job:
+
+     1.  Copy the .EXB file that you have just built to  BOOT.EXB[1,2]
+         on the a structure that is in the job search list.
+
+     2.  If you are on a multi-CPU system, type the command:
+
+                 .SET CPU ONLY CPU n
+
+         where n is the CPU number of the CPU that has  the  front-end
+         you  want  to  update.   Do  not do this step if you are on a
+         single CPU system.
+
+     3.  Type the command:
+
+                 .R FE
+
+         This runs the FE program which provides one-half of the  path
+         necessary to do the transfer.
+BOOT.DOC                                                        Page 4
+
+
+     4.  Go to the CTY of the CPU that has the front-end that you want
+         to update and type the following commands:
+
+                 ^\                      ;Type control-backslash
+                 PAR>MCR MOU             ;Start up MOU
+                 MOU>FE:                 ;Mount the FE device
+                 MOU -- MOUNT COMPLETE   ;MOU types this
+                 MOU>^Z                  ;Type control-Z to exit MOU
+                 ^\                      ;Type a control-backslash
+                 PAR>MCR PIP             ;Start up PIP
+                 PIP>SY:BOOT.*;*/LI      ;Do a directory of BOOT.*
+         
+                   -- PIP types the directory here --
+
+         You have now mounted the FE device (the logical  device  that
+         completes  the path to the -10 disk) and taken a directory of
+         BOOT.*.  This directory is important  in  case  you  have  to
+         delete the new copy of BOOT, so you should keep it handy.
+
+         The next step in the procedure is to copy the new  BOOT  from
+         the -10 disk to the front-end disk.  Note the "/NV" switch in
+         the commands below.  It is important because it prevents  the
+         new  BOOT  from  superseding  the  old  one.   Now  type  the
+         following:
+
+                 PIP>SY:BOOT.EXB/NV=FE:[1,2]BOOT.EXB
+                                         ;Copy the file to the front-end
+                 PIP:SY:BOOT.*;*/LI      ;Do another directory of BOOT.*
+         
+                   -- PIP types the directory here --
+
+         You should now compare the previous directories with the  new
+         ones  and  make  sure  that BOOT was copied successfully.  To
+         complete the procedure, type the following:
+
+                 PIP>^Z                  ;Type a control-Z to exit PIP
+                 ^\                      ;Type a control-backslash
+                 PAR>MCR DMO             ;Start up DMO
+                 DMO>FE:                 ;Dismount the FE device
+                 DMO -- DISMOUNT COMPLETE ;DMO types this
+                 DMO>^Z                  ;Type a control-Z to exit DMO
+                 ^\                      ;Type a control-backslash
+                 PAR>^Z                  ;Type a control-Z to return to
+                                         ;the monitor
+
+         This sequence of  commands  transfers  BOOT.EXB[1,2]  to  the
+         front-end  file  system  using  the next available generation
+         number.  You should now test the new BOOT by  reloading  your
+         monitor in the normal manner.
+
+BOOT.DOC                                                        Page 5
+
+
+4.3  What To Do If It Doesn't Work
+
+If, after copying the new BOOT to the front-end, you discover that  it
+ddoesn't  work,  you  should  delete  the  appropriate  file  from the
+front-end file system.  You can do this by  comparing  the  first  and
+second  directory  listings  that  resulted  from the procedure above.
+Once you know which file to delete,  you  can  do  so  by  typing  the
+following (n is the generation number obtained from the directories):
+
+         ^\                      ;Type a control-backslash
+         PAR>MCR PIP             ;Start up PIP
+         PIP>SY:BOOT.EXB;n/DE    ;Delete the file.  n=the generation
+                                 ;number from the directory listing
+         PIP>^Z                  ;Type a control-Z to exit PIP
+         ^\                      ;Type a control-backslash
+         PAR>^Z                  ;Type a control-Z
+BOOT.DOC                                                        Page 6
+
+
+5.0  INTERNAL CHANGES
+
+Edit #
+
+1      Add the /REBOOT switch and support for system sleep.
+
+2      Change the default filename for /REBOOT from SYSTEM to CRASH.
+
+3      Change the definitions of APRRST and CLRAPR  for  the  KS10  to
+       reflect empirical evidence (i.e.  make it work)
+
+4      After powerup, the KS10 wants a WREBR 0 before the WREBR to set
+       the  EBR.   I'm  not  sure why it's true or why it works but it
+       fixes the ?PAR ERR's.
+
+5      Add the /EDDT switch to be equivalent to /START:401.
+
+6      Add conditinal assembly for KL paging.
+
+7      Fix typo that caused BOOT to give up  on  a  structure  if  the
+       first HOME block was bad even if the second one was OK.
+
+10     Make it possible to load the DX20/RP20 microcode with BOOT  and
+       pass  the  physical  address  of  the  loaded  microcode to the
+       monitor when it is started.
+
+11     Fix a problem with finding 18 bit DF10s.   This  fix  was  only
+       installed  in maintenance versions since DF10s aren't supported
+       with the next field release of BOOT.  The  result  is  no  code
+       change is this source.
+
+12     Remove the FTKI10 conditionals and the code that they surround.
+
+13     More of edit 7.
+
+14     Can't boot a KS if one of the drives is dual ported.
+
+15     If KL paging is turned on, MUUO EA is printed incorrectly on  a
+       trap other than page fault.
+
+16     Cause version number to be in .JBVER and the EXE file.
+
+17     Insert copyright into RSX20F EXB file.
+
+
+
+6.0  SUGGESTIONS
+
+None.
+
+
+
+[End of BOOT.DOC]
+  

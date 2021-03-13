@@ -1,0 +1,475 @@
+
+
+
+                 TYMCOM-IX BASE CRASHES AND RECOVERIES
+                  -------- ---- ------- --- ----------
+
+
+       ((INTRODUCTION))
+
+            Since the Tymbase provides network access to two  hosts,  if
+       either host crashes, the base will continue to function as a node
+       in Tymnet.  But if the base crashes, the  base  will  crash  both
+       hosts  connected  to that base;  a host without a base is cut off
+       from the outside world and cannot timeshare effectively.  A large
+       majority  of  base  crashes will be self-recovering for the base.
+       This means that the base has routines within  itself  to  dump  a
+       copy  of  it's  core image into the respective hosts for analysis
+       later on.  After the base has  dumped  itself,  it  crashes  both
+       hosts  connected  to  it  and  returns  to  it's normal operation
+       automatically.
+
+            Occasionally however, the Tymbase will hangup in a  loop  or
+       simply  stop  functioning and display the 'step' light.  In these
+       cases the operator must follow the procedures described  in  this
+       document  in  order  that  the  base crash code can be saved, the
+       hosts can be halted in an orderly fashion and  the  base  can  be
+       returned to normal functioning through a TYMNET CONTROL initiated
+       downstream base code load.
+
+            Always  remember  to  keep  TYMNET  NETWORK  CONTROL  CENTER
+       informed  on the status of any unusual activity that is occurring
+       on any base.
+                                                                  Page 2
+BASE CRASH SUMMARY
+
+
+       ((COMMAND SUMMARY))
+
+
+                                     NOTE
+
+           Full details on all  summarized  procedures  are  in  the
+           COMMAND DESCRIPTION section of this document.
+
+
+               1) ANNOUNCE THE CRASH OVER THE COMLINE SPEAKER AND
+                  CONTACT NETCON TO ADVISE THEM OF THE SITUATION;
+
+               2) CHECK IF THE BASE IS IN STEP. IF NOT AND THE BIT LAMPS
+                  ARE NOT FLICKERING FAINTLY THE BASE IS LOOPING.
+
+               3) FOR 620L-100 BASES TURN THE FRONT PANEL KEY TO 'ON'
+                  TO UNLOCK THE CONSOLE. IF THE BASE WAS LOOPING HIT THE
+                  'STEP' SWITCH.
+
+               4) CHECK AND RECORD THE FOLLOWING REGISTERS:
+                  ON 620 BASES         RECORD P,U,A,B AND X REGISTERS
+
+               5) CLEAR THE REGISTERS AND ATTEMPT TO RESTART FROM
+                  P LOCATION 0; THIS DUMPS BASECODE TO THE 940.
+                  AS THIS IS DONE THE 940'S WILL CRASH (IF THEY 
+                  HAVEN'T CRASHED EARLIER). THIS PROCEDURE WILL
+                  USUALLY CORRECT THE PROBLEM.
+
+               6) IF RESTART FROM 0 FAILS, CONTACT NETWORK CONTROL AND
+                  REQUEST A FRESH COPY OF THE BASE CODE BE LOADED OVER
+                  THE NETWORK USING THE DOWNSTREAM LOADING PROTOCOL;
+
+               7) IF NETCON IS UNABLE TO LOAD THE BASE, CHECK AND IF
+                  NECESSARY CORRECT THE BOOTSTRAP FOR THAT BASE;
+
+               8) WAIT A FEW MINUTES, THEN LOG A NEARBY TTY INTO PROBE.
+                  CHECK THE STATUS OF THE BASE YOU JUST RESTARTED OR
+                  OR NETCON JUST RELOADED WITH THE PROBE PROGRAM;
+
+               9) IF THE BASE IS RUNNING PROPERLY, BRINGUP THE HOSTS
+                  CONNECTED TO IT FOR TIMESHARING;
+
+               10) LEAVE A THOROUGH RECORD OF WHAT YOU DID WITH THE
+                  M.A.R. YOU GIVE YOUR LEAD OPERATOR AND IN THE SYSTEM
+                  LOGBOOK.
+                                                                  Page 3
+BASE SAVE DESCRIPTION
+
+
+       ((COMMAND DESCRIPTION))
+                                   1.
+
+            From time to time the automatic self-recovery of  a  Tymbase
+       crash will not occur.  Generally if portions of the base code are
+       clobbered, correcting the situation  depends  on  the  operator's
+       ability  to  coordinate  the  appropriate  procedures with TYMNET
+       NETWORK CONTROL.  There are over 10,000 instructions  in  a  base
+       code.   These  instructions  can  be  reflected  in  the  various
+       registers  of  the  minicomputer.   Part  of  this  code  is  the
+       BOOTSTRAP - a series of instructions which the base uses to bring
+       itself to a functioning state by loading and running the rest  of
+       the code.
+
+            If any type of base crash  occurs,  both  hosts  interfacing
+       TYMNET through that base will crash.  As with any host crash, you
+       should announce the crash over the  loudspeaker.   When  you  see
+       both  hosts  on  a  base  crash you should check that base before
+       bringing up either 940.  Generally the Tymbase will have  already
+       dumped  it's code into 940 core and the hosts can be brought back
+       up.  When you load the TYMCOM-IX monitor with  'UP;G'  the  crash
+       code  will  be  saved  to  a  special  area  on disk 0.  Then the
+       2CRASHSAVE program (during OPCOM) will include it  in  the  crash
+       save files.
+
+                                   2.
+
+            If however, the base is unable to recover, then  all  logins
+       to the host will fail and the message 'HOST NOT AVAILABLE THROUGH
+       NET' will type out.  By this time, the operator should have begun
+       to  suspect  a  base problem requiring manual intervention.  When
+       the base crashes and is not able to restart  itself  the  machine
+       will  either be in 'STEP' (that is the STEP light will be lit and
+       there will be no activity in any of the register lights)  or  the
+       machine  will  be  hung up in a loop (in which case the lights on
+       the console will not be flickering).  Additional  symptoms  of  a
+       non-recovering  base  crash  can  be  obtained by using the PROBE
+       program to check the status of the base from the vantage  of  the
+       network  supervisor.   This  program  is  documented  in  another
+       section of this manual.
+
+
+
+                                     NOTE
+
+           For the following description you  are  referred  to  the
+           console diagram on the page after next.
+
+
+                                                                  Page 4
+BASE SAVE DESCRIPTION
+
+
+                                   3.
+
+
+            The first recovery procedure is to turn the  console  enable
+       key  to  the  'ON' position to 'unlock' the 620L-100 console.  If
+       the base is not is STEP, press the 'STEP' key to stop the machine
+       from looping.
+
+                                   4.
+
+            At this point you should record the contents of  the  base's
+       registers.  To do this on the 620 L-100 type base (TYMCOM-IX) you
+       must push each of the register switches (labeled  from  right  to
+       left) 'P, U, A, B and X to the down position one at a time.  When
+       each switch is  in  the  down  position,  the  contents  of  that
+       register  will be displayed as an octal number in the data lights
+       labeled (right to left) 0 through 15.  This information should be
+       recorded in the form 'P=NNNNNN, U=NNNNNN' etc.
+
+                                   5.
+
+            Once you have recorded all of the registers one at  a  time,
+       proceed  to  clear each register.  To do this put each individual
+       register in the down position, press the BIT  RESET  button,  and
+       then  put the register key back to the up position.  When the BIT
+       RESET button is pushed the light in the data display  will  reset
+       to  0 (all lights out).  Proceed with the same procedure with the
+       next register and continue until all registers have been cleared.
+
+            Next attempt to restart the base from P location 0.   To  do
+       this press the SYSTEM RESET button twice and then the RUN button.
+       The code should now be running.  A  restart  from  P  location  0
+       dumps  the  Tymbase  into 940 core on both hosts connected to the
+       base.  If this procedure succeeds the lights in the data  display
+       will begin to flicker, and the RUN light should remain on.
+
+            It always takes at least two minutes for a restarted base to
+       be  recognized  by the network.  You should use the PROBE program
+       to verify that the base has restarted correctly.  If so,  proceed
+       to bring the hosts back up.
+                                                                  Page 5
+620 L-100 CONSOLE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                  Page 6
+BASE CODE RELOAD
+
+
+                                   6.
+
+            If restarting the code from 0 fails, chances  are  the  base
+       will  go  into step.  If that happens, or if the network does not
+       acknowledge the base restart within PROBE after  3  minutes,  the
+       next  corrective  procedure  is to contact TYMNET NETWORK CONTROL
+       (408 446-6180 or ext.  6468) and request that they force the base
+       to  it's appropriate synchronous bootstrap location, load a fresh
+       copy of basecode from downstream and start it running.  Base code
+       for  the  940's  is contained in diskfiles on either system 33 or
+       system 36 under directory  (TYMNET).   Under  normal  situations,
+       this  code  can  be  loaded over TYMNET so long as both hosts are
+       down and the base is in the network.  However, at this point,  it
+       is assumed that the base is in step, that the registers have been
+       recorded (step 4 above) and cleared (step 5 above) and  that  you
+       have  already  tried  the  less drastic measure of restarting the
+       Tymbase from P=0.  If both hosts are not yet down, use breakpoint
+       4  to  crash  them.   Contact  NETWORK CONTROL and find out which
+       network line from the base will be used for the  downstream  code
+       load.   If they indicate the current net line set up for the base
+       load, go over to the base and put  the  'P'  register  key  down.
+       Enter  an  octal 37640 into the data display.  When you have done
+       this hit the SYSTEM RESET button twice, then hit RUN.  From  this
+       point, NETCON can proceed with the reload.
+
+                                  NOTE
+
+       The bootstrap start location above reflects a  620  with  16K  of
+       core (standard).  If however the 620 has
+
+               12K of core    use     P=27640
+               20K of core    use     P=47640
+               24K of core    use     P=57640
+
+                                   7.
+
+            If however, NETCON indicates that some line other  than  the
+       current  line will be used for the downstream code load, you will
+       have to check and possibly change the contents of five  locations
+       in the bootstrap before proceeding to start the synchronous boot.
+       The locations and contents to  be  changed  in  these  cases  are
+       listed below.
+
+            This table can also be  used  to  determine  which  line  is
+       currently  set  up  for the downstream load.  For example, if you
+       check the 16k 620 value of bootstrap location 37655 and  find  it
+       contains  50040,  then  line  0 (the default) is the current line
+       setting for the code load.
+
+            The table  below  contains  the  appropriate  locations  and
+       contents  necessary  to  load  basecode  downstream  from various
+       network  lines.   Refer  to  the  procedure  under   ERRORS   AND
+       RECOVERIES  for  details  on  how  to  examine  and  change these
+       locations.
+                                                                  Page 7
+BASE CODE RELOAD
+
+
+     BOOTSTRAP VALUES FOR USE OF VARIOUS LINES ON DOWNSTREAM LOADS
+
+      LOCATION   LINE   LINE   LINE   LINE   LINE   LINE   LINE   LINE
+                  0      1      2      3      4      5      6      7
+      --------   ----   ----   ----   ----   ----   ----   ----   ----
+      X7655      50040  50044  50050  50054  50060  50064  50070  50074
+      X7656      50042  50046  50052  50056  50062  50066  50072  50076
+      X7663      50043  50047  50053  50057  50063  50067  50073  50077
+      X7666      50041  50045  50051  50055  50061  50065  50071  50075
+      X7770      00021  00023  00025  00027  00031  00033  00035  00037
+
+               THE 'X' PORTION OF THE LOCATION IS A NUMBER DEPENDING ON
+               THE MEMORY SIZE OF THE MACHINE IN QUESTION. THE 'X' IS
+               REPLACED BY ONE OF THE FOLLOWING NUMBERS:
+
+                               MEMORY          X REPLACED
+                                SIZE               BY
+                               ------          ----------
+                                12K                2
+                 (STANDARD)     16K                3
+                                20K                4
+                                24K                5
+                                32K                7
+
+            If the base reload fails you may have to manually reload the
+       base bootstrap;  The procedure for this is detailed in the ERRORS
+       AND RECOVERIES section of this document.
+
+                                   8.
+
+            If this base load was a success, the the initial evidence is
+       that  the RUN and OVFL lights stay on and the data display lights
+       (esp.   bit  10)  flicker  faintly.   Conclusive  evidence  of  a
+       successful base reload comes from checking the status of the base
+       node you just reloaded with the PROBE program.  Remember, it will
+       take  the  Network Supervisor at lease 2 minutes to recognize the
+       base again.
+
+                                   9.
+
+            If this procedure has succeeded, you can proceed to bring up
+       both  940s for timesharing by typing UP;G to the selector channel
+       DIM.  The dumped base crash will then be  saved  with  the  crash
+       dump.
+
+                                  10.
+
+            Follow up whatever steps were necessary by writing a  M.A.R.
+       outlining  the initial problem and what steps you took to correct
+       the situation.
+                                                                  Page 8
+BASE CODE RELOAD
+
+
+       ((SAMPLE RUN))
+
+            See the command description above for the procedures and  an
+       outline of the results of each step.
+
+
+       ((ERRORS and RECOVERIES))
+
+            Although the 620 bootstrap  seldom  gets  clobbered,  a  bad
+       bootstrap is the most common reason for a base reload not working
+       properly:  the mechanism for moving code from  940  core  to  620
+       where it can run will be disabled if any part of the bootstrap is
+       incorrect.  To identify this problem it is necessary to check the
+       current  bootstrap  in  the  620L-100.   If any instruction(s) is
+       found to deviate  from  the  correct  entry,  the  instruction(s)
+       involved  must  be manually changed to the correct value.  Before
+       outlining  these  techniques,  a  few   basic   definitions   are
+       presented:
+
+
+               P REGISTER             The P register is the program 
+                                       location counter. This
+                                       program counter is 16 bits long.
+
+               U REGISTER             The U register is the instruction
+                                       register of the CPU; 16 bits.
+
+               A REGISTER             The A register is the accumulator
+                                       register and is also 16 bits;
+                                       the contents of a location are
+                                       usually here.
+
+               014000                  this is the 'LOAD A' register
+                                       instruction; 10000 is 'load a'
+                                       and 4000 is 'relative to the 'p'
+                                       register. Use this to check.
+
+               054000                  this is the 'STORE A' register
+                                       instruction; 50000 is 'store a'
+                                       and 4000 is 'relative to the 'p'
+                                       register'. use this to correct.
+                                                                  Page 9
+CHECKING/RELOADING THE BOOTSTRAP
+
+
+                    ((RELOADING SYNCHRONOUS BOOTS))
+
+            With the downstream loader, the bootstrap used is  called  a
+       'synchronous'  boot;   if  it  should  fail, you can reload it by
+       first loading the older 'system' bootstrap for the 620.
+
+       a) use the selector channel mode on the terminal to type UP;G  to
+       DIM;  if you must do this remember to use UP-1;G when bringing up
+       the host so you will avoid overwriting the original crash dump.
+
+       b) to the prompt 'HOST:' you should type whichever host number is
+       host 0 (the first number on the base label - eg.  C5 for C5-20B);
+
+       c) to the 'LOC.:' prompt, type  11  (or  14)  to  load  the  file
+       (TYMNET) SYNCLD;  this is the 'system' boot;
+
+       d) on the 620 hit the reset key twice;
+
+       e) set the 620 sense switches to indicate the octal number of the
+       net line that will be used by NETCON for the downstream load;
+
+       f) finally, hit RUN on the 620 to  start  the  synchronous  boot;
+       NETCON can resume with the actual base code load at this point.
+
+
+                       ((CHECKING THE BOOTSTRAP))
+
+       1) THE 620L-100 MUST BE IN 'STEP';  IF NOT HIT 'STEP'.
+
+       2) CLEAR ALL THE REGISTERS (SEE STEP 5 IN THE COMMAND DESCRIPTION
+       ABOVE ON HOW TO DO THIS).
+
+       3) SET THE 'REPEAT' KEY ON;  SELECT THE 'U'  REGISTER  AND  ENTER
+       14000;  SELECT THE 'P' REGISTER AND ENTER 37640 (OR WHICHEVER THE
+       LOCATION IS YOU WISH TO CHECK).  NEXT SELECT THE 'A' REGISTER.
+
+       4) GET A HARDCOPY OF THE CORRECT BOOTSTRAP LISTING OR  THE  TABLE
+       CONTAINING  THE  FIVE LOCATIONS INVOLVED IN DETERMINING WHICH NET
+       LINE WILLSED FOR THE DOWNSTREAM BASE LOAD.  HIT  'STEP'  AND
+       THE ENTRY FOR THAT LOCATION IN THE CURRENT BASE BOOTSTRAP WILL BE
+       SHOWN AS AN OCTAL  NUMBER  IN  THE  DATA  DISPLAY.   IF  YOU  ARE
+       CHECKING  THE ENTIRE BOOTSTRAP, THIS SHOULD MATCH THE FIRST OCTAL
+       ENTRY ON YOUR LIST.  FOR CHECKING THE FIVE LOCATIONS INVOLVED  IN
+       NET  LINE  FOR  THE LOAD, THIS SHOULD MATCH THE APPROPRIATE VALUE
+       CONTAINED IN THE LINE TABLE IN  THIS  DOCUMENT.   IF  IT  IS  NOT
+       CORRECT,  MARK  THAT  LOCATION ON YOUR HARDCOPY SO THAT LATER YOU
+       CAN CHANGE THAT ENTRY IN THE 620L-100 BOOTSTRAP.
+
+       5) TO MOVE ON TO THE  NEXT  INSTRUCTION  IN  THE  BOOTSTRAP,  HIT
+       'STEP'  AGAIN.   THIS WILL INCREMENT THE 'P' REGISTER AND DISPLAY
+       THE  NEXT  BOOTSTRAP  ENTRY  IN  THE  DATA  LIGHTS.   REPEAT  THE
+       COMPARISON  WITH THE BOOTSTRAP LISTING AND MAKE A MARK IF THE 620
+       ENTRY IS INCORRECT.  IF YOU WISH TO CHECK THE  ENTIRE  BOOTSTRAP,
+       TO  DO  THIS  PROCEED  TO  DISPLAY  EACH  SUCCESSIVE ENTRY IN THE
+       BOOTSTRAP BY HITTING 'STEP'.
+                                                                 Page 10
+CHECKING/RELOADING THE BOOTSTRAP
+
+
+                    ((CORRECTING A BOOTSTRAP ENTRY))
+
+       6) NOW, REFERRING TO THE INCORRECT ENTRIES YOU'VE CHECKED ON  THE
+       BOOTSTRAP  LIST, (OR, TO THE LIST OF THE FIVE LOCATIONS THAT NEED
+       TO BE MODIFIED TO LOAD FROM A NET LINE  OTHER  THAN  THE  CURRENT
+       LINE  SETTING)  SELECT  THE  'U' REGISTER AND ENTER 54000;  NEXT,
+       SELECT THE 'P' REGISTER AND ENTER  WHICHEVER  BOOTSTRAP  LOCATION
+       CONTAINS  THE ENTRY YOU WISH TO CHANGE;  SELECT THE 'A' REGISTER.
+       HIT 'BIT RESET' TO CLEAR THE DATA DISPLAY LIGHTS.
+
+       7) INTO THE 'A' REGISTER YOU SHOULD KEYIN THE CORRECT  ENTRY  FOR
+       THE  LOCATION  THAT IS IN THE 'P' REGISTER.  NOW HIT 'STEP' ONCE.
+       REPEAT THE PROCEDURES 6 AND 7 FOR EACH ENTRY YOU NEED TO CHANGE.
+
+       8) WHEN ALL THE APPROPRIATE ENTRIES HAVE BEEN MADE,  RECHECK  ALL
+       THE  CHANGES (WITH PROCEDURES 1 THRU 5) TO MAKE SURE THE 620L-100
+       NOW CONTAINS THE EXACT SAME ENTRY FOR EACH LOCATION AS  YOU  HAVE
+       ON THE BOOTSTRAP LIST OR LINE TABLE.
+
+       9) IF NOT, REDO THIS ENTIRE  PROCEDURE  UNTIL  THE  BOOTSTRAP  IS
+       CORRECT;   IF  IT  IS  CORRECT,  YOU  CAN  PROCEED TO RESTART THE
+       BOOTSTRAP AND NOTIFY NETCON TO RESUME THE BASE CODE LOAD AGAIN.
+
+
+
+            Occasionally when a power failure takes the base  down,  the
+       620L-100  may be in a 'pwr checked' mode.  The key on the console
+       would be on but none of the front panel switches would work.   If
+       so, turn the key to 'OFF', then back to 'PWR ON'.
+
+            If none of the above  procedures  correct  a  base  problem,
+       contact TYMSHARE MAINTENANCE for assistance.
+    @1]

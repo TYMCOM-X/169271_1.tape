@@ -1,0 +1,136 @@
+:C: 1DOWN
+                                    THE 1DOWN PROGRAM
+                                    ------------------
+     
+     PURPOSE
+     -------
+     
+     TO SEND A MESSAGE TO ALL DISTRICTS INFORMING THEM OF THE UNAVAILABILITY
+     OF A SYSTEM DURING SCHEDULED TIMESHARING HOURS.  IF A SYSTEM IS TO BE
+     DOWN 10 MINUTES OR LONGER THIS MESSAGE MUST BE SENT.  THE 1DOWN MESSAGE
+     CAN BE SENT ON ANY 940.
+     
+     OPERATING INSTRUCTIONS
+     ----------------------
+     
+            A.  SET STATUS.
+     
+            B.  IN THE EXEC TYPE:   -1DOWN
+     
+     VALID COMMANDS
+     --------------
+     
+     THE FIRST THREE CHARACTERS OF THE COMMANDS LISTED BELOW MAY BE USED.
+     
+            READ                    -READ CURRENT MESSAGES FOR ALL OR A
+                                     SPECIFIED SYSTEM FROM THE ACTIVE
+                                     SUPERVISOR ONLY.
+     
+            MESSAGES ON ALL         -READ CURRENT MESSAGES FOR ALL OR A
+            SUPERVISOR SYSTEMS       SPECIFIED SYSTEM FROM ALL SUPERVISOR
+                                     SYSTEMS.
+     
+            ENTER                   -ENTER A MESSAGE FOR A SPECIFIED
+                                     SYSTEM.
+     
+            CLEAR                   -CLEAR MESSAGE FOR A SPECIFIED SYSTEM.
+     
+            *SHUT                   -SHUT A SPECIFIED LINE.
+     
+            *ANSWER                 -ANSWER A SPECIFIED LINE.
+     
+            LINES SHUT              -LISTS LINES IN SHUT CONDITION.
+                                     ACTIVE SUPERVISOR ONLY.
+     
+            ALL LINES SHUT          -LISTS LINES IN SHUT CONDITION ON 
+     
+                                     ALL SUPERVISORS.
+     
+            *RETAKE A NODE          -INSTRUCTS ACTIVE SUPERVISOR TO RETAKE
+                                     A NODE.  REQUIRES NODE NO.
+     
+            *REBORI                 -INSTRUCTS ACTIVE SUPERVISOR TO RESET
+                                     BEGINNING OF RECORD FLAG.  REQUIRES
+                                     NODE AND LINE NO.
+     
+            *UNSNIP                 -INSTRUCTS ACTIVE SUPERVISOR TO UNSNIP
+                                     A LINES.  REQUIRES NODE AND LINE NO.
+     
+            QUIT OR Q               -QUIT TO THE EXECUTIVE
+     
+            HELP OR ?               -REPRINTS THIS LIST
+     
+     *REQUIRES TYMNET LICENSE.
+     
+     
+     
+     EXAMPLES OF COMMANDS
+     ---------------------
+     
+     -SET STATUS
+     
+     -1DOWN
+     
+     :READ
+     
+     BUILDING CIRCUIT TO ACTIVE SUPERVISOR
+     
+     ALL SYSTEMS? (Y OR N) N        (IF (Y) IT WILL READ ALL LETTERS ON THE
+                                     ACTIVE SUPERVISOR)
+     MESSAGES FOR SYSTEM NO. 17
+     
+     THERE ARE NO MESSAGES FOR SYSTEM 17
+     
+     ANOTHER SYSTEM:  (Y OR N)  N
+     
+     
+     
+     
+     :ENTER
+     
+     BUILDING CIRCUIT TO ACTIVE SUPERVISOR
+     
+     MESSAGE FOR SYSTEM:  2
+     
+     ENTER MESSAGE-TERMINATE WITH CONTROL D.
+     
+     SYSTEM 2 IS CURRENTLY UNAVAILABLE.  WE ESTIMATE ITS RETURN TO SERVICE
+     AT HHMM PACIFIC TIME ON MM/DD.
+     
+     (AFTER TERMINATING WITH CONTROL D, THE SYSTEM WILL INDICATE THE
+     SUPERVISOR SYSTEMS THAT IS IS BUILDING CIRCUITS TO)
+     
+     
+     
+     
+     :CLEAR
+     
+     BUILDING CIRCUIT TO ACTIVE SUPERVISOR
+     
+     CLEAR MESSAGE FOR SYSTEM:  2
+     
+     (AFTER ENTERING THE SYSTEM NO., THE SYSTEM WILL INDICATE THE
+     SUPERVISOR SYSTEMS THAT IT IS BUILDING CIRCUITS TO)
+     
+     
+     
+     
+     :LINES SHUT
+     
+     BUILDING CIRCUIT TO ACTIVE SUPERVISOR
+     
+     NO LINES SHUT (OR IT WILL LIST LINES SHUT)
+     
+     
+     
+     :Q
+     
+     EOJ
+     
+     
+     ERROR MESSAGES
+     --------------
+     
+     CONTACT LEAD OPERATOR IF ANY ERRORS APPEAR.  THE LEAD OPERATIOR WILL 
+     CONTACT GUY BLOOD AFTER MAKING SURE THE PROGRAM IS NOT WORKING
+     PROPERLY.
